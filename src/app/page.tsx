@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 /* ────────────────────────────── DATA ────────────────────────────── */
@@ -164,6 +165,22 @@ export default function Home() {
                 <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300">
                   Contact Us
                 </Link>
+              </div>
+            </div>
+
+            {/* Brand logo */}
+            <div className="animate-fade-in-up delay-200">
+              <div className="mx-auto max-w-[560px] rounded-3xl bg-white/10 p-5 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+                  <Image
+                    src="/image.png"
+                    alt="Vishnu Traders logo"
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 560px"
+                    className="object-contain p-4"
+                    priority
+                  />
+                </div>
               </div>
             </div>
 

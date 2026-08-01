@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const quickLinks = [
@@ -23,13 +24,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#B8934A]/20 border border-[#B8934A]/30">
-                <span
-                  className="text-xl font-bold text-[#B8934A]"
-                  style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                >
-                  V
-                </span>
+              <div className="relative h-11 w-11 overflow-hidden rounded-xl ring-1 ring-[#B8934A]/30">
+                <Image
+                  src="/image.png"
+                  alt="Vishnu Traders logo"
+                  fill
+                  sizes="44px"
+                  className="object-contain"
+                />
               </div>
               <div>
                 <span

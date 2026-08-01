@@ -8,6 +8,11 @@ export const metadata: Metadata = {
     default: "Vishnu Traders — Premium Wholesale & Retail Trading",
     template: "%s | Vishnu Traders",
   },
+  icons: {
+    icon: "/image.png",
+    shortcut: "/image.png",
+    apple: "/image.png",
+  },
   description:
     "Your trusted partner for premium quality commodities, grains, spices, and essential goods. Wholesale and retail trading since 1990.",
   keywords: [

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -25,19 +26,30 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white/90 backdrop-blur-xl shadow-lg shadow-black/[0.03]"
-          : "bg-transparent"
+          : "bg-[#0F2F27]/55 backdrop-blur-md"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#1F4A3D] to-[#3F7C67] shadow-md transition-transform duration-300 group-hover:scale-105">
-              <span className="text-xl font-bold text-[#B8934A]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>V</span>
-              <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-[#B8934A] border-2 border-white" />
+            <div className="relative h-11 w-11 overflow-hidden rounded-xl shadow-md ring-1 ring-[#B8934A]/35 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/image.png"
+                alt="Vishnu Traders logo"
+                fill
+                sizes="44px"
+                className="object-contain"
+                priority
+              />
             </div>
             <div>
-              <span className="block text-lg font-bold tracking-tight text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              <span
+                className={`block text-lg font-bold tracking-tight ${
+                  scrolled ? "text-[#1F4A3D]" : "text-white"
+                }`}
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
                 Vishnu Traders
               </span>
               <span className="block text-[10px] font-medium uppercase tracking-[0.2em] text-[#B8934A]">
@@ -52,7 +64,11 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative px-5 py-2 text-sm font-medium text-[#1F4A3D]/80 transition-colors hover:text-[#1F4A3D] group"
+                className={`relative px-5 py-2 text-sm font-medium transition-colors group ${
+                  scrolled
+                    ? "text-[#1F4A3D]/80 hover:text-[#1F4A3D]"
+                    : "text-white/90 hover:text-white"
+                }`}
               >
                 {link.label}
                 <span className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-[#B8934A] transition-all duration-300 group-hover:left-[20%] group-hover:w-[60%] rounded-full" />
@@ -69,22 +85,30 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-[#1F4A3D]/5"
+            className={`md:hidden relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+              scrolled ? "hover:bg-[#1F4A3D]/5" : "hover:bg-white/10"
+            }`}
             aria-label="Toggle menu"
           >
             <div className="flex flex-col gap-1.5">
               <span
-                className={`block h-0.5 w-6 bg-[#1F4A3D] transition-all duration-300 origin-center ${
+                className={`block h-0.5 w-6 transition-all duration-300 origin-center ${
+                  scrolled ? "bg-[#1F4A3D]" : "bg-white"
+                } ${
                   isOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-6 bg-[#1F4A3D] transition-all duration-300 ${
+                className={`block h-0.5 w-6 transition-all duration-300 ${
+                  scrolled ? "bg-[#1F4A3D]" : "bg-white"
+                } ${
                   isOpen ? "opacity-0 scale-0" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-6 bg-[#1F4A3D] transition-all duration-300 origin-center ${
+                className={`block h-0.5 w-6 transition-all duration-300 origin-center ${
+                  scrolled ? "bg-[#1F4A3D]" : "bg-white"
+                } ${
                   isOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               />
