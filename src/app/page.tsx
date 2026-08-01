@@ -170,16 +170,23 @@ export default function Home() {
 
             {/* Brand logo */}
             <div className="animate-fade-in-up delay-200">
-              <div className="mx-auto max-w-[560px] rounded-3xl bg-white/10 p-5 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                  <Image
-                    src="/logo-clean.png"
-                    alt="Vishnu Traders logo"
-                    fill
-                    sizes="(max-width: 1024px) 90vw, 560px"
-                    className="object-contain p-4"
-                    priority
-                  />
+              <div className="relative mx-auto max-w-[560px] rounded-3xl border border-white/15 bg-gradient-to-br from-white/15 via-white/10 to-white/5 p-7 backdrop-blur-xl shadow-[0_28px_60px_-20px_rgba(0,0,0,0.55)]">
+                <div className="absolute right-8 top-6 h-24 w-24 rounded-full bg-[#B8934A]/15 blur-2xl" />
+                <div className="absolute left-10 bottom-8 h-20 w-20 rounded-full bg-[#3F7C67]/25 blur-xl" />
+                <div className="relative flex flex-col items-center justify-center">
+                  <div className="relative h-44 w-full max-w-[360px]">
+                    <Image
+                      src="/logo-best.png"
+                      alt="Vishnu Traders logo"
+                      fill
+                      sizes="(max-width: 1024px) 80vw, 360px"
+                      className="object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.35)]"
+                      priority
+                    />
+                  </div>
+                  <p className="mt-3 text-center text-sm font-semibold uppercase tracking-[0.28em] text-[#D9B97B]">
+                    Trusted Global Trading Network
+                  </p>
                 </div>
               </div>
             </div>

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
     template: "%s | Vishnu Traders",
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon-best.png",
+    shortcut: "/favicon-best.png",
+    apple: "/favicon-best.png",
   },
   description:
     "Your trusted partner for premium quality commodities, grains, spices, and essential goods. Wholesale and retail trading since 1990.",

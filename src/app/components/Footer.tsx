@@ -26,7 +26,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div className="relative h-11 w-11 overflow-hidden rounded-xl ring-1 ring-[#B8934A]/30">
                 <Image
-                  src="/logo-clean.png"
+                  src="/logo-best.png"
                   alt="Vishnu Traders logo"
                   fill
                   sizes="44px"
