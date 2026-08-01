@@ -35,7 +35,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative h-11 w-11 overflow-hidden rounded-xl shadow-md ring-1 ring-[#B8934A]/35 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/image.png"
+                src="/logo-clean.png"
                 alt="Vishnu Traders logo"
                 fill
                 sizes="44px"

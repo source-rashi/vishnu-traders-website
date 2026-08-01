@@ -173,7 +173,7 @@ export default function Home() {
               <div className="mx-auto max-w-[560px] rounded-3xl bg-white/10 p-5 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20">
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
                   <Image
-                    src="/image.png"
+                    src="/logo-clean.png"
                     alt="Vishnu Traders logo"
                     fill
                     sizes="(max-width: 1024px) 90vw, 560px"
