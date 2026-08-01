@@ -1,0 +1,9 @@
+{
+  "name": "Vishnu Traders",
+  "short_name": "Vishnu",
+  "description": "Premium wholesale and retail trading website",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#1F4A3D"
+}
