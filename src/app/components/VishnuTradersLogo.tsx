@@ -1,162 +1,121 @@
-/**
- * VishnuTradersLogo — Production SVG Logo Component
- *
- * Two variants:
- *  - "icon"  : compact icon mark (globe + V), for navbar/favicon
- *  - "full"  : full lockup (icon + wordmark + tagline), for homepage hero/footer
- *
- * ⚠️  MANUAL ACTION REQUIRED: Get visual sign-off from the client/designer
- *      before treating this SVG as the permanent brand mark.
- *
- * Brand tokens: gold #B8934A / #C2A159 / #D4B56A, green #1F4A3D / #3F7C67 / #0A1B15
- */
+import React from "react";
 
 interface LogoProps {
-  variant?: "icon" | "full";
-  /** className applied to the root <svg> or <div> wrapper */
+  variant?: "full" | "icon" | "horizontal";
   className?: string;
-  /** For icon variant: override icon size in px (default 40) */
-  iconSize?: number;
-  /** invert colour scheme for dark backgrounds (default false = light-bg) */
-  dark?: boolean;
+  light?: boolean;
 }
 
-export function VishnuTradersLogo({
-  variant = "icon",
+export default function VishnuTradersLogo({
+  variant = "horizontal",
   className = "",
-  iconSize = 40,
-  dark = true,
+  light = false,
 }: LogoProps) {
+  const textColor = light ? "text-white" : "text-[#1F4A3D]";
+  const subtextColor = light ? "text-[#D4B56A]" : "text-[#B8934A]";
+
   if (variant === "icon") {
-    return <IconMark size={iconSize} className={className} dark={dark} />;
+    return (
+      <div className={`relative inline-flex items-center justify-center ${className}`}>
+        <svg
+          viewBox="0 0 64 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+          aria-label="Vishnu Traders Emblem"
+        >
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#D4B56A" />
+              <stop offset="50%" stopColor="#B8934A" />
+              <stop offset="100%" stopColor="#8A6A2E" />
+            </linearGradient>
+            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1F4A3D" />
+              <stop offset="100%" stopColor="#0A1B15" />
+            </linearGradient>
+          </defs>
+
+          {/* Outer Shield / Container */}
+          <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#greenGrad)" stroke="url(#goldGrad)" strokeWidth="2" />
+
+          {/* Globe Latitude & Longitude lines */}
+          <circle cx="32" cy="32" r="23" stroke="#3F7C67" strokeWidth="1.2" strokeDasharray="2 2" fill="none" opacity="0.6" />
+          <ellipse cx="32" cy="32" rx="10" ry="23" stroke="#3F7C67" strokeWidth="1.2" fill="none" opacity="0.6" />
+          <line x1="9" y1="32" x2="55" y2="32" stroke="#3F7C67" strokeWidth="1.2" opacity="0.6" />
+          <line x1="14" y1="20" x2="50" y2="20" stroke="#3F7C67" strokeWidth="0.8" opacity="0.4" />
+          <line x1="14" y1="44" x2="50" y2="44" stroke="#3F7C67" strokeWidth="0.8" opacity="0.4" />
+
+          {/* Stylized Grain / Leaf at top */}
+          <path
+            d="M32 10 C34 14, 38 16, 38 20 C38 22, 35 24, 32 24 C29 24, 26 22, 26 20 C26 16, 30 14, 32 10 Z"
+            fill="url(#goldGrad)"
+          />
+
+          {/* Bold V Motif */}
+          <path
+            d="M17 18 L32 49 L47 18 L41 18 L32 38 L23 18 Z"
+            fill="url(#goldGrad)"
+          />
+
+          {/* Central Trade Star Accent */}
+          <polygon
+            points="32,26 33.5,30 37.5,30.5 34.5,33 35.5,37 32,34.5 28.5,37 29.5,33 26.5,30.5 30.5,30"
+            fill="#FAF3E7"
+          />
+        </svg>
+      </div>
+    );
   }
-  return <FullLockup className={className} dark={dark} />;
-}
 
-/* ─── Icon mark ─────────────────────────────────────────────────────────── */
+  if (variant === "full") {
+    return (
+      <div className={`flex flex-col items-center text-center ${className}`}>
+        {/* Large Emblem */}
+        <div className="w-24 h-24 sm:w-32 sm:h-32 mb-4 relative drop-shadow-xl">
+          <VishnuTradersLogo variant="icon" className="w-full h-full" />
+        </div>
 
-function IconMark({
-  size,
-  className,
-  dark,
-}: {
-  size: number;
-  className?: string;
-  dark: boolean;
-}) {
-  const bg = dark ? "#0A2E24" : "#EAF3F0";
+        {/* Brand Wordmark */}
+        <div className="space-y-1">
+          <h2
+            className={`text-2xl sm:text-4xl font-bold tracking-tight uppercase ${textColor}`}
+            style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+          >
+            VISHNU TRADERS
+          </h2>
+          <div className="flex items-center justify-center gap-3">
+            <span className="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent to-[#B8934A]" />
+            <p className={`text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase ${subtextColor}`}>
+              Since 1996 · Global Trading · Pan-India Network
+            </p>
+            <span className="h-[1px] w-8 sm:w-12 bg-gradient-to-l from-transparent to-[#B8934A]" />
+          </div>
+          <p className="text-[11px] sm:text-xs text-white/60 mt-1 font-medium tracking-wide">
+            Pologround Industrial Estate · Indore · Madhya Pradesh · India
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Horizontal variant (default for Navbar / Footer)
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Vishnu Traders logo mark"
-      className={className}
-    >
-      {/* ── Circular background ── */}
-      <circle cx="24" cy="24" r="23" fill={bg} />
-
-      {/* ── Globe — meridians & parallels ── */}
-      {/* Outer ring */}
-      <circle cx="24" cy="24" r="18" stroke="#3F7C67" strokeWidth="1.2" fill="none" />
-      {/* Vertical ellipse (longitude) */}
-      <ellipse cx="24" cy="24" rx="7" ry="18" stroke="#3F7C67" strokeWidth="0.8" fill="none" />
-      {/* Horizontal lines (parallels) */}
-      <line x1="6" y1="24" x2="42" y2="24" stroke="#3F7C67" strokeWidth="0.8" />
-      <path d="M8 17 Q24 21 40 17" stroke="#3F7C67" strokeWidth="0.7" fill="none" />
-      <path d="M8 31 Q24 27 40 31" stroke="#3F7C67" strokeWidth="0.7" fill="none" />
-
-      {/* ── Gold "V" ── */}
-      {/* Main V strokes — thicker, centered */}
-      <path
-        d="M13 12 L24 32 L35 12"
-        stroke="#B8934A"
-        strokeWidth="3.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Inner highlight on V */}
-      <path
-        d="M15 12 L24 29 L33 12"
-        stroke="#D4B56A"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        opacity="0.6"
-      />
-
-      {/* ── Leaf / sprig accent at top of V ── */}
-      <ellipse
-        cx="24"
-        cy="10"
-        rx="3.5"
-        ry="1.6"
-        fill="#B8934A"
-        transform="rotate(-10 24 10)"
-        opacity="0.9"
-      />
-      <ellipse
-        cx="24"
-        cy="10"
-        rx="3.5"
-        ry="1.6"
-        fill="#C2A159"
-        transform="rotate(10 24 10)"
-        opacity="0.7"
-      />
-
-      {/* ── Thin gold rim ── */}
-      <circle cx="24" cy="24" r="23" stroke="#B8934A" strokeWidth="0.8" fill="none" opacity="0.4" />
-    </svg>
-  );
-}
-
-/* ─── Full lockup ────────────────────────────────────────────────────────── */
-
-function FullLockup({ className, dark }: { className?: string; dark: boolean }) {
-  const wordmarkColor = dark ? "#FFFFFF" : "#1F4A3D";
-  const taglineColor = dark ? "#B8934A" : "#8A6A2E";
-
-  return (
-    <div className={`flex flex-col items-center gap-4 ${className}`}>
-      {/* Icon */}
-      <IconMark size={80} dark={dark} />
-
-      {/* Wordmark */}
-      <div className="text-center">
-        <div
-          className="text-3xl font-bold tracking-[0.12em] uppercase"
-          style={{
-            fontFamily: "var(--font-playfair), 'Playfair Display', Georgia, serif",
-            color: wordmarkColor,
-            letterSpacing: "0.14em",
-          }}
+    <div className={`flex items-center gap-3 ${className}`}>
+      <div className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 rounded-xl overflow-hidden shadow-md ring-1 ring-[#B8934A]/30">
+        <VishnuTradersLogo variant="icon" className="w-full h-full" />
+      </div>
+      <div>
+        <span
+          className={`block text-lg sm:text-xl font-bold tracking-tight leading-tight ${textColor}`}
+          style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
         >
           Vishnu Traders
-        </div>
-
-        {/* Decorative rule */}
-        <div className="flex items-center gap-3 justify-center my-2">
-          <div className="h-px w-10 bg-[#B8934A] opacity-60" />
-          <div className="w-1.5 h-1.5 rounded-full bg-[#B8934A] opacity-80" />
-          <div className="h-px w-10 bg-[#B8934A] opacity-60" />
-        </div>
-
-        {/* Tagline */}
-        <p
-          className="text-[11px] font-semibold uppercase tracking-[0.22em]"
-          style={{ color: taglineColor }}
-        >
-          Since 1996 &bull; Global Trading &bull; Pan&#8209;India Network
-        </p>
+        </span>
+        <span className={`block text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] ${subtextColor}`}>
+          Since 1996 · Global Trading
+        </span>
       </div>
     </div>
   );
 }
-
-export default VishnuTradersLogo;
