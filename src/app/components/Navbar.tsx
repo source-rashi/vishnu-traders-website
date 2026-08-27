@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -8,6 +7,8 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Products", href: "/products" },
+  { label: "Processing", href: "/processing" },
+  { label: "Certifications", href: "/certifications" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -33,15 +34,16 @@ export default function Navbar() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-11 w-11 overflow-hidden rounded-xl shadow-md ring-1 ring-[#B8934A]/35 transition-transform duration-300 group-hover:scale-105">
-              <Image
-                src="/logo-best.png"
-                alt="Vishnu Traders logo"
-                fill
-                sizes="44px"
-                className="object-contain"
-                priority
-              />
+            <div className="relative h-11 w-11 overflow-hidden rounded-xl shadow-md ring-1 ring-[#B8934A]/35 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center bg-[#0A1B15]">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-label="Vishnu Traders icon">
+                <circle cx="16" cy="16" r="13" stroke="#1F4A3D" strokeWidth="1.5" fill="#0A2E24"/>
+                <ellipse cx="16" cy="16" rx="5" ry="13" stroke="#3F7C67" strokeWidth="0.8" fill="none"/>
+                <line x1="3" y1="16" x2="29" y2="16" stroke="#3F7C67" strokeWidth="0.8"/>
+                <line x1="5" y1="10" x2="27" y2="10" stroke="#3F7C67" strokeWidth="0.6"/>
+                <line x1="5" y1="22" x2="27" y2="22" stroke="#3F7C67" strokeWidth="0.6"/>
+                <path d="M9 8 L16 22 L23 8" stroke="#B8934A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                <ellipse cx="16" cy="6.5" rx="2.5" ry="1.2" fill="#B8934A" transform="rotate(-15 16 6.5)"/>
+              </svg>
             </div>
             <div>
               <span
@@ -53,18 +55,18 @@ export default function Navbar() {
                 Vishnu Traders
               </span>
               <span className="block text-[10px] font-medium uppercase tracking-[0.2em] text-[#B8934A]">
-                Est. Since 1990
+                Since 1996 · Global Trading
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-5 py-2 text-sm font-medium transition-colors group ${
+                className={`relative px-4 py-2 text-sm font-medium transition-colors group ${
                   scrolled
                     ? "text-[#1F4A3D]/80 hover:text-[#1F4A3D]"
                     : "text-white/90 hover:text-white"
@@ -76,7 +78,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="ml-4 btn-primary text-sm !py-2.5 !px-6"
+              className="ml-3 btn-primary text-sm !py-2.5 !px-5"
             >
               Get Quote
             </Link>
@@ -85,7 +87,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+            className={`lg:hidden relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
               scrolled ? "hover:bg-[#1F4A3D]/5" : "hover:bg-white/10"
             }`}
             aria-label="Toggle menu"
@@ -119,13 +121,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden fixed inset-0 bg-white z-40 transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 bg-white z-40 transition-all duration-500 ${
           isOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
+        <div className="flex flex-col items-center justify-center h-full gap-6">
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
@@ -134,7 +136,7 @@ export default function Navbar() {
               className="text-2xl font-semibold text-[#1F4A3D] hover:text-[#B8934A] transition-colors"
               style={{
                 fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-                animationDelay: `${i * 100}ms`,
+                animationDelay: `${i * 80}ms`,
               }}
             >
               {link.label}
