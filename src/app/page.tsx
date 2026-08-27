@@ -2,6 +2,7 @@ import Link from "next/link";
 import HeroCarousel from "./components/HeroCarousel";
 import StatCounters from "./components/StatCounters";
 import ScrollReveal from "./components/ScrollReveal";
+import InteractiveGlobalMap from "./components/InteractiveGlobalMap";
 
 /* ────────────────────────────── DATA ────────────────────────────── */
 
@@ -67,14 +68,6 @@ const processingHighlights = [
     desc: "Barrier pouches up to 50kg export bags, containerized with phytosanitary documentation.",
     icon: "🚢",
   },
-];
-
-const globalRegions = [
-  { name: "Middle East & GCC", desc: "UAE, Saudi Arabia, Oman, Qatar", port: "Jebel Ali, Dammam", volume: "180+ MT/Yr" },
-  { name: "Southeast Asia", desc: "Malaysia, Singapore, Vietnam, Indonesia", port: "Port Klang, Singapore", volume: "120+ MT/Yr" },
-  { name: "Europe & UK", desc: "Germany, Netherlands, United Kingdom", port: "Rotterdam, Felixstowe", volume: "90+ MT/Yr" },
-  { name: "North America", desc: "USA, Canada (B2B Bulk Imports)", port: "New York, Los Angeles", volume: "70+ MT/Yr" },
-  { name: "Africa & Pan-India", desc: "Kenya, Nigeria & 15+ Indian states", port: "Mombasa, Lagos, Pan-India Mandis", volume: "100+ MT/Yr" },
 ];
 
 const whyUs = [
@@ -260,59 +253,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ GLOBAL REACH SECTION ═══════ */}
+      {/* ═══════ INTERACTIVE GLOBAL TRADE NETWORK ═══════ */}
       <section className="py-24 lg:py-32 bg-[#F5F0E8]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Around the Globe
+                </span>
               </div>
               <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-                Global Trade & Pan-India Network
+                Worldwide Export Corridors & Port Dispatches
               </h2>
               <p className="text-gray-600 text-lg">
-                Serving importers, food service distributors, and manufacturing brands worldwide.
+                Click on any continent or region below to explore export volumes, key discharge ports, and product demand.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {globalRegions.map((region, idx) => (
-              <ScrollReveal key={region.name} animation="fade-up" delay={idx * 80}>
-                <div className="glass-card rounded-2xl p-6 bg-white hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#B8934A] animate-pulse" />
-                        <h3 className="font-bold text-[#1F4A3D] text-base">{region.name}</h3>
-                      </div>
-                      <span className="text-[10px] font-bold text-[#8A6A2E] bg-[#B8934A]/10 px-2 py-0.5 rounded-full">
-                        {region.volume}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-500 mb-4">{region.desc}</p>
-                  </div>
-                  <div className="pt-3 border-t border-gray-100 text-[11px] text-gray-400">
-                    <span className="font-medium text-gray-700">Port Routes:</span> {region.port}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-            <ScrollReveal animation="fade-up" delay={400}>
-              <div className="glass-card rounded-2xl p-6 bg-gradient-to-br from-[#1F4A3D] to-[#0A1B15] text-white flex flex-col justify-center h-full">
-                <span className="text-xs uppercase tracking-wider text-[#D4B56A] font-bold">Port Logistics</span>
-                <p className="text-sm font-semibold mt-1">Direct shipping via Nhava Sheva (JNPT) & Mundra ports</p>
-                <p className="text-xs text-white/60 mt-2">Container Stuffing, Customs Clearances & Phytosanitary Handling</p>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          <div className="text-center">
-            <Link href="/contact" className="btn-primary text-sm">
-              Inquire for Your Destination Port
-            </Link>
-          </div>
+          <ScrollReveal animation="fade-up" delay={150}>
+            <InteractiveGlobalMap />
+          </ScrollReveal>
         </div>
       </section>
 
