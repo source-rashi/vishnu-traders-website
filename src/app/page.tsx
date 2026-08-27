@@ -5,6 +5,7 @@ import ScrollReveal from "./components/ScrollReveal";
 import InteractiveGlobalMap from "./components/InteractiveGlobalMap";
 import TestimonialsCarousel from "./components/TestimonialsCarousel";
 import FAQAccordion from "./components/FAQAccordion";
+import MediaWithFallback from "./components/MediaWithFallback";
 
 /* ────────────────────────────── DATA ────────────────────────────── */
 
@@ -18,6 +19,7 @@ const productHighlights = [
     gradient: "from-red-50 to-orange-50",
     href: "/products#whole-spices",
     badge: "Export Grade",
+    image: "/images/products/turmeric.jpg",
   },
   {
     title: "Ground & Powders",
@@ -28,6 +30,7 @@ const productHighlights = [
     gradient: "from-amber-50 to-yellow-50",
     href: "/products#ground-spices",
     badge: "100% Pure",
+    image: "/images/products/red-chilli.jpg",
   },
   {
     title: "Agri Commodities",
@@ -38,6 +41,7 @@ const productHighlights = [
     gradient: "from-green-50 to-emerald-50",
     href: "/products#agri-commodities",
     badge: "Direct Sourcing",
+    image: "/images/products/mustard-seeds.jpg",
   },
   {
     title: "Processed & Roasted",
@@ -48,6 +52,7 @@ const productHighlights = [
     gradient: "from-orange-50 to-amber-50",
     href: "/products#processed",
     badge: "Custom Toasting",
+    image: "/images/products/fennel-seeds.jpg",
   },
 ];
 
@@ -157,18 +162,29 @@ export default function Home() {
               <ScrollReveal key={cat.title} animation="fade-up" delay={idx * 100}>
                 <Link
                   href={cat.href}
-                  className="glass-card rounded-2xl p-7 flex flex-col justify-between group hover:-translate-y-2 hover:border-[#B8934A]/50 transition-all duration-300 h-full"
+                  className="glass-card p-0 flex flex-col justify-between group h-full overflow-hidden"
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300 shadow-sm`}
-                      >
-                        {cat.icon}
-                      </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#B8934A]/10 text-[#8A6A2E]">
+                  <div className="relative h-52 overflow-hidden border-b border-[#B8934A]/15">
+                    <MediaWithFallback
+                      src={cat.image}
+                      alt={cat.title}
+                      fill
+                      className="media-zoom"
+                      fallbackIcon={cat.icon}
+                      fallbackGradient={cat.gradient.replace("from-", "from-").replace(" to-", " via-")}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                    <div className="absolute right-4 top-4">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#FAF3E7]/90 text-[#8A6A2E]">
                         {cat.badge}
                       </span>
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center text-2xl shadow-sm`}>
+                        {cat.icon}
+                      </div>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#B8934A] block mb-1">
                       {cat.subtitle}
@@ -179,13 +195,13 @@ export default function Home() {
                     >
                       {cat.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed flex-1">
                       {cat.description}
                     </p>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-1 text-xs font-bold text-[#1F4A3D] group-hover:text-[#B8934A]">
-                    <span>Explore Products</span>
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-1 text-xs font-bold text-[#1F4A3D] group-hover:text-[#B8934A]">
+                      <span>Explore Products</span>
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </div>
                   </div>
                 </Link>
               </ScrollReveal>

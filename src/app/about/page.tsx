@@ -3,6 +3,7 @@ import Link from "next/link";
 import ScrollReveal from "../components/ScrollReveal";
 import ImageLightbox from "../components/ImageLightbox";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
+import MediaWithFallback from "../components/MediaWithFallback";
 
 export const metadata: Metadata = {
   title: "About Us — Three Decades of Spice Export",
@@ -80,8 +81,22 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
-        <div className="absolute top-20 right-[10%] w-[450px] h-[450px] rounded-full bg-[#B8934A]/10 blur-3xl" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(184,147,74,0.25),transparent_38%)]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1F4A3D] via-[#173C33] to-[#0A1B15] opacity-90" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.35)_35%,rgba(0,0,0,0.12)_100%)]" />
+          <div className="absolute inset-0 opacity-30">
+            <MediaWithFallback
+              src="/images/about/about-bg.jpg"
+              alt="Vishnu Traders facility and spice processing"
+              fill
+              className="object-cover"
+              fallbackIcon="✦"
+              fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#B8934A]"
+            />
+          </div>
+        </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />

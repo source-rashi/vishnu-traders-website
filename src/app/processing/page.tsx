@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveProcessingFlow from "../components/InteractiveProcessingFlow";
 import ScrollReveal from "../components/ScrollReveal";
+import MediaWithFallback from "../components/MediaWithFallback";
 
 export const metadata: Metadata = {
   title: "In-House Warehousing & Processing Flow",
@@ -36,7 +37,21 @@ export default function ProcessingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1F4A3D] via-[#183D32] to-[#0A1B15] opacity-90" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.28)_40%,rgba(0,0,0,0.12)_100%)]" />
+          <div className="absolute inset-0 opacity-30">
+            <MediaWithFallback
+              src="/images/process/process-hero.jpg"
+              alt="Processing and warehousing at Vishnu Traders"
+              fill
+              className="object-cover"
+              fallbackIcon="⚙️"
+              fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#B8934A]"
+            />
+          </div>
+        </div>
         <div className="absolute top-20 right-[10%] w-[500px] h-[500px] rounded-full bg-[#B8934A]/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">

@@ -49,14 +49,14 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors group ${
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group ${
                   scrolled
                     ? "text-[#1F4A3D]/90 hover:text-[#1F4A3D]"
                     : "text-white/90 hover:text-white"
                 }`}
               >
-                {link.label}
-                <span className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-[#B8934A] transition-all duration-300 group-hover:left-[20%] group-hover:w-[60%] rounded-full" />
+                <span className="relative z-10">{link.label}</span>
+                <span className="absolute bottom-1 left-1/2 h-0.5 w-0 bg-[#B8934A] transition-all duration-200 group-hover:left-[18%] group-hover:w-[64%] rounded-full" />
               </Link>
             ))}
 
@@ -106,10 +106,10 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden fixed inset-0 bg-white z-40 transition-all duration-500 flex flex-col justify-center px-8 ${
+        className={`lg:hidden fixed inset-0 bg-white z-40 transition-all duration-300 ease-out flex flex-col justify-center px-8 ${
           isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? "opacity-100 translate-x-0 pointer-events-auto"
+            : "opacity-0 translate-x-4 pointer-events-none"
         }`}
       >
         <div className="flex flex-col items-center gap-5 text-center">
@@ -121,7 +121,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-xl font-semibold text-[#1F4A3D] hover:text-[#B8934A] transition-colors"
+              className="text-xl font-semibold text-[#1F4A3D] hover:text-[#B8934A] transition-transform duration-200 hover:translate-x-1"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
               {link.label}

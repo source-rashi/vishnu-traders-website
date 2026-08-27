@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import AddToInquiryButton from "../components/AddToInquiryButton";
+import MediaWithFallback from "../components/MediaWithFallback";
 import ScrollReveal from "../components/ScrollReveal";
 import { useInquiry } from "../context/InquiryContext";
 
@@ -14,6 +15,7 @@ interface ProductItem {
   packaging: string;
   badge: string | null;
   description?: string;
+  image?: string;
 }
 
 interface CategoryGroup {
@@ -41,6 +43,7 @@ const categories: CategoryGroup[] = [
         purity: "99.5% - 99.9% Sortex Cleaned",
         packaging: "25kg / 50kg PP Bags",
         badge: "Top Exporter Item",
+        image: "/images/products/cumin-seeds.jpg",
       },
       {
         id: "coriander-seeds",
@@ -49,6 +52,7 @@ const categories: CategoryGroup[] = [
         purity: "Eagle / Scooter / Single Parrot Sortex",
         packaging: "25kg / 40kg Jute / PP",
         badge: "Origin Source",
+        image: "/images/products/coriander-seeds.jpg",
       },
       {
         id: "turmeric-fingers",
@@ -57,6 +61,7 @@ const categories: CategoryGroup[] = [
         purity: "Curcumin 3.0% - 5.0%+ Polished",
         packaging: "25kg / 50kg Bags",
         badge: "High Curcumin",
+        image: "/images/products/turmeric.jpg",
       },
       {
         id: "black-pepper",
@@ -65,6 +70,7 @@ const categories: CategoryGroup[] = [
         purity: "Garbled / 550GL - 580GL High Density",
         packaging: "25kg / 50kg Multiwall Paper",
         badge: "Export Grade",
+        image: "/images/products/black-pepper.jpg",
       },
       {
         id: "green-cardamom",
@@ -73,6 +79,7 @@ const categories: CategoryGroup[] = [
         purity: "7mm / 8mm Bold Deep Green",
         packaging: "5kg / 10kg Master Cartons",
         badge: "Premium Bold",
+        image: "/images/products/cardamom.jpg",
       },
       {
         id: "cloves-bold",
@@ -89,6 +96,7 @@ const categories: CategoryGroup[] = [
         purity: "Machine Cleaned 99% Sortex",
         packaging: "25kg / 50kg PP Bags",
         badge: null,
+        image: "/images/products/fennel-seeds.jpg",
       },
       {
         id: "fennel-seeds",
@@ -97,6 +105,7 @@ const categories: CategoryGroup[] = [
         purity: "Green / Regular Sortex Cleaned",
         packaging: "25kg / 50kg Bags",
         badge: null,
+        image: "/images/products/fennel-seeds.jpg",
       },
     ],
   },
@@ -115,6 +124,7 @@ const categories: CategoryGroup[] = [
         purity: "SHU 20,000 - 90,000 (Custom Heat Levels)",
         packaging: "1kg, 5kg, 25kg Barrier Bags",
         badge: "Custom Heat",
+        image: "/images/products/red-chilli.jpg",
       },
       {
         id: "turmeric-powder",
@@ -123,6 +133,7 @@ const categories: CategoryGroup[] = [
         purity: "Curcumin Verified, No Added Color",
         packaging: "500g - 25kg Bags",
         badge: "100% Pure",
+        image: "/images/products/turmeric.jpg",
       },
       {
         id: "coriander-powder",
@@ -205,6 +216,7 @@ const categories: CategoryGroup[] = [
         purity: "High Oil Content Machine Cleaned",
         packaging: "50kg Bags",
         badge: null,
+        image: "/images/products/mustard-seeds.jpg",
       },
       {
         id: "kabuli-chickpeas",
@@ -436,53 +448,66 @@ export default function ProductsPage() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {cat.products.map((product, idx) => (
                     <ScrollReveal key={product.id} animation="fade-up" delay={idx * 60}>
-                      <div className="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1.5 hover:border-[#B8934A]/50 transition-all duration-300 h-full">
-                        <div>
-                          <div className="flex items-start justify-between gap-2 mb-3">
-                            <h3
-                              className="font-bold text-[#1F4A3D] text-lg group-hover:text-[#B8934A] transition-colors"
-                              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                            >
-                              {product.name}
-                            </h3>
-                            {product.badge && (
-                              <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#B8934A]/15 text-[#8A6A2E]">
-                                {product.badge}
-                              </span>
-                            )}
-                          </div>
-
-                          <div className="space-y-1.5 text-xs text-gray-500 mb-6">
-                            <div className="flex justify-between py-1 border-b border-gray-100">
-                              <span className="text-gray-400">Origin:</span>
-                              <span className="font-medium text-gray-700 text-right">{product.origin}</span>
-                            </div>
-                            <div className="flex justify-between py-1 border-b border-gray-100">
-                              <span className="text-gray-400">Purity / Spec:</span>
-                              <span className="font-medium text-gray-700 text-right">{product.purity}</span>
-                            </div>
-                            <div className="flex justify-between py-1">
-                              <span className="text-gray-400">Standard Packaging:</span>
-                              <span className="font-medium text-gray-700 text-right">{product.packaging}</span>
-                            </div>
-                          </div>
+                      <div className="glass-card overflow-hidden flex flex-col justify-between group h-full">
+                        <div className="relative h-44 overflow-hidden border-b border-[#B8934A]/15">
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#1F4A3D] via-[#3F7C67] to-[#B8934A] opacity-30" />
+                          <MediaWithFallback
+                            src={product.image}
+                            alt={product.name}
+                            fill
+                            className="media-zoom"
+                            fallbackIcon={cat.icon}
+                            fallbackGradient={cat.gradient}
+                          />
+                          {product.badge && (
+                            <span className="absolute right-3 top-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#FAF3E7]/90 text-[#8A6A2E]">
+                              {product.badge}
+                            </span>
+                          )}
                         </div>
 
-                        {/* Card Bottom: Add to Inquiry & Sample Action */}
-                        <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
-                          <AddToInquiryButton
-                            id={product.id}
-                            name={product.name}
-                            category={cat.title}
-                            origin={product.origin}
-                            purity={product.purity}
-                          />
-                          <Link
-                            href={`/contact?sample=${encodeURIComponent(product.name)}`}
-                            className="text-[11px] text-gray-500 hover:text-[#B8934A] transition-colors"
-                          >
-                            Request Sample
-                          </Link>
+                        <div className="p-6 flex flex-col justify-between flex-1">
+                          <div>
+                            <div className="flex items-start justify-between gap-2 mb-3">
+                              <h3
+                                className="font-bold text-[#1F4A3D] text-lg group-hover:text-[#B8934A] transition-colors"
+                                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                              >
+                                {product.name}
+                              </h3>
+                            </div>
+
+                            <div className="space-y-1.5 text-xs text-gray-500 mb-6">
+                              <div className="flex justify-between py-1 border-b border-gray-100">
+                                <span className="text-gray-400">Origin:</span>
+                                <span className="font-medium text-gray-700 text-right">{product.origin}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-gray-100">
+                                <span className="text-gray-400">Purity / Spec:</span>
+                                <span className="font-medium text-gray-700 text-right">{product.purity}</span>
+                              </div>
+                              <div className="flex justify-between py-1">
+                                <span className="text-gray-400">Standard Packaging:</span>
+                                <span className="font-medium text-gray-700 text-right">{product.packaging}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
+                            <AddToInquiryButton
+                              id={product.id}
+                              name={product.name}
+                              category={cat.title}
+                              origin={product.origin}
+                              purity={product.purity}
+                            />
+                            <Link
+                              href={`/contact?sample=${encodeURIComponent(product.name)}`}
+                              className="text-[11px] text-gray-500 hover:text-[#B8934A] transition-colors"
+                            >
+                              Request Sample
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </ScrollReveal>

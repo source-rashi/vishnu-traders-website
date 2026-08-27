@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import VishnuTradersLogo from "./VishnuTradersLogo";
+import MediaWithFallback from "./MediaWithFallback";
 
 interface HeroSlide {
   id: number;
@@ -74,7 +75,6 @@ const slides: HeroSlide[] = [
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [imageError, setImageError] = useState<Record<number, boolean>>({});
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -102,7 +102,6 @@ export default function HeroCarousel() {
       {/* Background Slides with Crossfade */}
       {slides.map((s, index) => {
         const isActive = index === currentSlide;
-        const hasFailed = imageError[s.id];
 
         return (
           <div
@@ -111,41 +110,27 @@ export default function HeroCarousel() {
               isActive ? "opacity-100 z-1" : "opacity-0 z-0 pointer-events-none"
             }`}
           >
-            {/* Background image if exists, or graceful fallback gradient */}
-            {!hasFailed ? (
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-7000 ease-out scale-105"
-                style={{
-                  backgroundImage: `url(${s.imagePath})`,
-                }}
-              >
-                {/* Fallback image loader detector */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={s.imagePath}
-                  alt=""
-                  className="hidden"
-                  onError={() =>
-                    setImageError((prev) => ({ ...prev, [s.id]: true }))
-                  }
-                />
-              </div>
-            ) : null}
+            <div className="absolute inset-0 overflow-hidden">
+              <MediaWithFallback
+                src={s.imagePath}
+                alt={s.titleHighlight}
+                fill
+                priority={isActive}
+                className="scale-105 transition-transform duration-[7000ms] ease-out"
+                fallbackGradient={s.fallbackGradient}
+                fallbackIcon="✦"
+                objectFit="cover"
+              />
+            </div>
 
-            {/* Deep Rich Gradient Overlay */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${s.fallbackGradient} opacity-90`} />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.30)_35%,rgba(0,0,0,0.10)_100%)]" />
             <div
-              className={`absolute inset-0 bg-gradient-to-br ${s.fallbackGradient} opacity-95`}
-            />
-
-            {/* Pattern Overlay */}
-            <div
-              className="absolute inset-0 opacity-[0.03]"
+              className="absolute inset-0 opacity-[0.04]"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
               }}
             />
-
-            {/* Ambient Lighting Blurs */}
             <div className="absolute top-20 right-[15%] w-[500px] h-[500px] rounded-full bg-[#B8934A]/10 blur-3xl" />
             <div className="absolute bottom-10 left-[10%] w-[450px] h-[450px] rounded-full bg-[#3F7C67]/15 blur-3xl" />
           </div>
@@ -202,7 +187,7 @@ export default function HeroCarousel() {
               </Link>
               <Link
                 href={slide.secondaryCtaHref}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/25 text-white font-semibold hover:bg-white/10 transition-all duration-300 text-base"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/25 text-white font-semibold hover:bg-white/10 transition-all duration-200 text-base"
               >
                 {slide.secondaryCtaText}
               </Link>
