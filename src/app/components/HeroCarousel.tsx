@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import VishnuTradersLogo from "./VishnuTradersLogo";
 import MediaWithFallback from "./MediaWithFallback";
 
 interface HeroSlide {
@@ -141,7 +140,7 @@ export default function HeroCarousel() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-36 lg:py-44 z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Text Column */}
-          <div className="lg:col-span-7 animate-fade-in-up">
+          <div className="lg:col-span-8 animate-fade-in-up">
             {/* Tagline & Badge */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="gold-divider" />
@@ -194,24 +193,6 @@ export default function HeroCarousel() {
             </div>
           </div>
 
-          {/* Emblem / Brand Card Column */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-3xl border border-white/15 bg-gradient-to-br from-white/15 via-white/10 to-white/5 p-8 sm:p-10 backdrop-blur-2xl shadow-[0_28px_60px_-20px_rgba(0,0,0,0.65)] hover:border-[#B8934A]/40 transition-all duration-500">
-              <VishnuTradersLogo variant="full" light />
-
-              {/* Quick Spec Strip */}
-              <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 gap-4 text-center">
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                  <span className="block text-lg font-bold text-[#D4B56A]">Pologround, MP</span>
-                  <span className="text-[10px] uppercase tracking-wider text-white/50">Processing Center</span>
-                </div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                  <span className="block text-lg font-bold text-[#D4B56A]">FCL / LCL</span>
-                  <span className="text-[10px] uppercase tracking-wider text-white/50">Worldwide Dispatch</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
