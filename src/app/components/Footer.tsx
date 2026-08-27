@@ -1,5 +1,4 @@
 import Link from "next/link";
-import VishnuTradersLogo from "./VishnuTradersLogo";
 import NewsletterSignup from "./NewsletterSignup";
 
 const quickLinks = [
@@ -56,7 +55,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand & Newsletter */}
           <div className="lg:col-span-1 space-y-6">
-            <VishnuTradersLogo variant="horizontal" light />
+            <div>
+              <div className="text-xl font-bold tracking-tight text-white" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>VISHNU TRADERS</div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#D4B56A]">Since 1996 · Global Trading</div>
+            </div>
             <p className="text-white/60 text-xs sm:text-sm leading-relaxed">
               Global agricultural commodities & spice exporter. Direct farm sourcing, sortex cleaning, drum roasting, customized packaging, and warehousing in Indore, MP.
             </p>

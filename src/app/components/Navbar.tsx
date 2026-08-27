@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import VishnuTradersLogo from "./VishnuTradersLogo";
 import InquiryBasketBadge from "./InquiryBasketBadge";
 
 const navLinks = [
@@ -34,13 +33,17 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo Component */}
-          <Link href="/" className="group transition-transform duration-300 hover:scale-[1.02]">
-            <VishnuTradersLogo
-              variant="horizontal"
-              light={!scrolled}
-              className=""
-            />
+          {/* Text-only brand wordmark */}
+          <Link href="/" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.02]">
+            <span
+              className={`block truncate text-base sm:text-xl font-bold tracking-tight leading-tight ${scrolled ? "text-[#1F4A3D]" : "text-white"}`}
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              VISHNU TRADERS
+            </span>
+            <span className={`block truncate text-[8px] sm:text-[10px] font-semibold uppercase tracking-[0.14em] ${scrolled ? "text-[#B8934A]" : "text-[#D4B56A]"}`}>
+              Since 1996 · Global Trading
+            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -72,8 +75,8 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Right Controls: Inquiry Basket Badge & Hamburger */}
-          <div className="lg:hidden flex items-center gap-2">
-            <InquiryBasketBadge />
+          <div className="lg:hidden flex shrink-0 items-center gap-2">
+            <InquiryBasketBadge className="shrink-0" />
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -113,8 +116,9 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col items-center gap-5 text-center">
-          <div className="mb-2">
-            <VishnuTradersLogo variant="full" />
+          <div className="mb-2 text-center">
+            <div className="text-3xl font-bold tracking-tight text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>VISHNU TRADERS</div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B8934A]">Since 1996 · Global Trading</div>
           </div>
           {navLinks.map((link) => (
             <Link
