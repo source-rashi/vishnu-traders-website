@@ -3,6 +3,8 @@ import HeroCarousel from "./components/HeroCarousel";
 import StatCounters from "./components/StatCounters";
 import ScrollReveal from "./components/ScrollReveal";
 import InteractiveGlobalMap from "./components/InteractiveGlobalMap";
+import TestimonialsCarousel from "./components/TestimonialsCarousel";
+import FAQAccordion from "./components/FAQAccordion";
 
 /* ────────────────────────────── DATA ────────────────────────────── */
 
@@ -279,11 +281,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══════ TESTIMONIALS CAROUSEL ═══════ */}
+      <section className="py-24 lg:py-32 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Verified B2B Feedback
+                </span>
+              </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                Trusted by Global Importers & Millers
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Delivering verified purity, consistent roasting, and reliable container freight across international markets.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-up" delay={150}>
+            <TestimonialsCarousel />
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ═══════ CERTIFICATIONS TEASER ═══════ */}
-      <section className="py-20 lg:py-28 bg-white border-y border-gray-100">
+      <section className="py-20 lg:py-28 bg-[#FAF3E7] border-y border-[#B8934A]/25">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="scale-up">
-            <div className="rounded-3xl bg-gradient-to-br from-[#FAF3E7] to-[#F5F0E8] p-8 lg:p-12 border border-[#B8934A]/25 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
+            <div className="rounded-3xl bg-white p-8 lg:p-12 border border-[#B8934A]/25 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
               <div className="space-y-2 max-w-xl">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#8A6A2E]">
                   Official Compliance
@@ -309,8 +337,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ WHY CHOOSE US ═══════ */}
+      {/* ═══════ FAQ ACCORDION (HOMEPAGE TEASER) ═══════ */}
       <section className="py-24 lg:py-32 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Trade Knowledge Base
+                </span>
+              </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                Frequently Asked Export Questions
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Common questions from our international buyers regarding minimum orders, quality testing, and port logistics.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-up" delay={150}>
+            <FAQAccordion />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ═══════ WHY CHOOSE US ═══════ */}
+      <section className="py-24 lg:py-32 bg-[#F5F0E8]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
@@ -329,7 +383,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyUs.map((item, idx) => (
               <ScrollReveal key={item.title} animation="fade-up" delay={idx * 100}>
-                <div className="glass-card rounded-2xl p-7 text-center group hover:-translate-y-2 transition-all duration-300 h-full">
+                <div className="glass-card rounded-2xl p-7 text-center group hover:-translate-y-2 transition-all duration-300 h-full bg-white">
                   <div className="mx-auto mb-5 w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EAF3F0] to-[#CBE0D8] flex items-center justify-center text-[#1F4A3D] transition-all duration-300 group-hover:from-[#1F4A3D] group-hover:to-[#3F7C67] group-hover:text-[#B8934A] group-hover:scale-110">
                     {item.icon}
                   </div>

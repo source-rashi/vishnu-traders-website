@@ -1,48 +1,51 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollReveal from "../components/ScrollReveal";
+import ImageLightbox from "../components/ImageLightbox";
+import TestimonialsCarousel from "../components/TestimonialsCarousel";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us — Three Decades of Spice Export",
   description:
-    "Learn about Vishnu Traders — a global agricultural commodities and spice exporter based in Indore, MP. Sourcing, roasting, sorting, packaging and warehousing under one roof since 1996.",
+    "Learn about Vishnu Traders — a global agricultural commodities and spice exporter based in Indore, MP since 1996. Sourcing, roasting, sortex cleaning, and warehousing under one roof.",
 };
 
 const milestones = [
   {
     year: "1996",
-    title: "Founded",
+    title: "Founded in Indore",
     description:
-      "Vishnu Traders was established in Indore, Madhya Pradesh, with a vision to connect India's finest agricultural produce with global markets.",
+      "Vishnu Traders was established in Indore, Madhya Pradesh, connecting Malwa's rich agricultural produce with domestic and overseas markets.",
   },
   {
     year: "2000",
-    title: "First Export Order",
+    title: "First Container Export to GCC",
     description:
-      "Secured our first international shipment, exporting whole spices to buyers in the Middle East — the beginning of our global trading network.",
+      "Secured our first direct international shipment of Whole Spices to Dubai, establishing our core Middle East trade corridor.",
   },
   {
     year: "2005",
-    title: "In-House Processing",
+    title: "Pologround Processing Facility",
     description:
-      "Invested in dedicated processing infrastructure at Pologround Industrial Estate — roasting, sorting, and grading equipment brought fully in-house.",
+      "Brought sorting, destoning, and precision drum roasting fully in-house at Pologround Industrial Estate, eliminating third-party quality variance.",
   },
   {
-    year: "2010",
-    title: "Warehousing Expansion",
+    year: "2012",
+    title: "Optical Sortex & Lab Modernization",
     description:
-      "Expanded the Pologround facility with climate-appropriate warehousing, enabling bulk stock management and FIFO dispatch for export orders.",
+      "Installed high-speed color sorters and established our in-house testing lab for volatile oil, moisture, and purity parameters.",
   },
   {
-    year: "2016",
-    title: "Pan-India Network",
+    year: "2018",
+    title: "Packaging & Private Labelling",
     description:
-      "Built direct farmer-procurement relationships across Madhya Pradesh, Rajasthan, and Maharashtra — securing quality at origin.",
+      "Expanded clean-room packaging lines from 100g consumer nitrogen barrier pouches up to 50kg export HDPE & multi-wall sacks.",
   },
   {
-    year: "2024",
-    title: "Digital & Global Reach",
+    year: "Present",
+    title: "Global Supply to 20+ Countries",
     description:
-      "Launched our digital presence and expanded to serve buyers across 20+ countries, with a full in-house processing-to-packaging-to-export pipeline.",
+      "Exporting containerized consignments via Nhava Sheva (JNPT) and Mundra with instant digital QR verification on all trade certificates.",
   },
 ];
 
@@ -50,35 +53,26 @@ const values = [
   {
     title: "Quality at Origin",
     description:
-      "We source directly from farms and mandis, inspecting at intake — not after the fact. Quality starts before processing, not at the warehouse door.",
+      "We source directly from farm mandis across MP and Rajasthan. Quality is inspected at intake, not after processing.",
     icon: "🌿",
   },
   {
     title: "Transparent Trade",
     description:
-      "Honest weights, transparent pricing, and straightforward documentation. We operate the way we'd want our own suppliers to operate with us.",
+      "Digital weighbridges, honest grading, and comprehensive COA lab certificates for every consignment.",
     icon: "⚖️",
   },
   {
-    title: "End-to-End Control",
+    title: "End-to-End Custody",
     description:
-      "From raw material procurement through roasting, sorting, packaging, and export dispatch — everything happens under our roof, so quality never leaves our hands.",
+      "From raw crop intake to roasting, packaging, and port dispatch — everything remains under our direct control.",
     icon: "🏭",
   },
   {
     title: "Long-Term Partnerships",
     description:
-      "We don't chase one-time transactions. Our buyers return year after year because consistent quality and reliable delivery build real business relationships.",
+      "Serving recurring importers and food manufacturers across the GCC, Southeast Asia, Europe, and North America.",
     icon: "🤝",
-  },
-];
-
-const team = [
-  {
-    name: "Harsh Agrawal",
-    role: "Proprietor & Head of Operations",
-    initials: "HA",
-    bio: "Leading Vishnu Traders with a hands-on approach to quality control, buyer relationships, and export compliance.",
   },
 ];
 
@@ -86,224 +80,266 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden">
-        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full bg-[#B8934A]/5 blur-3xl" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
+        <div className="absolute top-20 right-[10%] w-[450px] h-[450px] rounded-full bg-[#B8934A]/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
-            <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">About Us</span>
+            <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+              About Vishnu Traders
+            </span>
           </div>
           <h1
-            className="text-4xl lg:text-6xl font-bold text-white mb-6"
+            className="text-4xl lg:text-6xl font-bold mb-6"
             style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
           >
-            Our Story of <span className="gold-gradient-text">Trust</span>
+            A Legacy Built on <span className="gold-gradient-text">Trust & Quality</span>
           </h1>
-          <p className="text-white/60 text-lg max-w-2xl leading-relaxed">
-            From a focused trading firm in Indore to a global spice and agri-commodity exporter —
-            discover the journey that has defined Vishnu Traders since 1996.
+          <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
+            From our founding in 1996 to becoming a premier spice and agricultural commodity exporter in Indore, explore the journey that defines Vishnu Traders.
           </p>
         </div>
       </section>
 
-      {/* Story */}
+      {/* Story & Philosophy */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="section-heading text-3xl lg:text-4xl mb-6">
-                Three Decades of Global Trade
-              </h2>
-              <p className="text-gray-500 text-lg leading-relaxed mb-6">
-                Vishnu Traders was founded in 1996 in Indore, Madhya Pradesh — a city at
-                the heart of India's agri-commodity belt. Our founding mission was simple:
-                bring the finest Indian spices and agricultural produce to global buyers,
-                with full transparency and uncompromising quality.
-              </p>
-              <p className="text-gray-500 leading-relaxed mb-6">
-                What began as a trading operation has grown into a fully integrated
-                agri-export business. Today, our Pologround Industrial Estate facility
-                handles everything in-house: procurement, pre-cleaning, roasting, sortex
-                grading, packaging in consumer-to-bulk formats, and export logistics.
-              </p>
-              <p className="text-gray-500 leading-relaxed">
-                We serve importers, distributors, and food manufacturers across 20+ countries.
-                But our operating philosophy hasn't changed: every bag that leaves our facility
-                has been handled with the same care we'd expect for our own table.
-              </p>
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-7">
+              <ScrollReveal animation="fade-up">
+                <h2 className="section-heading text-3xl lg:text-4xl mb-6">
+                  Three Decades of Agricultural Export Excellence
+                </h2>
+                <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
+                  Vishnu Traders was founded in 1996 in Indore, Madhya Pradesh — at the heart of India&apos;s most fertile spice and oilseed growing belt. Our guiding philosophy was simple: connect India&apos;s finest agricultural produce directly to global importers with uncompromising quality and absolute transparency.
+                </p>
+                <p className="text-gray-600 text-base leading-relaxed mb-6">
+                  Over three decades, we invested heavily in our own infrastructure. Today, our facility at R-20 Pologround Industrial Estate is fully integrated — handling farm-gate intake, optical Sortex cleaning, precision drum roasting, batch laboratory analysis, barrier packaging, and export container stuffing.
+                </p>
+                <p className="text-gray-600 text-base leading-relaxed">
+                  Led by Harsh Agrawal, we operate with a hands-on approach to every consignment, ensuring your spice and commodity shipments meet international specifications every single time.
+                </p>
+              </ScrollReveal>
             </div>
-            <div className="rounded-3xl bg-gradient-to-br from-[#F5F0E8] to-[#EAF3F0] p-10 lg:p-14">
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { value: "1996", label: "Year Founded" },
-                  { value: "20+", label: "Export Countries" },
-                  { value: "500+", label: "Tonnes / Year" },
-                  { value: "100%", label: "In-House Processing" },
-                ].map((stat) => (
-                  <div key={stat.label} className="text-center">
-                    <div
-                      className="text-3xl lg:text-4xl font-bold text-[#1F4A3D] mb-1"
-                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                    >
-                      {stat.value}
+
+            <div className="lg:col-span-5">
+              <ScrollReveal animation="scale-up" delay={150}>
+                <div className="rounded-3xl bg-gradient-to-br from-[#FAF3E7] to-[#F5F0E8] p-8 lg:p-10 border border-[#B8934A]/30 shadow-xl space-y-6">
+                  <div className="grid grid-cols-2 gap-6 text-center">
+                    <div className="p-4 rounded-2xl bg-white shadow-sm">
+                      <span className="text-3xl font-bold text-[#1F4A3D] block" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                        1996
+                      </span>
+                      <span className="text-[10px] uppercase font-bold text-gray-500 mt-1 block">
+                        Founded in Indore
+                      </span>
                     </div>
-                    <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                      {stat.label}
+                    <div className="p-4 rounded-2xl bg-white shadow-sm">
+                      <span className="text-3xl font-bold text-[#1F4A3D] block" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                        20+
+                      </span>
+                      <span className="text-[10px] uppercase font-bold text-gray-500 mt-1 block">
+                        Countries Served
+                      </span>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white shadow-sm">
+                      <span className="text-3xl font-bold text-[#1F4A3D] block" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                        99.5%+
+                      </span>
+                      <span className="text-[10px] uppercase font-bold text-gray-500 mt-1 block">
+                        Sortex Purity
+                      </span>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white shadow-sm">
+                      <span className="text-3xl font-bold text-[#1F4A3D] block" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+                        100%
+                      </span>
+                      <span className="text-[10px] uppercase font-bold text-gray-500 mt-1 block">
+                        In-House Control
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
+
+                  <div className="p-4 rounded-2xl bg-[#1F4A3D] text-white text-center space-y-1">
+                    <span className="text-xs font-bold text-[#D4B56A] uppercase tracking-wider block">
+                      Operations Leadership
+                    </span>
+                    <h4 className="text-lg font-bold">Harsh Agrawal</h4>
+                    <p className="text-xs text-white/70">Proprietor & Head of Export Operations</p>
+                    <a
+                      href="tel:+918839966253"
+                      className="text-xs text-[#D4B56A] hover:underline inline-block mt-1"
+                    >
+                      +91 88399 66253
+                    </a>
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
+      {/* Core Values */}
       <section className="py-24 lg:py-32 bg-[#F5F0E8]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="gold-divider" />
-            </div>
-            <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-              Our Core Values
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-              The principles that guide every procurement decision, every processing step, and every export shipment.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v) => (
-              <div key={v.title} className="glass-card rounded-2xl p-7 text-center">
-                <span className="text-4xl mb-4 block">{v.icon}</span>
-                <h3
-                  className="text-lg font-bold text-[#1F4A3D] mb-2"
-                  style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                >
-                  {v.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{v.description}</p>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
               </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                Our Operational Values
+              </h2>
+              <p className="text-gray-600 text-lg">
+                The principles that govern every farm intake, sortex cleaning cycle, and container stuffing.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((v, idx) => (
+              <ScrollReveal key={v.title} animation="fade-up" delay={idx * 100}>
+                <div className="glass-card rounded-2xl p-7 text-center h-full hover:-translate-y-1.5 transition-all duration-300">
+                  <span className="text-4xl mb-4 block">{v.icon}</span>
+                  <h3
+                    className="text-lg font-bold text-[#1F4A3D] mb-2"
+                    style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                  >
+                    {v.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{v.description}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Leadership */}
+      {/* Facility & Equipment Lightbox Gallery */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="gold-divider" />
-            </div>
-            <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-              Meet the Team
-            </h2>
-          </div>
-          <div className="flex justify-center">
-            {team.map((member) => (
-              <div key={member.name} className="glass-card rounded-2xl p-8 text-center max-w-sm w-full">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#B8934A] to-[#C2A159] flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                  {member.initials}
-                </div>
-                <h3
-                  className="text-xl font-bold text-[#1F4A3D] mb-1"
-                  style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                >
-                  {member.name}
-                </h3>
-                <p className="text-sm text-[#B8934A] font-semibold uppercase tracking-wider mb-3">
-                  {member.role}
-                </p>
-                <p className="text-sm text-gray-500 leading-relaxed">{member.bio}</p>
-                <a
-                  href="tel:+918839966253"
-                  className="inline-flex items-center gap-2 mt-4 text-sm text-[#1F4A3D] font-medium hover:text-[#B8934A] transition-colors"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                  </svg>
-                  +91 88399 66253
-                </a>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Facility Showcase
+                </span>
               </div>
-            ))}
-          </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                Inside Our Pologround Processing Facility
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Explore our Sortex color sorters, roasting drums, testing lab, and clean-room packaging infrastructure.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-up" delay={150}>
+            <ImageLightbox />
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Milestones Timeline */}
       <section className="py-24 lg:py-32 bg-[#F5F0E8]">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="gold-divider" />
+          <ScrollReveal animation="fade-up">
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+              </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                Our 30-Year Journey
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Key milestones in Vishnu Traders&apos; evolution into a trusted global spice brand.
+              </p>
             </div>
-            <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-              Our Journey
-            </h2>
-          </div>
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-6 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#B8934A] via-[#1F4A3D] to-[#B8934A] lg:-translate-x-0.5" />
+          </ScrollReveal>
 
-            <div className="space-y-12">
-              {milestones.map((m, i) => (
-                <div
-                  key={m.year}
-                  className={`relative flex items-start gap-8 ${
-                    i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
-                >
-                  {/* Dot */}
-                  <div className="absolute left-6 lg:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#B8934A] border-4 border-white z-10 shadow-md" />
-
-                  {/* Card */}
-                  <div className={`ml-16 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}`}>
-                    <div className="glass-card rounded-xl p-6">
-                      <span className="text-sm font-bold text-[#B8934A]">{m.year}</span>
-                      <h3
-                        className="text-lg font-bold text-[#1F4A3D] mt-1 mb-2"
-                        style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                      >
-                        {m.title}
-                      </h3>
-                      <p className="text-sm text-gray-500 leading-relaxed">{m.description}</p>
-                    </div>
+          <div className="space-y-6">
+            {milestones.map((m, idx) => (
+              <ScrollReveal key={m.year} animation="fade-up" delay={idx * 80}>
+                <div className="glass-card rounded-2xl p-6 sm:p-8 bg-white flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 hover:border-[#B8934A]/50 transition-all">
+                  <div className="shrink-0 text-center sm:text-left">
+                    <span
+                      className="text-2xl sm:text-3xl font-bold text-[#B8934A]"
+                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                    >
+                      {m.year}
+                    </span>
                   </div>
-
-                  {/* Spacer for alternating */}
-                  <div className="hidden lg:block lg:w-[45%]" />
+                  <div className="border-t sm:border-t-0 sm:border-l border-gray-200 pt-3 sm:pt-0 sm:pl-6">
+                    <h3
+                      className="text-lg font-bold text-[#1F4A3D] mb-1"
+                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                    >
+                      {m.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      {m.description}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </ScrollReveal>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Carousel Section */}
+      <section className="py-24 lg:py-32 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Global Client Trust
+                </span>
+              </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                What International Buyers Say
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Direct feedback from spice importers, food processors, and distributors across UAE, Malaysia, Netherlands, and USA.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-up" delay={150}>
+            <TestimonialsCarousel />
+          </ScrollReveal>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 lg:py-32 bg-[#1F4A3D]">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <h2
-            className="text-3xl lg:text-5xl font-bold text-white mb-6"
-            style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-          >
-            Let&apos;s Build a <span className="gold-gradient-text">Partnership</span>
-          </h2>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
-            Whether you are an international importer looking for a reliable Indian spice supplier,
-            or a domestic brand seeking private-label processing — we&apos;d love to work with you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn-primary text-base">
-              Contact Us Today
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-            <Link href="/processing" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300 text-base">
-              See Our Process
-            </Link>
-          </div>
+      <section className="py-24 lg:py-32 bg-[#1F4A3D] text-white text-center">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <h2
+              className="text-3xl lg:text-5xl font-bold mb-6"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              Partner with Vishnu Traders
+            </h2>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+              Connect with Harsh Agrawal to discuss your spice or agri-commodity requirements.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="btn-primary text-base">
+                Contact Our Export Desk
+              </Link>
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300 text-base"
+              >
+                Browse Product Range
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

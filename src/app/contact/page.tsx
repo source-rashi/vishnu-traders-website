@@ -3,6 +3,7 @@
 import React, { useState, useEffect, type FormEvent, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ScrollReveal from "../components/ScrollReveal";
+import FAQAccordion from "../components/FAQAccordion";
 
 const contactInfo = [
   {
@@ -346,6 +347,32 @@ export default function ContactPage() {
               </ScrollReveal>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Accordion Section */}
+      <section className="py-24 lg:py-32 bg-[#F5F0E8] border-t border-gray-200">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Trade FAQ
+                </span>
+              </div>
+              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+                Frequently Asked Export Questions
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Essential answers regarding Minimum Order Quantities, laboratory testing, port dispatches, and private labelling.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="fade-up" delay={150}>
+            <FAQAccordion />
+          </ScrollReveal>
         </div>
       </section>
     </>
