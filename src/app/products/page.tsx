@@ -1,209 +1,525 @@
-import type { Metadata } from "next";
+"use client";
+
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import AddToInquiryButton from "../components/AddToInquiryButton";
+import ScrollReveal from "../components/ScrollReveal";
+import { useInquiry } from "../context/InquiryContext";
 
-export const metadata: Metadata = {
-  title: "Products",
-  description:
-    "Browse our premium range of grains, spices, pulses, oils, dry fruits, and more at wholesale and retail prices.",
-};
+interface ProductItem {
+  id: string;
+  name: string;
+  origin: string;
+  purity: string;
+  packaging: string;
+  badge: string | null;
+  description?: string;
+}
 
-const categories = [
+interface CategoryGroup {
+  id: string;
+  title: string;
+  icon: string;
+  gradient: string;
+  description: string;
+  products: ProductItem[];
+}
+
+const categories: CategoryGroup[] = [
   {
-    id: "grains",
-    title: "Grains & Cereals",
-    icon: "🌾",
-    gradient: "from-amber-50 to-yellow-50",
-    description: "The finest grains sourced from premium farms across India.",
-    products: [
-      { name: "Basmati Rice (Premium)", price: "₹120/kg", badge: "Best Seller" },
-      { name: "Sona Masoori Rice", price: "₹55/kg", badge: null },
-      { name: "Wheat Flour (Atta)", price: "₹42/kg", badge: null },
-      { name: "Semolina (Rava)", price: "₹48/kg", badge: null },
-      { name: "Broken Wheat (Dalia)", price: "₹38/kg", badge: null },
-      { name: "Poha (Flattened Rice)", price: "₹52/kg", badge: "Popular" },
-    ],
-  },
-  {
-    id: "spices",
-    title: "Spices & Seasonings",
+    id: "whole-spices",
+    title: "Whole Spices",
     icon: "🌶️",
     gradient: "from-red-50 to-orange-50",
-    description: "Authentic, aromatic spices that elevate every dish.",
+    description:
+      "Hand-selected, sortex-cleaned whole spices with high volatile oil retention and natural aroma.",
     products: [
-      { name: "Turmeric Powder", price: "₹180/kg", badge: "Organic" },
-      { name: "Red Chili Powder", price: "₹220/kg", badge: null },
-      { name: "Cumin Seeds (Jeera)", price: "₹340/kg", badge: null },
-      { name: "Coriander Powder", price: "₹160/kg", badge: null },
-      { name: "Garam Masala", price: "₹280/kg", badge: "House Blend" },
-      { name: "Black Pepper", price: "₹650/kg", badge: "Premium" },
+      {
+        id: "cumin-seeds",
+        name: "Cumin Seeds (Jeera)",
+        origin: "Gujarat / Rajasthan Mandis",
+        purity: "99.5% - 99.9% Sortex Cleaned",
+        packaging: "25kg / 50kg PP Bags",
+        badge: "Top Exporter Item",
+      },
+      {
+        id: "coriander-seeds",
+        name: "Coriander Seeds (Dhania)",
+        origin: "Madhya Pradesh (Guna / Neemuch)",
+        purity: "Eagle / Scooter / Single Parrot Sortex",
+        packaging: "25kg / 40kg Jute / PP",
+        badge: "Origin Source",
+      },
+      {
+        id: "turmeric-fingers",
+        name: "Turmeric Fingers (Haldi)",
+        origin: "Nizamabad / Salem Origin",
+        purity: "Curcumin 3.0% - 5.0%+ Polished",
+        packaging: "25kg / 50kg Bags",
+        badge: "High Curcumin",
+      },
+      {
+        id: "black-pepper",
+        name: "Black Pepper (Tellicherry & Malabar)",
+        origin: "South India Plantation Sourced",
+        purity: "Garbled / 550GL - 580GL High Density",
+        packaging: "25kg / 50kg Multiwall Paper",
+        badge: "Export Grade",
+      },
+      {
+        id: "green-cardamom",
+        name: "Green Cardamom (Elaichi)",
+        origin: "Idukki, Kerala",
+        purity: "7mm / 8mm Bold Deep Green",
+        packaging: "5kg / 10kg Master Cartons",
+        badge: "Premium Bold",
+      },
+      {
+        id: "cloves-bold",
+        name: "Cloves (Laung)",
+        origin: "Domestic & Selected Import",
+        purity: "Handpicked Bold Head, Low Moisture",
+        packaging: "10kg / 25kg Cartons",
+        badge: "Aromatic",
+      },
+      {
+        id: "fenugreek-seeds",
+        name: "Fenugreek Seeds (Methi)",
+        origin: "Madhya Pradesh / Rajasthan",
+        purity: "Machine Cleaned 99% Sortex",
+        packaging: "25kg / 50kg PP Bags",
+        badge: null,
+      },
+      {
+        id: "fennel-seeds",
+        name: "Fennel Seeds (Saunf)",
+        origin: "Gujarat / Rajasthan",
+        purity: "Green / Regular Sortex Cleaned",
+        packaging: "25kg / 50kg Bags",
+        badge: null,
+      },
     ],
   },
   {
-    id: "pulses",
-    title: "Pulses & Lentils",
-    icon: "🫘",
+    id: "ground-spices",
+    title: "Ground & Powdered Spices",
+    icon: "🏺",
+    gradient: "from-amber-50 to-yellow-50",
+    description:
+      "Cold-ground at low temperatures to preserve essential volatiles, colour vibrancy, and flavour depth.",
+    products: [
+      {
+        id: "red-chili-powder",
+        name: "Red Chili Powder (Stemless)",
+        origin: "Guntur / Byadgi Origin Blends",
+        purity: "SHU 20,000 - 90,000 (Custom Heat Levels)",
+        packaging: "1kg, 5kg, 25kg Barrier Bags",
+        badge: "Custom Heat",
+      },
+      {
+        id: "turmeric-powder",
+        name: "Turmeric Powder",
+        origin: "Pure MP / Nizamabad Finger Grind",
+        purity: "Curcumin Verified, No Added Color",
+        packaging: "500g - 25kg Bags",
+        badge: "100% Pure",
+      },
+      {
+        id: "coriander-powder",
+        name: "Coriander Powder (Dhania Powder)",
+        origin: "Fresh Green Crop Milling",
+        purity: "100% Pure Aroma Retained",
+        packaging: "1kg, 5kg, 20kg",
+        badge: null,
+      },
+      {
+        id: "cumin-powder",
+        name: "Cumin Powder (Jeera Powder)",
+        origin: "Single-Origin Roasted / Raw Ground",
+        purity: "Micro-fine / Coarse Mesh",
+        packaging: "1kg to 25kg",
+        badge: null,
+      },
+      {
+        id: "garam-masala-blend",
+        name: "Garam Masala Blend",
+        origin: "House Signature Formulation",
+        purity: "14-Spice Traditional Formula",
+        packaging: "Retail & Foodservice Barrier Packs",
+        badge: "Signature Blend",
+      },
+      {
+        id: "amchur-powder",
+        name: "Dry Mango Powder (Amchur)",
+        origin: "Central India Sun-Dried",
+        purity: "Sun-dried Raw Green Mango",
+        packaging: "25kg Bags",
+        badge: null,
+      },
+    ],
+  },
+  {
+    id: "agri-commodities",
+    title: "Agri Commodities & Oilseeds",
+    icon: "🌾",
     gradient: "from-green-50 to-emerald-50",
-    description: "Top-grade dals and lentils for wholesome nutrition.",
+    description:
+      "Bulk agricultural commodities sourced from the Malwa plateau and Central India grain belts.",
     products: [
-      { name: "Toor Dal", price: "₹130/kg", badge: "Best Seller" },
-      { name: "Moong Dal", price: "₹120/kg", badge: null },
-      { name: "Chana Dal", price: "₹85/kg", badge: null },
-      { name: "Urad Dal", price: "₹140/kg", badge: null },
-      { name: "Masoor Dal", price: "₹95/kg", badge: null },
-      { name: "Rajma (Kidney Beans)", price: "₹160/kg", badge: "Popular" },
+      {
+        id: "yellow-soybean",
+        name: "Soybean (Yellow Non-GMO)",
+        origin: "Madhya Pradesh (Malwa Hub)",
+        purity: "Oil content 18-20%+, Moisture <10%",
+        packaging: "50kg Bags / Bulk Container Liner",
+        badge: "Malwa Non-GMO",
+      },
+      {
+        id: "sharbati-wheat",
+        name: "Wheat (Sharbati & Durum)",
+        origin: "Madhya Pradesh (Sehore / Vidisha)",
+        purity: "Machine Cleaned / High Gluten",
+        packaging: "50kg Export Bags",
+        badge: "Premium Grain",
+      },
+      {
+        id: "yellow-maize-corn",
+        name: "Yellow Maize / Corn",
+        origin: "Central India Mandis",
+        purity: "Aflatoxin Tested / Food & Feed Grade",
+        packaging: "50kg Bags / FCL Bulk",
+        badge: null,
+      },
+      {
+        id: "sesame-seeds-hulled",
+        name: "Sesame Seeds (Natural & Hulled)",
+        origin: "Gujarat / MP Mandis",
+        purity: "99.9% Auto-Sortex / Purity 99.95%",
+        packaging: "25kg / 50kg Paper & PP Bags",
+        badge: "Sortex 99.95%",
+      },
+      {
+        id: "mustard-seeds",
+        name: "Mustard Seeds (Black & Yellow)",
+        origin: "Rajasthan / MP Mandis",
+        purity: "High Oil Content Machine Cleaned",
+        packaging: "50kg Bags",
+        badge: null,
+      },
+      {
+        id: "kabuli-chickpeas",
+        name: "Chickpeas / Kabuli Chana (75-80 Count)",
+        origin: "Madhya Pradesh Bold Count",
+        purity: "Bold Caliber / Sortex Selected",
+        packaging: "25kg / 50kg Bags",
+        badge: "Export Grade",
+      },
     ],
   },
   {
-    id: "oils",
-    title: "Oils & Ghee",
-    icon: "🫒",
-    gradient: "from-lime-50 to-green-50",
-    description: "Pure cooking oils and ghee for healthy, flavorful meals.",
-    products: [
-      { name: "Groundnut Oil", price: "₹195/L", badge: "Cold Pressed" },
-      { name: "Sunflower Oil", price: "₹145/L", badge: null },
-      { name: "Mustard Oil", price: "₹170/L", badge: null },
-      { name: "Coconut Oil", price: "₹210/L", badge: "Pure" },
-      { name: "Pure Cow Ghee", price: "₹580/kg", badge: "Premium" },
-      { name: "Sesame Oil (Gingelly)", price: "₹320/L", badge: null },
-    ],
-  },
-  {
-    id: "sugar",
-    title: "Sugar & Jaggery",
-    icon: "🍯",
-    gradient: "from-yellow-50 to-amber-50",
-    description: "Natural sweeteners from trusted mills across India.",
-    products: [
-      { name: "Refined Sugar", price: "₹45/kg", badge: null },
-      { name: "Organic Jaggery", price: "₹65/kg", badge: "Organic" },
-      { name: "Jaggery Powder", price: "₹72/kg", badge: null },
-      { name: "Palm Jaggery", price: "₹120/kg", badge: "Premium" },
-      { name: "Mishri (Rock Sugar)", price: "₹90/kg", badge: null },
-      { name: "Brown Sugar", price: "₹60/kg", badge: null },
-    ],
-  },
-  {
-    id: "dryfruits",
-    title: "Dry Fruits & Nuts",
-    icon: "🥜",
+    id: "processed",
+    title: "Processed & Roasted Spices",
+    icon: "🔥",
     gradient: "from-orange-50 to-amber-50",
-    description: "Premium nuts and dried fruits at competitive wholesale prices.",
+    description:
+      "In-house roasted and custom-processed spice solutions for food manufacturers, spice blenders, and retail brands.",
     products: [
-      { name: "California Almonds", price: "₹750/kg", badge: "Premium" },
-      { name: "Cashew Nuts (W320)", price: "₹820/kg", badge: "Best Seller" },
-      { name: "Green Raisins", price: "₹280/kg", badge: null },
-      { name: "Walnuts", price: "₹680/kg", badge: null },
-      { name: "Pistachios", price: "₹1100/kg", badge: "Imported" },
-      { name: "Dates (Medjool)", price: "₹550/kg", badge: null },
+      {
+        id: "roasted-cumin-seeds",
+        name: "Drum-Roasted Cumin Seeds",
+        origin: "In-House Roastery, Indore",
+        purity: "Even Thermal Profile, Deep Aroma",
+        packaging: "10kg / 25kg Nitrogen Flushed",
+        badge: "In-House Roasting",
+      },
+      {
+        id: "roasted-coriander-seeds",
+        name: "Roasted Coriander Seeds",
+        origin: "In-House Roastery, Indore",
+        purity: "Crisp Texture, Essential Oils Activated",
+        packaging: "10kg / 25kg Packs",
+        badge: "Custom Toast",
+      },
+      {
+        id: "roasted-sesame-seeds",
+        name: "Roasted Sesame Seeds (White / Black)",
+        origin: "In-House Roastery, Indore",
+        purity: "Nutty Profile, Uniform Roasting",
+        packaging: "15kg / 25kg Poly-lined Bags",
+        badge: null,
+      },
+      {
+        id: "private-label-blends",
+        name: "Custom Contract Blends & Rubs",
+        origin: "Bespoke Facility Formulations",
+        purity: "Client-Defined Mesh & Specifications",
+        packaging: "Private-Label Packaging Available",
+        badge: "Private Label",
+      },
     ],
   },
 ];
 
 export default function ProductsPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const { addItem, openDrawer } = useInquiry();
+
+  const filteredCategories = useMemo(() => {
+    return categories
+      .filter((cat) => selectedCategory === "all" || cat.id === selectedCategory)
+      .map((cat) => {
+        const filteredProducts = cat.products.filter((p) => {
+          const matchQuery =
+            searchQuery.trim() === "" ||
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.origin.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.purity.toLowerCase().includes(searchQuery.toLowerCase());
+          return matchQuery;
+        });
+        return { ...cat, products: filteredProducts };
+      })
+      .filter((cat) => cat.products.length > 0);
+  }, [selectedCategory, searchQuery]);
+
+  const addAllFromCategory = (cat: CategoryGroup) => {
+    cat.products.forEach((p) => {
+      addItem({
+        id: p.id,
+        name: p.name,
+        category: cat.title,
+        origin: p.origin,
+        purity: p.purity,
+      });
+    });
+    openDrawer();
+  };
+
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden">
-        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full bg-[#B8934A]/5 blur-3xl" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
+        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] rounded-full bg-[#B8934A]/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
             <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
-              Our Products
+              B2B & Global Export Catalogue
             </span>
           </div>
           <h1
-            className="text-4xl lg:text-6xl font-bold text-white mb-6"
+            className="text-4xl lg:text-6xl font-bold mb-6"
             style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
           >
-            Premium <span className="gold-gradient-text">Products</span>
+            Export-Grade <span className="gold-gradient-text">Spices & Commodities</span>
           </h1>
-          <p className="text-white/60 text-lg max-w-2xl leading-relaxed">
-            Explore our extensive catalogue of handpicked commodities — from
-            everyday essentials to premium specialities, available at wholesale
-            and retail prices.
+          <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8">
+            Procured directly from central India&apos;s agricultural heartlands, processed and graded in-house at our Indore facility, and packaged for worldwide container shipping.
           </p>
-        </div>
-      </section>
 
-      {/* Products */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-20">
-          {categories.map((cat, catIndex) => (
-            <div key={cat.id} id={cat.id}>
-              {/* Category header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center text-3xl`}
+          {/* Search & Filter Bar */}
+          <div className="flex flex-col sm:flex-row gap-3 max-w-2xl bg-white/10 p-2 rounded-2xl backdrop-blur-md border border-white/20">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search cumin, turmeric, soybeans, cardamom..."
+                className="w-full bg-white/10 text-white placeholder:text-white/50 text-xs sm:text-sm px-4 py-3 rounded-xl focus:outline-none focus:bg-white/20 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white text-xs"
                 >
-                  {cat.icon}
-                </div>
-                <div>
-                  <h2
-                    className="section-heading text-2xl lg:text-3xl"
-                  >
-                    {cat.title}
-                  </h2>
-                  <p className="text-sm text-gray-400 mt-0.5">{cat.description}</p>
-                </div>
-              </div>
-
-              {/* Product grid */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {cat.products.map((product) => (
-                  <div
-                    key={product.name}
-                    className="glass-card rounded-xl p-5 flex items-center justify-between group"
-                  >
-                    <div>
-                      <h3 className="font-semibold text-[#1F4A3D] text-sm">
-                        {product.name}
-                      </h3>
-                      {product.badge && (
-                        <span className="inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#B8934A]/10 text-[#B8934A]">
-                          {product.badge}
-                        </span>
-                      )}
-                    </div>
-                    <div className="text-right">
-                      <span
-                        className="text-lg font-bold text-[#1F4A3D]"
-                        style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                      >
-                        {product.price}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {catIndex < categories.length - 1 && (
-                <div className="mt-16 border-b border-gray-100" />
+                  ✕
+                </button>
               )}
             </div>
-          ))}
+            <button
+              onClick={openDrawer}
+              className="btn-primary text-xs sm:text-sm !py-2.5 !px-5 whitespace-nowrap flex items-center justify-center gap-2"
+            >
+              <span>📋 View RFQ Basket</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Bulk Order CTA */}
+      {/* Category Tabs */}
+      <section className="bg-[#FAF3E7] border-b border-[#B8934A]/25 sticky top-20 z-30 shadow-sm py-3.5">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
+                selectedCategory === "all"
+                  ? "bg-[#1F4A3D] text-white shadow-md"
+                  : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
+              }`}
+            >
+              All Categories
+            </button>
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 transition-all duration-300 ${
+                    isSelected
+                      ? "bg-[#1F4A3D] text-white shadow-md"
+                      : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.title}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Product List Catalogue */}
+      <section className="py-20 lg:py-28 bg-white min-h-[50vh]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-20">
+          {filteredCategories.length === 0 ? (
+            <div className="text-center py-20">
+              <span className="text-5xl block mb-4">🔍</span>
+              <h3 className="text-xl font-bold text-[#1F4A3D] mb-2">
+                No commodities matched &ldquo;{searchQuery}&rdquo;
+              </h3>
+              <p className="text-sm text-gray-500 max-w-md mx-auto mb-6">
+                Try searching for another spice or commodity name, or browse all categories.
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory("all");
+                }}
+                className="btn-secondary text-xs"
+              >
+                Clear Search Filter
+              </button>
+            </div>
+          ) : (
+            filteredCategories.map((cat) => (
+              <div key={cat.id} id={cat.id} className="scroll-mt-36">
+                {/* Category Header */}
+                <ScrollReveal animation="fade-up">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-200 pb-6 mb-8 gap-4">
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-3xl">{cat.icon}</span>
+                        <h2
+                          className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]"
+                          style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                        >
+                          {cat.title}
+                        </h2>
+                      </div>
+                      <p className="text-gray-500 text-sm max-w-2xl">
+                        {cat.description}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => addAllFromCategory(cat)}
+                      className="btn-secondary text-xs !py-2 !px-4 self-start md:self-auto shrink-0"
+                    >
+                      + Add All {cat.title} to Inquiry
+                    </button>
+                  </div>
+                </ScrollReveal>
+
+                {/* Product Cards Grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {cat.products.map((product, idx) => (
+                    <ScrollReveal key={product.id} animation="fade-up" delay={idx * 60}>
+                      <div className="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1.5 hover:border-[#B8934A]/50 transition-all duration-300 h-full">
+                        <div>
+                          <div className="flex items-start justify-between gap-2 mb-3">
+                            <h3
+                              className="font-bold text-[#1F4A3D] text-lg group-hover:text-[#B8934A] transition-colors"
+                              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                            >
+                              {product.name}
+                            </h3>
+                            {product.badge && (
+                              <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#B8934A]/15 text-[#8A6A2E]">
+                                {product.badge}
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="space-y-1.5 text-xs text-gray-500 mb-6">
+                            <div className="flex justify-between py-1 border-b border-gray-100">
+                              <span className="text-gray-400">Origin:</span>
+                              <span className="font-medium text-gray-700 text-right">{product.origin}</span>
+                            </div>
+                            <div className="flex justify-between py-1 border-b border-gray-100">
+                              <span className="text-gray-400">Purity / Spec:</span>
+                              <span className="font-medium text-gray-700 text-right">{product.purity}</span>
+                            </div>
+                            <div className="flex justify-between py-1">
+                              <span className="text-gray-400">Standard Packaging:</span>
+                              <span className="font-medium text-gray-700 text-right">{product.packaging}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card Bottom: Add to Inquiry & Sample Action */}
+                        <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
+                          <AddToInquiryButton
+                            id={product.id}
+                            name={product.name}
+                            category={cat.title}
+                            origin={product.origin}
+                            purity={product.purity}
+                          />
+                          <Link
+                            href={`/contact?sample=${encodeURIComponent(product.name)}`}
+                            className="text-[11px] text-gray-500 hover:text-[#B8934A] transition-colors"
+                          >
+                            Request Sample
+                          </Link>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
+
+      {/* B2B Custom Specs CTA */}
       <section className="py-24 lg:py-32 bg-[#F5F0E8]">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <span className="text-4xl mb-6 block">📦</span>
-          <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-            Need Bulk Orders?
-          </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-8">
-            We offer special wholesale rates for bulk purchases. Contact us for
-            customized pricing, dedicated delivery schedules, and priority
-            support.
-          </p>
-          <Link href="/contact" className="btn-primary text-base">
-            Request Wholesale Pricing
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
+          <ScrollReveal animation="fade-up">
+            <span className="text-4xl mb-4 block">🚢</span>
+            <h2
+              className="text-3xl lg:text-4xl font-bold text-[#1F4A3D] mb-4"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              Looking for Custom Mesh, Roast, or Private Packaging?
+            </h2>
+            <p className="text-gray-600 text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+              We work closely with food service distributors, snack food manufacturers, and overseas spice brands. Contact us to discuss target specifications, moisture baselines, or private labelling.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={openDrawer}
+                className="btn-primary text-base"
+              >
+                Review Selected RFQ Items ({filteredCategories.reduce((acc, c) => acc + c.products.length, 0)} Total)
+              </button>
+              <Link href="/processing" className="btn-secondary text-base">
+                View In-House Processing Flow
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>
