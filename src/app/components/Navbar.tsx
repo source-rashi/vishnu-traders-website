@@ -25,23 +25,23 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-xl shadow-md border-b border-gray-100 py-2"
-          : "bg-[#0F2F27]/70 backdrop-blur-md py-3"
+          ? "bg-[#0A1B15]/95 backdrop-blur-xl border-b border-[#B8934A]/30 shadow-xl py-2.5"
+          : "bg-[#0A1B15]/75 backdrop-blur-md border-b border-white/10 py-3.5"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Text-only brand wordmark */}
           <Link href="/" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.02]">
             <span
-              className={`block truncate text-base sm:text-xl font-bold tracking-tight leading-tight ${scrolled ? "text-[#1F4A3D]" : "text-white"}`}
+              className="block truncate text-base sm:text-xl font-bold tracking-tight leading-tight text-white"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
               VISHNU TRADERS
             </span>
-            <span className={`block truncate text-[8px] sm:text-[10px] font-semibold uppercase tracking-[0.14em] ${scrolled ? "text-[#B8934A]" : "text-[#D4B56A]"}`}>
+            <span className="block truncate text-[8px] sm:text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D4B56A]">
               Since 1996 · Global Trading
             </span>
           </Link>
@@ -52,11 +52,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group ${
-                  scrolled
-                    ? "text-[#1F4A3D]/90 hover:text-[#1F4A3D]"
-                    : "text-white/90 hover:text-white"
-                }`}
+                className="relative px-4 py-2 text-sm font-medium text-white/85 hover:text-white transition-colors duration-200 group"
               >
                 <span className="relative z-10">{link.label}</span>
                 <span className="absolute bottom-1 left-1/2 h-0.5 w-0 bg-[#B8934A] transition-all duration-200 group-hover:left-[18%] group-hover:w-[64%] rounded-full" />
@@ -80,26 +76,24 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
-                scrolled ? "hover:bg-[#1F4A3D]/5" : "hover:bg-white/10"
-              }`}
+              className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/10"
               aria-label="Toggle menu"
             >
               <div className="flex flex-col gap-1.5">
                 <span
-                  className={`block h-0.5 w-6 transition-all duration-300 origin-center ${
-                    scrolled ? "bg-[#1F4A3D]" : "bg-white"
-                  } ${isOpen ? "rotate-45 translate-y-2" : ""}`}
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 origin-center ${
+                    isOpen ? "rotate-45 translate-y-2" : ""
+                  }`}
                 />
                 <span
-                  className={`block h-0.5 w-6 transition-all duration-300 ${
-                    scrolled ? "bg-[#1F4A3D]" : "bg-white"
-                  } ${isOpen ? "opacity-0 scale-0" : ""}`}
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                    isOpen ? "opacity-0 scale-0" : ""
+                  }`}
                 />
                 <span
-                  className={`block h-0.5 w-6 transition-all duration-300 origin-center ${
-                    scrolled ? "bg-[#1F4A3D]" : "bg-white"
-                  } ${isOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 origin-center ${
+                    isOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
                 />
               </div>
             </button>

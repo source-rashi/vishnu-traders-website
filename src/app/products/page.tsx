@@ -34,7 +34,7 @@ const categories: CategoryGroup[] = [
     icon: "🌶️",
     gradient: "from-red-50 to-orange-50",
     description:
-      "Hand-selected, sortex-cleaned whole spices with high volatile oil retention and natural aroma.",
+      "Hand-selected, Sortex-cleaned whole spices with high volatile oil retention and natural aroma.",
     products: [
       {
         id: "cumin-seeds",
@@ -82,12 +82,22 @@ const categories: CategoryGroup[] = [
         image: "/images/products/cardamom.jpg",
       },
       {
-        id: "cloves-bold",
-        name: "Cloves (Laung)",
-        origin: "Domestic & Selected Import",
-        purity: "Handpicked Bold Head, Low Moisture",
-        packaging: "10kg / 25kg Cartons",
-        badge: "Aromatic",
+        id: "fennel-seeds",
+        name: "Fennel Seeds (Saunf)",
+        origin: "Gujarat / Rajasthan Mandis",
+        purity: "Extra Green & Regular Sortex Cleaned",
+        packaging: "25kg / 50kg Bags",
+        badge: "Sortex Cleaned",
+        image: "/images/products/fennel-seeds.jpg",
+      },
+      {
+        id: "mustard-seeds",
+        name: "Mustard Seeds (Black / Yellow)",
+        origin: "Madhya Pradesh & Rajasthan",
+        purity: "High Volatile Oil, Machine Cleaned",
+        packaging: "25kg / 50kg Bags",
+        badge: "High Oil Content",
+        image: "/images/products/mustard-seeds.jpg",
       },
       {
         id: "fenugreek-seeds",
@@ -95,16 +105,7 @@ const categories: CategoryGroup[] = [
         origin: "Madhya Pradesh / Rajasthan",
         purity: "Machine Cleaned 99% Sortex",
         packaging: "25kg / 50kg PP Bags",
-        badge: null,
-        image: "/images/products/fennel-seeds.jpg",
-      },
-      {
-        id: "fennel-seeds",
-        name: "Fennel Seeds (Saunf)",
-        origin: "Gujarat / Rajasthan",
-        purity: "Green / Regular Sortex Cleaned",
-        packaging: "25kg / 50kg Bags",
-        badge: null,
+        badge: "Sorted Purity",
         image: "/images/products/fennel-seeds.jpg",
       },
     ],
@@ -138,10 +139,11 @@ const categories: CategoryGroup[] = [
       {
         id: "coriander-powder",
         name: "Coriander Powder (Dhania Powder)",
-        origin: "Fresh Green Crop Milling",
+        origin: "Fresh Green Crop Low-Temp Milling",
         purity: "100% Pure Aroma Retained",
         packaging: "1kg, 5kg, 20kg",
-        badge: null,
+        badge: "Cold Ground",
+        image: "/images/products/coriander-seeds.jpg",
       },
       {
         id: "cumin-powder",
@@ -149,7 +151,8 @@ const categories: CategoryGroup[] = [
         origin: "Single-Origin Roasted / Raw Ground",
         purity: "Micro-fine / Coarse Mesh",
         packaging: "1kg to 25kg",
-        badge: null,
+        badge: "Aromatic",
+        image: "/images/products/cumin-seeds.jpg",
       },
       {
         id: "garam-masala-blend",
@@ -158,14 +161,16 @@ const categories: CategoryGroup[] = [
         purity: "14-Spice Traditional Formula",
         packaging: "Retail & Foodservice Barrier Packs",
         badge: "Signature Blend",
+        image: "/images/products/black-pepper.jpg",
       },
       {
-        id: "amchur-powder",
-        name: "Dry Mango Powder (Amchur)",
-        origin: "Central India Sun-Dried",
-        purity: "Sun-dried Raw Green Mango",
-        packaging: "25kg Bags",
-        badge: null,
+        id: "black-pepper-powder",
+        name: "Coarse & Fine Black Pepper Powder",
+        origin: "Malabar / Tellicherry Grind",
+        purity: "Pure Piperine Retained, No Fillers",
+        packaging: "1kg to 25kg Air-Tight Bags",
+        badge: "Pure Spice",
+        image: "/images/products/black-pepper.jpg",
       },
     ],
   },
@@ -178,12 +183,22 @@ const categories: CategoryGroup[] = [
       "Bulk agricultural commodities sourced from the Malwa plateau and Central India grain belts.",
     products: [
       {
+        id: "mustard-seeds-bulk",
+        name: "Mustard Seeds (Black & Yellow Rai)",
+        origin: "Rajasthan / MP Mandis",
+        purity: "High Oil Content Machine Cleaned",
+        packaging: "50kg Bags",
+        badge: "Prime Oilseed",
+        image: "/images/products/mustard-seeds.jpg",
+      },
+      {
         id: "yellow-soybean",
         name: "Soybean (Yellow Non-GMO)",
         origin: "Madhya Pradesh (Malwa Hub)",
         purity: "Oil content 18-20%+, Moisture <10%",
         packaging: "50kg Bags / Bulk Container Liner",
         badge: "Malwa Non-GMO",
+        image: "/images/products/mustard-seeds.jpg",
       },
       {
         id: "sharbati-wheat",
@@ -192,14 +207,7 @@ const categories: CategoryGroup[] = [
         purity: "Machine Cleaned / High Gluten",
         packaging: "50kg Export Bags",
         badge: "Premium Grain",
-      },
-      {
-        id: "yellow-maize-corn",
-        name: "Yellow Maize / Corn",
-        origin: "Central India Mandis",
-        purity: "Aflatoxin Tested / Food & Feed Grade",
-        packaging: "50kg Bags / FCL Bulk",
-        badge: null,
+        image: "/images/products/fennel-seeds.jpg",
       },
       {
         id: "sesame-seeds-hulled",
@@ -208,15 +216,16 @@ const categories: CategoryGroup[] = [
         purity: "99.9% Auto-Sortex / Purity 99.95%",
         packaging: "25kg / 50kg Paper & PP Bags",
         badge: "Sortex 99.95%",
+        image: "/images/products/mustard-seeds.jpg",
       },
       {
-        id: "mustard-seeds",
-        name: "Mustard Seeds (Black & Yellow)",
-        origin: "Rajasthan / MP Mandis",
-        purity: "High Oil Content Machine Cleaned",
-        packaging: "50kg Bags",
-        badge: null,
-        image: "/images/products/mustard-seeds.jpg",
+        id: "yellow-maize-corn",
+        name: "Yellow Maize / Corn",
+        origin: "Central India Mandis",
+        purity: "Aflatoxin Tested / Food & Feed Grade",
+        packaging: "50kg Bags / FCL Bulk",
+        badge: "Feed & Food Grade",
+        image: "/images/products/fennel-seeds.jpg",
       },
       {
         id: "kabuli-chickpeas",
@@ -225,6 +234,7 @@ const categories: CategoryGroup[] = [
         purity: "Bold Caliber / Sortex Selected",
         packaging: "25kg / 50kg Bags",
         badge: "Export Grade",
+        image: "/images/products/coriander-seeds.jpg",
       },
     ],
   },
@@ -243,6 +253,7 @@ const categories: CategoryGroup[] = [
         purity: "Even Thermal Profile, Deep Aroma",
         packaging: "10kg / 25kg Nitrogen Flushed",
         badge: "In-House Roasting",
+        image: "/images/products/cumin-seeds.jpg",
       },
       {
         id: "roasted-coriander-seeds",
@@ -251,14 +262,16 @@ const categories: CategoryGroup[] = [
         purity: "Crisp Texture, Essential Oils Activated",
         packaging: "10kg / 25kg Packs",
         badge: "Custom Toast",
+        image: "/images/products/coriander-seeds.jpg",
       },
       {
-        id: "roasted-sesame-seeds",
-        name: "Roasted Sesame Seeds (White / Black)",
+        id: "roasted-fennel-seeds",
+        name: "Roasted Fennel Seeds (Mukhwas Grade)",
         origin: "In-House Roastery, Indore",
-        purity: "Nutty Profile, Uniform Roasting",
-        packaging: "15kg / 25kg Poly-lined Bags",
-        badge: null,
+        purity: "Crisp Sweet Aroma, Uniform Roast",
+        packaging: "10kg / 25kg Poly Bags",
+        badge: "Roastery Grade",
+        image: "/images/products/fennel-seeds.jpg",
       },
       {
         id: "private-label-blends",
@@ -267,6 +280,7 @@ const categories: CategoryGroup[] = [
         purity: "Client-Defined Mesh & Specifications",
         packaging: "Private-Label Packaging Available",
         badge: "Private Label",
+        image: "/images/products/turmeric.jpg",
       },
     ],
   },
@@ -309,23 +323,34 @@ export default function ProductsPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
-        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] rounded-full bg-[#B8934A]/10 blur-3xl" />
+      {/* Hero with Dark Gradient & Gold Accents */}
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#0A1B15] overflow-hidden text-white">
+        <div className="absolute inset-0 z-0">
+          <MediaWithFallback
+            src="/images/hero/hero-2.jpg"
+            alt="Vishnu Traders spice catalog"
+            fill
+            className="object-cover opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B15] via-[#0A1B15]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1B15]/90 via-[#0A1B15]/60 to-transparent" />
+        </div>
+        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] rounded-full bg-[#B8934A]/10 blur-3xl pointer-events-none" />
+        
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
-            <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+            <span className="text-[#D4B56A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
               B2B & Global Export Catalogue
             </span>
           </div>
           <h1
-            className="text-4xl lg:text-6xl font-bold mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
             style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
           >
             Export-Grade <span className="gold-gradient-text">Spices & Commodities</span>
           </h1>
-          <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8">
+          <p className="text-white/85 text-base sm:text-lg max-w-2xl leading-relaxed mb-8">
             Procured directly from central India&apos;s agricultural heartlands, processed and graded in-house at our Indore facility, and packaged for worldwide container shipping.
           </p>
 
@@ -394,7 +419,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Product List Catalogue */}
-      <section className="py-20 lg:py-28 bg-white min-h-[50vh]">
+      <section className="py-20 lg:py-28 bg-[#FAFAF8] min-h-[50vh]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-20">
           {filteredCategories.length === 0 ? (
             <div className="text-center py-20">
@@ -444,23 +469,24 @@ export default function ProductsPage() {
                   </div>
                 </ScrollReveal>
 
-                {/* Product Cards Grid */}
+                {/* Product Cards Grid with Real Imagery */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {cat.products.map((product, idx) => (
                     <ScrollReveal key={product.id} animation="fade-up" delay={idx * 60}>
-                      <div className="glass-card overflow-hidden flex flex-col justify-between group h-full">
-                        <div className="relative h-44 overflow-hidden border-b border-[#B8934A]/15">
-                          <div className="absolute inset-0 bg-gradient-to-br from-[#1F4A3D] via-[#3F7C67] to-[#B8934A] opacity-30" />
+                      <div className="glass-card overflow-hidden flex flex-col justify-between group h-full bg-white hover:border-[#B8934A]/40 transition-all duration-300">
+                        {/* Photo Box */}
+                        <div className="relative h-48 overflow-hidden bg-gray-100 border-b border-[#B8934A]/15">
                           <MediaWithFallback
                             src={product.image}
                             alt={product.name}
                             fill
-                            className="media-zoom"
+                            className="media-zoom object-cover"
                             fallbackIcon={cat.icon}
                             fallbackGradient={cat.gradient}
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                           {product.badge && (
-                            <span className="absolute right-3 top-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#FAF3E7]/90 text-[#8A6A2E]">
+                            <span className="absolute right-3 top-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#8A6A2E] shadow-sm">
                               {product.badge}
                             </span>
                           )}
@@ -503,9 +529,9 @@ export default function ProductsPage() {
                             />
                             <Link
                               href={`/contact?sample=${encodeURIComponent(product.name)}`}
-                              className="text-[11px] text-gray-500 hover:text-[#B8934A] transition-colors"
+                              className="text-[11px] font-semibold text-gray-500 hover:text-[#B8934A] transition-colors"
                             >
-                              Request Sample
+                              Request Sample →
                             </Link>
                           </div>
                         </div>
@@ -520,12 +546,12 @@ export default function ProductsPage() {
       </section>
 
       {/* B2B Custom Specs CTA */}
-      <section className="py-24 lg:py-32 bg-[#F5F0E8]">
+      <section className="py-20 lg:py-28 bg-[#FAF6F0] border-t border-gray-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <ScrollReveal animation="fade-up">
             <span className="text-4xl mb-4 block">🚢</span>
             <h2
-              className="text-3xl lg:text-4xl font-bold text-[#1F4A3D] mb-4"
+              className="text-3xl sm:text-4xl font-bold text-[#1F4A3D] mb-4"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
               Looking for Custom Mesh, Roast, or Private Packaging?

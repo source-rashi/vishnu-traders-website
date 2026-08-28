@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import HeroCarousel from "./components/HeroCarousel";
 import StatCounters from "./components/StatCounters";
 import ScrollReveal from "./components/ScrollReveal";
@@ -9,71 +10,140 @@ import MediaWithFallback from "./components/MediaWithFallback";
 
 /* ────────────────────────────── DATA ────────────────────────────── */
 
-const productHighlights = [
+const featuredSpices = [
+  {
+    name: "Cumin Seeds (Jeera)",
+    grade: "99.5% - 99.9% Machine / Sortex Cleaned",
+    origin: "Rajasthan & Gujarat Mandis",
+    image: "/images/products/cumin-seeds.jpg",
+    badge: "Top Exporter Item",
+    href: "/products#whole-spices",
+  },
+  {
+    name: "Turmeric Fingers & Powder",
+    grade: "High Curcumin 3.5% - 5.0%+",
+    origin: "Nizamabad & Salem Origins",
+    image: "/images/products/turmeric.jpg",
+    badge: "Export Grade",
+    href: "/products#whole-spices",
+  },
+  {
+    name: "Coriander Seeds (Dhania)",
+    grade: "Eagle, Scooter & Single Parrot",
+    origin: "Madhya Pradesh (Guna / Neemuch)",
+    image: "/images/products/coriander-seeds.jpg",
+    badge: "Farm Direct",
+    href: "/products#whole-spices",
+  },
+  {
+    name: "Stemless Red Chilli",
+    grade: "High Heat & Rich Color (SHU 20k - 90k)",
+    origin: "Guntur / Byadgi Belts",
+    image: "/images/products/red-chilli.jpg",
+    badge: "Cold Milled",
+    href: "/products#ground-spices",
+  },
+  {
+    name: "Tellicherry Black Pepper",
+    grade: "Garbled Bold 550GL - 580GL",
+    origin: "South India Plantations",
+    image: "/images/products/black-pepper.jpg",
+    badge: "Bold Caliber",
+    href: "/products#whole-spices",
+  },
+  {
+    name: "Green Cardamom (Elaichi)",
+    grade: "7mm - 8mm Bold Deep Green",
+    origin: "Idukki, Kerala",
+    image: "/images/products/cardamom.jpg",
+    badge: "Premium Bold",
+    href: "/products#whole-spices",
+  },
+  {
+    name: "Mustard Seeds (Rai / Sarson)",
+    grade: "High Oil Content Machine Cleaned",
+    origin: "Central India Mandis",
+    image: "/images/products/mustard-seeds.jpg",
+    badge: "Oilseed Crop",
+    href: "/products#agri-commodities",
+  },
+  {
+    name: "Fennel Seeds (Saunf)",
+    grade: "Extra Green & Regular Sortex",
+    origin: "Gujarat & Rajasthan",
+    image: "/images/products/fennel-seeds.jpg",
+    badge: "Sortex Cleaned",
+    href: "/products#whole-spices",
+  },
+];
+
+const categoryCards = [
   {
     title: "Whole Spices",
     subtitle: "Sortex Cleaned",
     description:
-      "Handpicked Cumin, Coriander, Turmeric Fingers, Black Pepper, and Bold Cardamom with high essential volatile oils.",
-    icon: "🌶️",
-    gradient: "from-red-50 to-orange-50",
+      "Handpicked Cumin, Coriander, Turmeric Fingers, Tellicherry Black Pepper, and Bold Cardamom with high volatile essential oils.",
+    image: "/images/products/turmeric.jpg",
     href: "/products#whole-spices",
     badge: "Export Grade",
-    image: "/images/products/turmeric.jpg",
   },
   {
     title: "Ground & Powders",
     subtitle: "Low-Temp Milled",
     description:
-      "Cold-ground Red Chili, Turmeric, Coriander, and signature Garam Masala blends without synthetic colors or adulterants.",
-    icon: "🏺",
-    gradient: "from-amber-50 to-yellow-50",
+      "Cold-milled Red Chili, Turmeric, Coriander, and custom Garam Masala formulations with zero synthetic coloring or adulteration.",
+    image: "/images/products/red-chilli.jpg",
     href: "/products#ground-spices",
     badge: "100% Pure",
-    image: "/images/products/red-chilli.jpg",
   },
   {
     title: "Agri Commodities",
-    subtitle: "Malwa & Central India",
+    subtitle: "Malwa Sourced",
     description:
-      "Non-GMO Soybeans, Sharbati/Durum Wheat, Yellow Corn/Maize, and Sortex-selected 99.95% Sesame Seeds.",
-    icon: "🌾",
-    gradient: "from-green-50 to-emerald-50",
+      "Non-GMO Soybeans, Sharbati/Durum Wheat, Yellow Corn/Maize, and Sortex-selected 99.95% Sesame Seeds from Central India.",
+    image: "/images/products/mustard-seeds.jpg",
     href: "/products#agri-commodities",
     badge: "Direct Sourcing",
-    image: "/images/products/mustard-seeds.jpg",
   },
   {
     title: "Processed & Roasted",
     subtitle: "In-House Roastery",
     description:
-      "Precision drum-roasted cumin, toasted coriander, and custom contract formulations for international food brands.",
-    icon: "🔥",
-    gradient: "from-orange-50 to-amber-50",
+      "Precision drum-roasted cumin, toasted coriander, and custom contract formulations for overseas food blenders and brands.",
+    image: "/images/products/fennel-seeds.jpg",
     href: "/products#processed",
     badge: "Custom Toasting",
-    image: "/images/products/fennel-seeds.jpg",
   },
 ];
 
-const processingHighlights = [
+const processTeaser = [
   {
     num: "01",
-    title: "Direct Farm Procurement",
-    desc: "Origin sourcing across MP & Rajasthan mandis with strict incoming moisture & purity testing.",
-    icon: "🌿",
+    title: "Origin Procurement",
+    desc: "Direct farm intake across MP & Rajasthan mandis with strict moisture & purity screening.",
+    image: "/images/process/sourcing.jpg",
+    tag: "Farm-Gate Traceability",
   },
   {
     num: "02",
-    title: "Sortex & Drum Roasting",
-    desc: "Multi-stage optical sortex cleaning and custom thermal roasting at our Pologround facility.",
-    icon: "🔥",
+    title: "Sortex & Roasting",
+    desc: "Optical color sorting up to 99.95% purity and thermostatically controlled drum roasting.",
+    image: "/images/process/sorting.jpg",
+    tag: "99.5%+ Sortex Purity",
   },
   {
     num: "03",
-    title: "Export Packaging & FCL",
+    title: "Batch QC & Testing",
+    desc: "In-house lab analysis of volatile oils, moisture, and international compliance before clearance.",
+    image: "/images/process/grading.jpg",
+    tag: "COA Certified",
+  },
+  {
+    num: "04",
+    title: "Packaging & Freight",
     desc: "Barrier pouches up to 50kg export bags, containerized with phytosanitary documentation.",
-    icon: "🚢",
+    image: "/images/process/warehouse.jpg",
+    tag: "JNPT / Mundra Dispatch",
   },
 ];
 
@@ -131,75 +201,70 @@ export default function Home() {
       {/* ═══════ ANIMATED STAT COUNTERS ═══════ */}
       <StatCounters />
 
-      {/* ═══════ PRODUCTS PREVIEW ═══════ */}
-      <section className="py-24 lg:py-32 bg-white">
+      {/* ═══════ FEATURED REAL PRODUCT GALLERY ═══════ */}
+      <section className="py-20 lg:py-28 bg-white border-b border-gray-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="gold-divider" />
-                  <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
-                    Commodities & Spices
+                  <span className="text-[#B8934A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
+                    Real Crop Imagery · Premium Export Quality
                   </span>
                 </div>
-                <h2 className="section-heading text-3xl lg:text-4xl mb-3">
-                  Core Export Categories
+                <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl mb-3">
+                  Core Indian Spices & Agri-Commodities
                 </h2>
-                <p className="text-gray-500 max-w-xl text-lg">
-                  Procured directly from farm mandis in Madhya Pradesh & Rajasthan, graded to international export purity.
+                <p className="text-gray-600 max-w-2xl text-base sm:text-lg">
+                  Procured directly from farm mandis across Madhya Pradesh & Rajasthan. Cleaned, graded, and packaged to exacting international trade specifications.
                 </p>
               </div>
               <Link href="/products" className="btn-secondary self-start lg:self-auto group">
-                <span>View Full Product Catalogue</span>
+                <span>View Full Export Catalogue</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
             </div>
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {productHighlights.map((cat, idx) => (
-              <ScrollReveal key={cat.title} animation="fade-up" delay={idx * 100}>
+          {/* 8-Card Flat-Lay Grid with Real Images */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredSpices.map((spice, idx) => (
+              <ScrollReveal key={spice.name} animation="fade-up" delay={idx * 60}>
                 <Link
-                  href={cat.href}
-                  className="glass-card p-0 flex flex-col justify-between group h-full overflow-hidden"
+                  href={spice.href}
+                  className="glass-card p-0 flex flex-col justify-between group h-full overflow-hidden hover:border-[#B8934A]/40 transition-all duration-300"
                 >
-                  <div className="relative h-52 overflow-hidden border-b border-[#B8934A]/15">
+                  {/* Photo Container */}
+                  <div className="relative h-56 w-full overflow-hidden bg-gray-100 border-b border-[#B8934A]/15">
                     <MediaWithFallback
-                      src={cat.image}
-                      alt={cat.title}
+                      src={spice.image}
+                      alt={spice.name}
                       fill
-                      className="media-zoom"
-                      fallbackIcon={cat.icon}
-                      fallbackGradient={cat.gradient.replace("from-", "from-").replace(" to-", " via-")}
+                      className="media-zoom object-cover"
+                      fallbackIcon="🌶️"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                    <div className="absolute right-4 top-4">
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#FAF3E7]/90 text-[#8A6A2E]">
-                        {cat.badge}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center text-2xl shadow-sm`}>
-                        {cat.icon}
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#B8934A] block mb-1">
-                      {cat.subtitle}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute right-3 top-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#1F4A3D] shadow-sm">
+                      {spice.badge}
                     </span>
-                    <h3
-                      className="text-xl font-bold text-[#1F4A3D] mb-2.5 group-hover:text-[#B8934A] transition-colors"
-                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                    >
-                      {cat.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed flex-1">
-                      {cat.description}
-                    </p>
-                    <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-1 text-xs font-bold text-[#1F4A3D] group-hover:text-[#B8934A]">
-                      <span>Explore Products</span>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-5 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h3
+                        className="text-lg font-bold text-[#1F4A3D] mb-1.5 group-hover:text-[#B8934A] transition-colors"
+                        style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                      >
+                        {spice.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#B8934A] mb-2">{spice.grade}</p>
+                      <p className="text-xs text-gray-500 line-clamp-2">{spice.origin}</p>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-[#1F4A3D] group-hover:text-[#B8934A]">
+                      <span>Specifications & RFQ</span>
                       <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </div>
                   </div>
@@ -210,8 +275,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ HOW WE PROCESS (TEASER) ═══════ */}
-      <section className="py-24 lg:py-32 bg-[#1F4A3D] text-white overflow-hidden relative">
+      {/* ═══════ CORE EXPORT CATEGORIES PREVIEW ═══════ */}
+      <section className="py-20 lg:py-28 bg-[#FAF6F0]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="gold-divider" />
+                <span className="text-[#B8934A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
+                  Comprehensive Portfolio
+                </span>
+              </div>
+              <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl mb-4">
+                Specialized Commodity Divisions
+              </h2>
+              <p className="text-gray-600 text-base sm:text-lg">
+                Structured for international importers, spice re-packers, food processing plants, and commodity distributors.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categoryCards.map((cat, idx) => (
+              <ScrollReveal key={cat.title} animation="fade-up" delay={idx * 80}>
+                <Link
+                  href={cat.href}
+                  className="glass-card p-0 flex flex-col justify-between group h-full overflow-hidden bg-white hover:border-[#B8934A]/40 transition-all duration-300"
+                >
+                  <div className="relative h-48 overflow-hidden border-b border-[#B8934A]/15">
+                    <MediaWithFallback
+                      src={cat.image}
+                      alt={cat.title}
+                      fill
+                      className="media-zoom object-cover"
+                      fallbackIcon="✦"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute right-3 top-3">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#8A6A2E]">
+                        {cat.badge}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#B8934A] block mb-1">
+                      {cat.subtitle}
+                    </span>
+                    <h3
+                      className="text-xl font-bold text-[#1F4A3D] mb-2.5 group-hover:text-[#B8934A] transition-colors"
+                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                    >
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed flex-1 mb-4">
+                      {cat.description}
+                    </p>
+                    <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#1F4A3D] group-hover:text-[#B8934A]">
+                      <span>Explore Category</span>
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ IN-HOUSE PROCESSING WITH REAL PHOTOGRAPHY ═══════ */}
+      <section className="py-20 lg:py-28 bg-[#0F2922] text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#B8934A]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up">
@@ -219,50 +351,65 @@ export default function Home() {
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="gold-divider" />
-                  <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
-                    Facility & Workflow
+                  <span className="text-[#D4B56A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
+                    Pologround Industrial Estate, Indore
                   </span>
                 </div>
                 <h2
-                  className="text-3xl lg:text-5xl font-bold mb-4"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
                   style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
                 >
-                  In-House Processing at <span className="gold-gradient-text">Pologround, Indore</span>
+                  Inside Our <span className="gold-gradient-text">Processing & Warehousing</span> Facility
                 </h2>
-                <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
-                  By controlling every step from origin mandi intake to optical Sortex cleaning, thermal drum roasting, and custom barrier packaging, we eliminate quality variance.
+                <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">
+                  Every step — from farm mandi intake to optical Sortex cleaning, precision thermal drum roasting, and export packaging — operates under our direct physical custody.
                 </p>
               </div>
               <div className="lg:col-span-4 flex lg:justify-end">
                 <Link href="/processing" className="btn-primary text-sm group">
-                  <span>Explore All 7 Stages</span>
+                  <span>Explore Interactive Flow</span>
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
               </div>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {processingHighlights.map((p, idx) => (
-              <ScrollReveal key={p.num} animation="fade-up" delay={idx * 150}>
-                <div className="rounded-2xl bg-white/5 border border-white/10 p-8 backdrop-blur-sm hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className="text-4xl font-bold text-[#B8934A]"
+          {/* 4 Real Process Photo Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {processTeaser.map((p, idx) => (
+              <ScrollReveal key={p.num} animation="fade-up" delay={idx * 100}>
+                <div className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm hover:border-[#B8934A]/40 transition-all duration-300 h-full flex flex-col justify-between group">
+                  <div className="relative h-44 w-full overflow-hidden">
+                    <MediaWithFallback
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      className="media-zoom object-cover"
+                      fallbackIcon="⚙️"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F2922] via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute left-3 top-3 text-xs font-bold text-[#EBD095] bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10">
+                      Step {p.num}
+                    </span>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-[#D4B56A] block mb-1">
+                        {p.tag}
+                      </span>
+                      <h3
+                        className="text-lg font-bold text-white mb-2 group-hover:text-[#D4B56A] transition-colors"
                         style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
                       >
-                        {p.num}
-                      </span>
-                      <span className="text-2xl">{p.icon}</span>
+                        {p.title}
+                      </h3>
+                      <p className="text-white/70 text-xs sm:text-sm leading-relaxed">{p.desc}</p>
                     </div>
-                    <h3
-                      className="text-xl font-bold text-white mb-2"
-                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{p.desc}</p>
+
+                    <div className="mt-4 pt-3 border-t border-white/10 flex items-center text-xs text-[#D4B56A] font-semibold">
+                      <span>View Specifications →</span>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -272,21 +419,21 @@ export default function Home() {
       </section>
 
       {/* ═══════ INTERACTIVE GLOBAL TRADE NETWORK ═══════ */}
-      <section className="py-24 lg:py-32 bg-[#F5F0E8]">
+      <section className="py-20 lg:py-28 bg-[#FAF6F0]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
-                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
-                  Around the Globe
+                <span className="text-[#B8934A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
+                  Global Trade Corridors
                 </span>
               </div>
-              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+              <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl mb-4">
                 Worldwide Export Corridors & Port Dispatches
               </h2>
-              <p className="text-gray-600 text-lg">
-                Click on any continent or region below to explore export volumes, key discharge ports, and product demand.
+              <p className="text-gray-600 text-base sm:text-lg">
+                Click on any continent or region below to explore trade volumes, key discharge ports, and commodity shipments.
               </p>
             </div>
           </ScrollReveal>
@@ -298,21 +445,21 @@ export default function Home() {
       </section>
 
       {/* ═══════ TESTIMONIALS CAROUSEL ═══════ */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-20 lg:py-28 bg-white border-y border-gray-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
-                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
-                  Verified B2B Feedback
+                <span className="text-[#B8934A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
+                  Verified Importer Feedback
                 </span>
               </div>
-              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-                Trusted by Global Importers & Millers
+              <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl mb-4">
+                Trusted by Global Importers & Food Brands
               </h2>
-              <p className="text-gray-600 text-lg">
-                Delivering verified purity, consistent roasting, and reliable container freight across international markets.
+              <p className="text-gray-600 text-base sm:text-lg">
+                Delivering verified purity, consistent roasting, and dependable container freight across 20+ countries.
               </p>
             </div>
           </ScrollReveal>
@@ -324,10 +471,10 @@ export default function Home() {
       </section>
 
       {/* ═══════ CERTIFICATIONS TEASER ═══════ */}
-      <section className="py-20 lg:py-28 bg-[#FAF3E7] border-y border-[#B8934A]/25">
+      <section className="py-16 lg:py-20 bg-[#FAF3E7] border-b border-[#B8934A]/25">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="scale-up">
-            <div className="rounded-3xl bg-white p-8 lg:p-12 border border-[#B8934A]/25 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
+            <div className="rounded-3xl bg-white p-8 lg:p-12 border border-[#B8934A]/25 flex flex-col md:flex-row items-center justify-between gap-8 shadow-md">
               <div className="space-y-2 max-w-xl">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#8A6A2E]">
                   Official Compliance
@@ -353,22 +500,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ FAQ ACCORDION (HOMEPAGE TEASER) ═══════ */}
-      <section className="py-24 lg:py-32 bg-white">
+      {/* ═══════ FAQ ACCORDION ═══════ */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
-                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                <span className="text-[#B8934A] text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
                   Trade Knowledge Base
                 </span>
               </div>
-              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+              <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl mb-4">
                 Frequently Asked Export Questions
               </h2>
-              <p className="text-gray-600 text-lg">
-                Common questions from our international buyers regarding minimum orders, quality testing, and port logistics.
+              <p className="text-gray-600 text-base sm:text-lg">
+                Essential information on minimum order quantities, moisture parameters, COA lab tests, and shipping terms.
               </p>
             </div>
           </ScrollReveal>
@@ -380,18 +527,18 @@ export default function Home() {
       </section>
 
       {/* ═══════ WHY CHOOSE US ═══════ */}
-      <section className="py-24 lg:py-32 bg-[#F5F0E8]">
+      <section className="py-20 lg:py-28 bg-[#FAF6F0] border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-16">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
               </div>
-              <h2 className="section-heading text-3xl lg:text-4xl mb-4">
+              <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl mb-4">
                 Why Partner with Vishnu Traders
               </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Three decades of reputation built on transparent weighing, disciplined quality grading, and dependable container dispatch.
+              <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
+                Three decades of trust built on transparent weighing, disciplined quality grading, and dependable container logistics.
               </p>
             </div>
           </ScrollReveal>
@@ -418,17 +565,17 @@ export default function Home() {
       </section>
 
       {/* ═══════ CTA ═══════ */}
-      <section className="py-24 lg:py-32 bg-[#1F4A3D] text-white text-center relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-[#0F2922] text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#3F7C67]/20 via-transparent to-transparent pointer-events-none" />
         <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up">
             <h2
-              className="text-3xl lg:text-5xl font-bold mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
               Ready to Discuss Your <span className="gold-gradient-text">Export Requirements?</span>
             </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-white/80 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
               Contact Harsh Agrawal at our Indore headquarters for commodity availability, current crop prices, sample dispatches, and container logistics.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

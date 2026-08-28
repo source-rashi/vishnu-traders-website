@@ -39,34 +39,32 @@ export default function ProcessingPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1F4A3D] via-[#183D32] to-[#0A1B15] opacity-90" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.28)_40%,rgba(0,0,0,0.12)_100%)]" />
-          <div className="absolute inset-0 opacity-30">
-            <MediaWithFallback
-              src="/images/process/process-hero.jpg"
-              alt="Processing and warehousing at Vishnu Traders"
-              fill
-              className="object-cover"
-              fallbackIcon="⚙️"
-              fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#B8934A]"
-            />
-          </div>
+          <MediaWithFallback
+            src="/images/process/warehouse.jpg"
+            alt="Processing and warehousing at Vishnu Traders"
+            fill
+            className="object-cover"
+            fallbackIcon="⚙️"
+            fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#B8934A]"
+          />
+          <div className="absolute inset-0 bg-[#0A1B15]/75" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B15] via-transparent to-black/50" />
         </div>
-        <div className="absolute top-20 right-[10%] w-[500px] h-[500px] rounded-full bg-[#B8934A]/10 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
-            <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+            <span className="text-[#D4B56A] text-sm font-semibold uppercase tracking-[0.15em] drop-shadow-sm">
               Infrastructure & Operations
             </span>
           </div>
           <h1
-            className="text-4xl lg:text-6xl font-bold leading-tight mb-6"
+            className="text-4xl lg:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-md"
             style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
           >
             In-House Warehousing & <span className="gold-gradient-text">Processing</span>
           </h1>
-          <p className="text-white/70 text-lg max-w-3xl leading-relaxed">
+          <p className="text-white/85 text-lg max-w-3xl leading-relaxed drop-shadow-sm">
             Our core differentiator: complete end-to-end custody of agricultural commodities and spices.
             From farm intake and Sortex cleaning to precision drum roasting, packaging, and container dispatch —
             all operated inside our Pologround Industrial Estate facility in Indore.

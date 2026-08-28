@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import QRCodeDisplay from "../components/QRCodeDisplay";
+import MediaWithFallback from "../components/MediaWithFallback";
 
 export const metadata: Metadata = {
   title: "Certifications & Compliance",
@@ -43,22 +44,33 @@ export default function CertificationsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
-        <div className="absolute top-20 right-[10%] w-[450px] h-[450px] rounded-full bg-[#B8934A]/10 blur-3xl" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
+        <div className="absolute inset-0">
+          <MediaWithFallback
+            src="/images/certifications/cert-banner.jpg"
+            alt="Certified spice export documentation"
+            fill
+            className="object-cover"
+            fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#0A1B15]"
+          />
+          <div className="absolute inset-0 bg-[#0A1B15]/75" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B15] via-transparent to-black/50" />
+        </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
-            <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+            <span className="text-[#D4B56A] text-sm font-semibold uppercase tracking-[0.15em] drop-shadow-sm">
               Trust & Compliance
             </span>
           </div>
           <h1
-            className="text-4xl lg:text-6xl font-bold mb-6"
+            className="text-4xl lg:text-6xl font-bold mb-6 text-white drop-shadow-md"
             style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
           >
             Certifications & <span className="gold-gradient-text">Verification</span>
           </h1>
-          <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
+          <p className="text-white/85 text-lg max-w-2xl leading-relaxed drop-shadow-sm">
             Every shipment leaving our Pologround, Indore facility complies with established Indian and international export protocols. Scan any QR code below to verify credentials.
           </p>
         </div>

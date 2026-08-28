@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import MediaWithFallback from "./MediaWithFallback";
 
 interface StepDetail {
   step: string;
@@ -11,7 +12,7 @@ interface StepDetail {
   keyParameters: { label: string; value: string }[];
   equipmentUsed: string;
   qualityCheck: string;
-  imagePlaceholder: string;
+  image: string;
   icon: string;
 }
 
@@ -29,7 +30,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "Digital Moisture Analyzers, Sample Probes, Gravity Intake Weighbridges",
     qualityCheck: "Initial sensory aroma evaluation, foreign matter screening, and moisture verification.",
-    imagePlaceholder: "/images/processing/step-1-sourcing.jpg",
+    image: "/images/process/sourcing.jpg",
     icon: "🌿",
   },
   {
@@ -45,7 +46,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "Buhler-Type Optical Color Sorters, Vibratory Sieves, Cyclone Dust Extractors",
     qualityCheck: "Continuous optical scan logs, seed count per gram, and destoner discharge verification.",
-    imagePlaceholder: "/images/processing/step-2-cleaning.jpg",
+    image: "/images/process/sorting.jpg",
     icon: "⚙️",
   },
   {
@@ -61,7 +62,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "LPG Indirect-Fired Stainless Drum Roasters with Automated Cooling Trays",
     qualityCheck: "Agtron color degree calibration, aroma punch testing, and moisture analysis.",
-    imagePlaceholder: "/images/processing/step-3-roasting.jpg",
+    image: "/images/process/roasting.jpg",
     icon: "🔥",
   },
   {
@@ -77,7 +78,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "Clevenger Volatile Oil Distillation Apparatus, Sieve Shakers, Moisture Ovens",
     qualityCheck: "Batch Certificate of Analysis (COA) generation before clearance for packing.",
-    imagePlaceholder: "/images/processing/step-4-grading.jpg",
+    image: "/images/process/grading.jpg",
     icon: "🔬",
   },
   {
@@ -93,7 +94,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "Automated Form-Fill-Seal (FFS) Baggers, Heat Sealers, Continuous Bag Stitchers",
     qualityCheck: "Seal integrity inspection, weight checkweigher accuracy (±0.2%), and QR scan verification.",
-    imagePlaceholder: "/images/processing/step-5-packaging.jpg",
+    image: "/images/process/packaging.jpg",
     icon: "📦",
   },
   {
@@ -109,7 +110,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "Electric Reach Trucks, Dehumidifiers, Digital Climate Loggers",
     qualityCheck: "Weekly moisture equilibrium audits and strict pallet lot traceability.",
-    imagePlaceholder: "/images/processing/step-6-warehouse.jpg",
+    image: "/images/process/warehouse.jpg",
     icon: "🏬",
   },
   {
@@ -125,7 +126,7 @@ const processingSteps: StepDetail[] = [
     ],
     equipmentUsed: "Container Ramps, Heavy Cargo Strapping, High-Capacity Desiccant Bags",
     qualityCheck: "Pre-stuffing container cleanliness inspection, seal verification, and customs clearance.",
-    imagePlaceholder: "/images/processing/step-7-export.jpg",
+    image: "/images/process/export.jpg",
     icon: "🚢",
   },
 ];
@@ -187,31 +188,33 @@ export default function InteractiveProcessingFlow() {
       </div>
 
       {/* Active Stage Detailed Breakdown Panel */}
-      <div className="rounded-3xl border border-gray-200 bg-white p-8 lg:p-12 shadow-xl grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-8 lg:p-10 shadow-xl grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
         {/* Left Info Column */}
-        <div className="lg:col-span-7 space-y-6">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#1F4A3D] text-[#D4B56A]">
-              Stage {activeStep.step} of 07
-            </span>
-            <span className="text-xs font-semibold text-gray-500">
-              {activeStep.subtitle}
-            </span>
+        <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#1F4A3D] text-[#D4B56A]">
+                Stage {activeStep.step} of 07
+              </span>
+              <span className="text-xs font-semibold text-gray-500">
+                {activeStep.subtitle}
+              </span>
+            </div>
+
+            <h3
+              className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              {activeStep.title}
+            </h3>
+
+            <p className="text-gray-700 text-sm lg:text-base leading-relaxed">
+              {activeStep.summary}
+            </p>
           </div>
 
-          <h3
-            className="text-2xl lg:text-4xl font-bold text-[#1F4A3D]"
-            style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-          >
-            {activeStep.title}
-          </h3>
-
-          <p className="text-gray-600 text-sm lg:text-base leading-relaxed">
-            {activeStep.summary}
-          </p>
-
           {/* Technical Specs Metric Strip */}
-          <div className="grid sm:grid-cols-3 gap-3 pt-2">
+          <div className="grid sm:grid-cols-3 gap-3">
             {activeStep.keyParameters.map((param) => (
               <div
                 key={param.label}
@@ -228,9 +231,9 @@ export default function InteractiveProcessingFlow() {
           </div>
 
           {/* Equipment & Inspection */}
-          <div className="space-y-3 pt-2 border-t border-gray-100 text-xs">
+          <div className="space-y-2 pt-4 border-t border-gray-100 text-xs">
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
-              <span className="font-bold text-gray-900 shrink-0">Processing Machinery:</span>
+              <span className="font-bold text-gray-900 shrink-0">Machinery:</span>
               <span className="text-gray-600">{activeStep.equipmentUsed}</span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
@@ -240,40 +243,56 @@ export default function InteractiveProcessingFlow() {
           </div>
         </div>
 
-        {/* Right Visual / Step Switcher Card */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-[#1F4A3D] to-[#0A1B15] rounded-3xl p-8 text-white flex flex-col justify-between h-full min-h-[300px] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[#B8934A]/10 rounded-full blur-2xl pointer-events-none" />
+        {/* Right Visual Photo Card with Dedicated Photo & Navigation */}
+        <div className="lg:col-span-5 flex flex-col justify-between gap-4">
+          <div className="relative rounded-3xl overflow-hidden border border-[#B8934A]/30 shadow-lg h-[280px] sm:h-[340px] lg:h-full min-h-[280px] bg-[#0A1B15] group">
+            <MediaWithFallback
+              src={activeStep.image}
+              alt={activeStep.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              fallbackIcon={activeStep.icon}
+              fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#0A1B15]"
+            />
+            {/* Scrim Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 pointer-events-none" />
 
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <span
-                className="text-5xl font-bold text-[#D4B56A]"
+            {/* Top Badges */}
+            <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+              <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-black/60 text-[#D4B56A] backdrop-blur-md border border-[#B8934A]/30 shadow-sm">
+                Stage {activeStep.step} · {activeStep.icon}
+              </span>
+              <span className="text-[10px] font-semibold text-white/95 bg-[#1F4A3D]/80 px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10 shadow-sm">
+                Indore Facility
+              </span>
+            </div>
+
+            {/* Bottom Caption */}
+            <div className="absolute bottom-4 left-4 right-4 z-10 text-white">
+              <h4
+                className="text-lg font-bold text-white drop-shadow mb-0.5"
                 style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
               >
-                {activeStep.step}
-              </span>
-              <span className="text-4xl">{activeStep.icon}</span>
+                {activeStep.title}
+              </h4>
+              <p className="text-xs text-white/80 line-clamp-1 drop-shadow-sm">
+                {activeStep.subtitle}
+              </p>
             </div>
-            <h4
-              className="text-xl font-bold text-white mb-2"
-              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-            >
-              Facility Operations
-            </h4>
-            <p className="text-xs text-white/70 leading-relaxed mb-6">
-              Operated directly by our experienced quality team at R-20 Pologround Industrial Estate, Indore.
-            </p>
           </div>
 
-          {/* Navigation Controls inside Card */}
-          <div className="pt-6 border-t border-white/10 flex items-center justify-between">
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-[#FAF3E7] border border-[#B8934A]/25">
             <button
               onClick={() => setActiveStepIdx((prev) => Math.max(0, prev - 1))}
               disabled={activeStepIdx === 0}
-              className="text-xs font-semibold text-white/70 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              className="btn-secondary !text-xs !py-2 !px-4 disabled:opacity-30 disabled:pointer-events-none"
             >
               ← Previous Stage
             </button>
+            <span className="text-xs font-bold text-[#1F4A3D]">
+              {activeStepIdx + 1} of {processingSteps.length}
+            </span>
             <button
               onClick={() =>
                 setActiveStepIdx((prev) =>
@@ -281,7 +300,7 @@ export default function InteractiveProcessingFlow() {
                 )
               }
               disabled={activeStepIdx === processingSteps.length - 1}
-              className="btn-primary text-xs !py-2 !px-4 disabled:opacity-30"
+              className="btn-primary !text-xs !py-2 !px-4 disabled:opacity-30"
             >
               Next Stage →
             </button>

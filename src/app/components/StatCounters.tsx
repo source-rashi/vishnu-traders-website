@@ -12,8 +12,10 @@ interface StatItemProps {
   duration?: number;
 }
 
-function StatItem({ end, suffix = "", prefix = "", label, sublabel, duration = 2000 }: StatItemProps) {
+function StatItem({ end, suffix = "", prefix = "", label, sublabel, duration = 2000, formatNumber = false }: StatItemProps & { formatNumber?: boolean }) {
   const { count, ref } = useCountUp(end, duration);
+
+  const displayCount = formatNumber ? count.toLocaleString() : count;
 
   return (
     <div ref={ref} className="text-center group">
@@ -22,7 +24,7 @@ function StatItem({ end, suffix = "", prefix = "", label, sublabel, duration = 2
         style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
       >
         <span>{prefix}</span>
-        <span>{count}</span>
+        <span>{displayCount}</span>
         <span>{suffix}</span>
       </div>
       <div className="text-xs uppercase tracking-wider text-gray-700 font-semibold mt-1">
@@ -47,18 +49,19 @@ export default function StatCounters() {
             duration={1500}
           />
           <StatItem
-            end={20}
+            end={100}
             suffix="+"
-            label="Export Destinations"
-            sublabel="Worldwide Port Dispatches"
+            label="Institutional Clients Pan India"
+            sublabel="Trusted B2B Enterprise Network"
             duration={2000}
           />
           <StatItem
-            end={500}
+            end={10000}
             suffix="+ MT"
             label="Processed Volume / Yr"
             sublabel="Agricultural Commodities"
             duration={2200}
+            formatNumber={true}
           />
           <StatItem
             end={100}

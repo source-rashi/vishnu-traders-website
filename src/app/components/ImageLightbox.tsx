@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import MediaWithFallback from "./MediaWithFallback";
 
 interface GalleryImage {
   id: string;
@@ -9,63 +10,56 @@ interface GalleryImage {
   caption: string;
   filePath: string;
   fallbackIcon: string;
-  gradient: string;
 }
 
 const galleryImages: GalleryImage[] = [
   {
     id: "gal-1",
-    title: "Optical Sortex Cleaning Floor",
-    category: "Processing Technology",
-    caption: "High-resolution color sorting cameras separating foreign matter and discolored seeds to reach 99.5%+ export purity.",
-    filePath: "/images/facility/sortex-machinery.jpg",
-    fallbackIcon: "⚙️",
-    gradient: "from-[#1F4A3D] to-[#3F7C67]",
+    title: "Direct Farm Procurement & Intake",
+    category: "Sourcing Operations",
+    caption: "Farm-gate intake from MP & Rajasthan mandis with strict digital moisture screening and batch tracking.",
+    filePath: "/images/process/sourcing.jpg",
+    fallbackIcon: "🌿",
   },
   {
     id: "gal-2",
-    title: "Precision Drum Roasting Unit",
-    category: "In-House Roastery",
-    caption: "Thermostatically controlled drum roasting for uniform essential oil release across cumin and coriander batches.",
-    filePath: "/images/facility/drum-roaster.jpg",
-    fallbackIcon: "🔥",
-    gradient: "from-[#3F7C67] to-[#1F4A3D]",
+    title: "Optical Sortex Cleaning Floor",
+    category: "Processing Technology",
+    caption: "High-resolution color sorting cameras separating foreign matter and discolored seeds to reach 99.5%+ export purity.",
+    filePath: "/images/process/sorting.jpg",
+    fallbackIcon: "⚙️",
   },
   {
     id: "gal-3",
-    title: "Climate-Controlled Warehouse",
-    category: "Storage Architecture",
-    caption: "Elevated palletized warehouse with strict FIFO rotation, epoxy flooring, and automated moisture monitoring.",
-    filePath: "/images/facility/warehouse-floor.jpg",
-    fallbackIcon: "🏬",
-    gradient: "from-[#1F4A3D] to-[#0A1B15]",
+    title: "Precision Drum Roasting Unit",
+    category: "In-House Roastery",
+    caption: "Thermostatically controlled drum roasting for uniform essential oil release across cumin and coriander batches.",
+    filePath: "/images/process/roasting.jpg",
+    fallbackIcon: "🔥",
   },
   {
     id: "gal-4",
-    title: "B2B Packaging & Nitrogen Barrier Line",
-    category: "Packaging Line",
-    caption: "Clean-room packaging lines handling 100g consumer pouches up to 50kg export HDPE & multi-wall sacks.",
-    filePath: "/images/facility/packaging-line.jpg",
-    fallbackIcon: "📦",
-    gradient: "from-[#0A1B15] to-[#1F4A3D]",
+    title: "Quality Control & Volatile Oil Testing",
+    category: "QC Testing Lab",
+    caption: "In-house laboratory verification of moisture, ASTA color value, volatile oil retention, and seed purity.",
+    filePath: "/images/process/grading.jpg",
+    fallbackIcon: "🔬",
   },
   {
     id: "gal-5",
-    title: "Quality Control & Volatile Oil Testing",
-    category: "QC Testing Lab",
-    caption: "In-house laboratory verification of moisture, ASTA color value, volatile oil retention, and grain mesh sizing.",
-    filePath: "/images/facility/qc-laboratory.jpg",
-    fallbackIcon: "🔬",
-    gradient: "from-[#3F7C67] to-[#0A1B15]",
+    title: "B2B Packaging & Barrier Protection",
+    category: "Clean-Room Packaging",
+    caption: "Clean-room packaging lines handling 100g consumer pouches up to 50kg export HDPE & multi-wall sacks.",
+    filePath: "/images/process/packaging.jpg",
+    fallbackIcon: "📦",
   },
   {
     id: "gal-6",
-    title: "Container Stuffing & Port Freight",
+    title: "FIFO Palletized Warehousing & Freight",
     category: "Export Logistics",
-    caption: "Direct container loading with moisture desiccants and cargo lashing for shipping via Nhava Sheva (JNPT) and Mundra.",
-    filePath: "/images/facility/container-dispatch.jpg",
+    caption: "Elevated palletized warehouse with automated moisture logging and rapid container stuffing for Nhava Sheva (JNPT) and Mundra dispatch.",
+    filePath: "/images/process/warehouse.jpg",
     fallbackIcon: "🚢",
-    gradient: "from-[#1F4A3D] to-[#B8934A]",
   },
 ];
 
@@ -104,14 +98,17 @@ export default function ImageLightbox() {
             onClick={() => setSelectedIdx(idx)}
             className="group cursor-pointer rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:border-[#B8934A]/50 transition-all duration-300 flex flex-col"
           >
-            {/* Visual Block with Fallback */}
-            <div
-              className={`h-48 bg-gradient-to-br ${img.gradient} flex flex-col items-center justify-center p-6 text-white relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}
-            >
-              <span className="text-5xl group-hover:scale-125 transition-transform duration-300 mb-2">
-                {img.fallbackIcon}
-              </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#D4B56A] bg-black/30 px-2.5 py-1 rounded-full backdrop-blur-sm">
+            {/* Real Photo Thumbnail */}
+            <div className="relative h-52 w-full overflow-hidden bg-[#0A1B15]">
+              <MediaWithFallback
+                src={img.filePath}
+                alt={img.title}
+                fill
+                className="media-zoom object-cover"
+                fallbackIcon={img.fallbackIcon}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <span className="absolute left-3 bottom-3 text-[10px] uppercase font-bold tracking-widest text-[#D4B56A] bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10">
                 {img.category}
               </span>
             </div>
@@ -126,7 +123,7 @@ export default function ImageLightbox() {
                 </p>
               </div>
               <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-[#1F4A3D] font-semibold">
-                <span>View Full Photo & Specs</span>
+                <span>View Full Photo & Facility Details</span>
                 <span>🔍</span>
               </div>
             </div>
@@ -144,7 +141,7 @@ export default function ImageLightbox() {
           />
 
           {/* Modal Card */}
-          <div className="relative z-10 w-full max-w-3xl bg-[#0A1B15] text-white rounded-3xl border border-[#B8934A]/40 overflow-hidden shadow-2xl animate-scale-in">
+          <div className="relative z-10 w-full max-w-4xl bg-[#0A1B15] text-white rounded-3xl border border-[#B8934A]/40 overflow-hidden shadow-2xl animate-scale-in">
             {/* Top Close Bar */}
             <div className="p-4 sm:p-6 bg-white/5 border-b border-white/10 flex items-center justify-between">
               <div>
@@ -167,19 +164,21 @@ export default function ImageLightbox() {
               </button>
             </div>
 
-            {/* Main Visual Display */}
-            <div className="p-8 sm:p-12 text-center bg-gradient-to-br from-[#1F4A3D] to-[#0A1B15] flex flex-col items-center justify-center min-h-[260px] relative">
-              <span className="text-7xl mb-4">
-                {galleryImages[selectedIdx].fallbackIcon}
-              </span>
-              <p className="text-xs text-white/50 font-mono">
-                {galleryImages[selectedIdx].filePath}
-              </p>
+            {/* Main Visual Photo Display */}
+            <div className="relative w-full h-[320px] sm:h-[420px] bg-black">
+              <MediaWithFallback
+                src={galleryImages[selectedIdx].filePath}
+                alt={galleryImages[selectedIdx].title}
+                fill
+                priority
+                className="object-contain"
+                fallbackIcon={galleryImages[selectedIdx].fallbackIcon}
+              />
             </div>
 
-            {/* Caption & Specs */}
-            <div className="p-6 sm:p-8 bg-black/40 border-t border-white/10 space-y-4">
-              <p className="text-sm text-white/80 leading-relaxed">
+            {/* Caption & Controls */}
+            <div className="p-6 sm:p-8 bg-black/60 border-t border-white/10 space-y-4">
+              <p className="text-sm text-white/90 leading-relaxed">
                 {galleryImages[selectedIdx].caption}
               </p>
 
@@ -195,9 +194,9 @@ export default function ImageLightbox() {
                   }
                   className="btn-secondary !text-white !border-white/30 hover:!bg-white/20 text-xs !py-2 !px-4"
                 >
-                  ← Previous Image
+                  ← Previous
                 </button>
-                <span className="text-xs text-white/50">
+                <span className="text-xs text-[#D4B56A] font-semibold">
                   {selectedIdx + 1} of {galleryImages.length}
                 </span>
                 <button
@@ -208,7 +207,7 @@ export default function ImageLightbox() {
                   }
                   className="btn-primary text-xs !py-2 !px-4"
                 >
-                  Next Image →
+                  Next →
                 </button>
               </div>
             </div>

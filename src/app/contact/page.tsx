@@ -4,6 +4,7 @@ import React, { useState, useEffect, type FormEvent, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ScrollReveal from "../components/ScrollReveal";
 import FAQAccordion from "../components/FAQAccordion";
+import MediaWithFallback from "../components/MediaWithFallback";
 
 const contactInfo = [
   {
@@ -244,8 +245,19 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-[#1F4A3D] via-[#1a3f34] to-[#0A1B15] overflow-hidden text-white">
-        <div className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full bg-[#B8934A]/10 blur-3xl" />
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
+        <div className="absolute inset-0">
+          <MediaWithFallback
+            src="/images/contact/contact-banner.jpg"
+            alt="Global trade communication and logistics"
+            fill
+            className="object-cover"
+            fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#0A1B15]"
+          />
+          <div className="absolute inset-0 bg-[#0A1B15]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B15] via-transparent to-black/40" />
+        </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
@@ -259,7 +271,7 @@ export default function ContactPage() {
           >
             Get in <span className="gold-gradient-text">Touch</span>
           </h1>
-          <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
+          <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
             Looking for a dependable Indian spice or agri-commodity exporter? Reach out for commodity availability, crop harvest rates, or container logistics.
           </p>
         </div>
@@ -285,23 +297,36 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {contactInfo.map((info, idx) => (
                   <ScrollReveal key={info.title} animation="fade-up" delay={idx * 80}>
-                    <div className="flex items-start gap-4 p-4 rounded-2xl border border-gray-100 hover:border-[#B8934A]/30 transition-colors bg-[#FAFAF8]">
+                    <div className="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:border-[#B8934A]/40 transition-colors bg-[#FAFAF8] shadow-sm">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#EAF3F0] to-[#CBE0D8] flex items-center justify-center text-[#1F4A3D] shrink-0">
                         {info.icon}
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="font-semibold text-[#1F4A3D] text-sm">
                           {info.title}
                         </h3>
                         {info.href ? (
-                          <a
-                            href={info.href}
-                            target={info.href.startsWith("http") ? "_blank" : undefined}
-                            rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="text-gray-500 text-xs mt-0.5 hover:text-[#B8934A] transition-colors block leading-relaxed"
-                          >
-                            {info.description}
-                          </a>
+                          <div className="mt-1">
+                            <a
+                              href={info.href}
+                              target={info.href.startsWith("http") ? "_blank" : undefined}
+                              rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                              className="text-gray-600 text-xs hover:text-[#B8934A] transition-colors block leading-relaxed"
+                            >
+                              {info.description}
+                            </a>
+                            {info.href.includes("maps") && (
+                              <a
+                                href={info.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#B8934A] hover:underline mt-1.5"
+                              >
+                                <span>Get Directions on Google Maps</span>
+                                <span>↗</span>
+                              </a>
+                            )}
+                          </div>
                         ) : (
                           <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{info.description}</p>
                         )}
@@ -311,29 +336,16 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              {/* Google Maps Location */}
-              <ScrollReveal animation="fade-up" delay={300}>
-                <div className="rounded-2xl overflow-hidden border border-gray-200 h-60 shadow-sm relative group">
-                  <iframe
-                    title="Vishnu Traders location — Pologround Industrial Estate, Indore"
-                    src="https://www.google.com/maps/embed/v1/place?q=Pologround+Industrial+Estate+Indore+Madhya+Pradesh&key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                  <div className="absolute bottom-2 right-2 z-10 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold text-[#1F4A3D]">
-                    <a
-                      href="https://maps.app.goo.gl/KKwyo6uoLbBCuSeD7"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-[#B8934A] transition-colors"
-                    >
-                      Open in Maps ↗
-                    </a>
+              {/* Working Hours & Direct Facility Note */}
+              <ScrollReveal animation="fade-up" delay={250}>
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-[#FAF3E7] to-[#F5F0E8] border border-[#B8934A]/25 space-y-2">
+                  <div className="flex items-center gap-2 text-[#1F4A3D] font-bold text-xs uppercase tracking-wider">
+                    <span>🏢</span>
+                    <span>Facility Operating Hours</span>
                   </div>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Monday – Saturday: 09:30 AM – 07:30 PM IST. Direct container stuffing, customs inspection & sampling coordinated 24/7 during active export dispatch cycles.
+                  </p>
                 </div>
               </ScrollReveal>
             </div>
