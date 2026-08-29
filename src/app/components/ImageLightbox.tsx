@@ -15,51 +15,57 @@ interface GalleryImage {
 const galleryImages: GalleryImage[] = [
   {
     id: "gal-1",
-    title: "Direct Farm Procurement & Intake",
+    title: "Direct Origin Procurement & Intake",
     category: "Sourcing Operations",
-    caption: "Farm-gate intake from MP & Rajasthan mandis with strict digital moisture screening and batch tracking.",
+    caption:
+      "Intake of raw areca nuts from overseas plantations and domestic South Indian producing belts with digital moisture screening and batch lot tagging.",
     filePath: "/images/process/sourcing.jpg",
-    fallbackIcon: "🌿",
+    fallbackIcon: "🌱",
   },
   {
     id: "gal-2",
-    title: "Optical Sortex Cleaning Floor",
-    category: "Processing Technology",
-    caption: "High-resolution color sorting cameras separating foreign matter and discolored seeds to reach 99.5%+ export purity.",
+    title: "In-House Size & Purity Grading",
+    category: "Grading Technology",
+    caption:
+      "Vibratory sieves and optical gravity tables separating nuts into 80–85%, 90–95%, and 95%+ Super grade tiers with minimal broken threshold.",
     filePath: "/images/process/sorting.jpg",
     fallbackIcon: "⚙️",
   },
   {
     id: "gal-3",
-    title: "Precision Drum Roasting Unit",
+    title: "Controlled Drum Roasting Unit",
     category: "In-House Roastery",
-    caption: "Thermostatically controlled drum roasting for uniform essential oil release across cumin and coriander batches.",
+    caption:
+      "Thermostatically controlled LPG drum roasters evenly roasting whole and split areca nuts under monitored heat curves.",
     filePath: "/images/process/roasting.jpg",
     fallbackIcon: "🔥",
   },
   {
     id: "gal-4",
-    title: "Quality Control & Volatile Oil Testing",
+    title: "Laboratory Analysis & COA Testing",
     category: "QC Testing Lab",
-    caption: "In-house laboratory verification of moisture, ASTA color value, volatile oil retention, and seed purity.",
+    caption:
+      "In-house laboratory verification of moisture, density, and absence of external contaminants to certify every consignment.",
     filePath: "/images/process/grading.jpg",
     fallbackIcon: "🔬",
   },
   {
     id: "gal-5",
-    title: "B2B Packaging & Barrier Protection",
-    category: "Clean-Room Packaging",
-    caption: "Clean-room packaging lines handling 100g consumer pouches up to 50kg export HDPE & multi-wall sacks.",
+    title: "Industrial Multi-Wall Bagging",
+    category: "Packaging Floor",
+    caption:
+      "Heavy-duty industrial bagging lines packaging 50–80kg export sacks with clear batch lot labeling.",
     filePath: "/images/process/packaging.jpg",
     fallbackIcon: "📦",
   },
   {
     id: "gal-6",
-    title: "FIFO Palletized Warehousing & Freight",
-    category: "Export Logistics",
-    caption: "Elevated palletized warehouse with automated moisture logging and rapid container stuffing for Nhava Sheva (JNPT) and Mundra dispatch.",
+    title: "Bulk Warehousing & Freight Loading",
+    category: "Central Logistics",
+    caption:
+      "Elevated palletized warehouse at R-20 Pologround with fast container loading for local and nationwide dispatches.",
     filePath: "/images/process/warehouse.jpg",
-    fallbackIcon: "🚢",
+    fallbackIcon: "🚚",
   },
 ];
 
@@ -96,7 +102,7 @@ export default function ImageLightbox() {
           <div
             key={img.id}
             onClick={() => setSelectedIdx(idx)}
-            className="group cursor-pointer rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:border-[#B8934A]/50 transition-all duration-300 flex flex-col"
+            className="group cursor-pointer rounded-3xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:border-[#B8934A]/50 transition-all duration-300 flex flex-col"
           >
             {/* Real Photo Thumbnail */}
             <div className="relative h-52 w-full overflow-hidden bg-[#0A1B15]">
@@ -123,7 +129,7 @@ export default function ImageLightbox() {
                 </p>
               </div>
               <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-[#1F4A3D] font-semibold">
-                <span>View Full Photo & Facility Details</span>
+                <span>View Full Photo & Details</span>
                 <span>🔍</span>
               </div>
             </div>

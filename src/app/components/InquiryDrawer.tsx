@@ -6,14 +6,12 @@ import { useRouter } from "next/navigation";
 import { useInquiry } from "../context/InquiryContext";
 
 const quantityOptions = [
-  "Sample Pack (100g - 500g)",
-  "500 kg (Standard MOQ)",
-  "1 - 2 Metric Tons",
-  "5 Metric Tons",
-  "10 Metric Tons",
-  "20ft FCL Container (~18 MT)",
-  "40ft FCL Container (~26 MT)",
-  "Custom / Contract Quantity",
+  "Sample Evaluation Lot (10 - 50 kg)",
+  "10 Tons (Standard Institutional MOQ)",
+  "15 - 20 Tons (Single FCL / Truckload)",
+  "25 - 50 Tons / Month (Recurring Supply)",
+  "100+ Tons / Month (Enterprise Contract)",
+  "Custom / Special Requirement",
 ];
 
 export default function InquiryDrawer() {
@@ -40,13 +38,17 @@ export default function InquiryDrawer() {
     if (items.length === 0) return;
     closeDrawer();
 
-    // Format list into URL encoded string for contact message pre-fill
     const summary = items
-      .map((item, idx) => `${idx + 1}. ${item.name} (${item.category}) — Target: ${item.targetQuantity || "Standard MOQ"}`)
+      .map(
+        (item, idx) =>
+          `${idx + 1}. ${item.name} (${item.category}) — Target: ${
+            item.targetQuantity || "10 Tons (Standard MOQ)"
+          }`
+      )
       .join("\n");
 
     const query = encodeURIComponent(
-      `Hello Vishnu Traders Export Desk,\n\nI would like to request an official FOB/CIF quote for the following items:\n\n${summary}\n\nPlease share current crop pricing, lab specification sheets, and earliest dispatch timeline.`
+      `Hello Vishnu Traders Sourcing Desk,\n\nI would like to request an official quote for the following areca nut lines:\n\n${summary}\n\nPlease share current market pricing, batch COA specifications, and delivery schedule.`
     );
 
     router.push(`/contact?inquiry_prefill=${query}`);
@@ -76,10 +78,10 @@ export default function InquiryDrawer() {
                 className="text-lg font-bold"
                 style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
               >
-                Export Inquiry Basket
+                Areca Nut Inquiry Basket
               </h2>
               <p className="text-xs text-[#D4B56A]">
-                {items.length} {items.length === 1 ? "commodity" : "commodities"} selected for quotation
+                {items.length} {items.length === 1 ? "variety" : "varieties"} selected for quotation
               </p>
             </div>
           </div>
@@ -94,24 +96,24 @@ export default function InquiryDrawer() {
 
         {/* Info Banner */}
         <div className="bg-[#FAF3E7] px-6 py-3 border-b border-[#B8934A]/20 flex items-center gap-2 text-xs text-[#8A6A2E]">
-          <span className="font-semibold">B2B Trade Mode:</span> Add commodities, select target quantities, and send one combined inquiry directly to Harsh Agrawal.
+          <span className="font-semibold">B2B Trade Mode:</span> Add areca nut grades, choose monthly volume, and submit for direct quotation.
         </div>
 
         {/* Items List */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {items.length === 0 ? (
             <div className="text-center py-16 space-y-4">
-              <span className="text-5xl block">📦</span>
+              <span className="text-5xl block">🥜</span>
               <h3 className="text-lg font-bold text-[#1F4A3D]">Your Inquiry Basket is Empty</h3>
               <p className="text-xs text-gray-500 max-w-xs mx-auto">
-                Explore our export catalogue and click &ldquo;Add to Inquiry&rdquo; on whole spices, powders, or commodities.
+                Explore our areca nut catalogue and click &ldquo;Add to Inquiry&rdquo; on Raw or Roasted varieties.
               </p>
               <Link
                 href="/products"
                 onClick={closeDrawer}
                 className="btn-primary text-xs !py-2.5 !px-6 inline-block mt-2"
               >
-                Browse Export Products
+                Browse Areca Catalogue
               </Link>
             </div>
           ) : (
@@ -142,7 +144,7 @@ export default function InquiryDrawer() {
                 {/* Target Quantity Selector */}
                 <div>
                   <label className="block text-[11px] font-semibold text-gray-600 uppercase tracking-wider mb-1">
-                    Target Inquiry Volume:
+                    Target Volume:
                   </label>
                   <select
                     value={item.targetQuantity || quantityOptions[1]}
@@ -165,7 +167,7 @@ export default function InquiryDrawer() {
         {items.length > 0 && (
           <div className="p-6 border-t border-gray-100 bg-[#FAFAF8] space-y-3">
             <div className="flex items-center justify-between text-xs text-gray-500">
-              <span>Total Selected Items: {items.length}</span>
+              <span>Selected Lines: {items.length}</span>
               <button
                 onClick={clearInquiry}
                 className="text-gray-400 hover:text-red-500 transition-colors"

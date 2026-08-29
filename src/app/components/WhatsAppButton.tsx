@@ -6,19 +6,19 @@ export default function WhatsAppButton() {
   const [hovered, setHovered] = useState(false);
   const phoneNumber = "918839966253";
   const defaultMessage = encodeURIComponent(
-    "Hello Vishnu Traders, I would like to inquire about your spice & agricultural commodity export offerings."
+    "Hi, I'd like to request a quote for areca nut supply."
   );
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-      {/* Tooltip badge on hover / desktop */}
+      {/* Tooltip badge on hover */}
       <div
         className={`hidden sm:flex items-center px-4 py-2 rounded-xl bg-[#1F4A3D] text-white text-xs font-medium shadow-xl border border-[#B8934A]/30 transition-all duration-300 pointer-events-none ${
           hovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"
         }`}
       >
-        <span>Chat with Export Desk</span>
+        <span>WhatsApp Sourcing Desk (+91 88399 66253)</span>
         <div className="w-2 h-2 bg-[#1F4A3D] border-r border-b border-[#B8934A]/30 rotate-45 -mr-5 ml-2" />
       </div>
 
@@ -28,12 +28,12 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        aria-label="Chat on WhatsApp with Vishnu Traders"
+        aria-label="Chat on WhatsApp with Harsh Agrawal at Vishnu Traders"
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#20bd5a] focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
       >
         {/* Pulse glow rings */}
         <span className="absolute -inset-1.5 rounded-full bg-[#25D366]/30 animate-ping opacity-75" />
-        
+
         {/* WhatsApp Icon */}
         <svg
           className="relative h-7 w-7 fill-current drop-shadow-sm"

@@ -17,10 +17,10 @@ export default function NewsletterSignup() {
       <div className="p-4 rounded-xl bg-white/10 border border-[#B8934A]/40 text-left animate-scale-in">
         <div className="flex items-center gap-2 text-[#D4B56A] text-xs font-bold mb-1">
           <span>✓</span>
-          <span>Subscribed to Crop Reports</span>
+          <span>Subscribed to Market Intelligence</span>
         </div>
         <p className="text-[11px] text-white/70">
-          You will receive our monthly Central India mandi harvest bulletins and crop price updates.
+          You will receive our regular areca nut mandi rates and origin harvest bulletins.
         </p>
       </div>
     );
@@ -45,7 +45,7 @@ export default function NewsletterSignup() {
         </button>
       </div>
       <p className="text-[10px] text-white/40 text-left">
-        Monthly Indian spice harvest rates & commodity bulletins. No spam.
+        Monthly areca nut market price updates & origin harvest bulletins. No spam.
       </p>
     </form>
   );

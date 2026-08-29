@@ -2,39 +2,56 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import QRCodeDisplay from "../components/QRCodeDisplay";
 import MediaWithFallback from "../components/MediaWithFallback";
+import TrustBadgeStrip from "../components/TrustBadgeStrip";
 
 export const metadata: Metadata = {
-  title: "Certifications & Compliance",
+  title: "Certifications & Regulatory Compliance",
   description:
-    "Official quality certifications, food safety standards, and export compliance documents for Vishnu Traders. Verify certificate validity with instant QR verification.",
+    "Official quality certifications, food safety registrations, and import-export compliance documents for Vishnu Traders. FSSAI Central License, IEC Code, and GST Registration.",
 };
 
 const certificates = [
   {
-    id: "cert-1",
-    title: "Food Safety & Standards Authority Registration",
+    id: "fssai-central",
+    title: "FSSAI Central License",
     shortName: "FSSAI Food Safety Compliance",
-    category: "National Food Safety",
+    category: "Food Safety & Standards Authority of India",
     certNumber: "FSSAI-TODO-XXXXXXXXXXXXXX",
-    issuingBody: "Food Safety and Standards Authority of India (FSSAI) [TODO: Confirm Body]",
-    validUntil: "2027-12-31 [TODO]",
+    issuingBody: "Food Safety and Standards Authority of India (FSSAI)",
+    validUntil: "Active / Regulatory Renewal Window",
+    verificationPortalUrl: "https://foscos.fssai.gov.in/",
     description:
-      "Authorizes hygienic processing, warehousing, and wholesale trade of spices, pulses, and agricultural commodities under standard food safety frameworks.",
+      "Authorizes hygienic intake, grading, drum roasting, warehousing, and bulk wholesale trade of areca nuts (supari) under mandatory national food safety standards.",
     status: "Active & Compliant",
-    imagePlaceholder: "[TODO: replace with actual FSSAI certificate scan / PDF]",
+    imagePlaceholder: "[TODO: Client to supply actual FSSAI Central License certificate scan / PDF]",
   },
   {
-    id: "cert-2",
-    title: "Spices Board / APEDA Export Registration (RCMC)",
-    shortName: "Export Registration (RCMC)",
-    category: "Export & Commodity Board",
-    certNumber: "EXP-REG-TODO-XXXXXXXX",
-    issuingBody: "Spices Board of India / APEDA [TODO: Confirm Issuing Authority]",
-    validUntil: "2028-03-31 [TODO]",
+    id: "iec-code",
+    title: "IEC (Import Export Code)",
+    shortName: "DGFT Exporter-Importer Code",
+    category: "Directorate General of Foreign Trade (DGFT)",
+    certNumber: "IEC-TODO-XXXXXXXXXX",
+    issuingBody: "Ministry of Commerce & Industry, Government of India",
+    validUntil: "Active / Lifetime Validity with Annual Profile Update",
+    verificationPortalUrl: "https://dgft.gov.in/",
     description:
-      "Official exporter registration certificate certifying export-grade commodities, adherence to maximum residue limits (MRLs), and customs clearance eligibility.",
+      "Official trade registration authorizing direct customs clearance and containerized imports of areca nuts from Southeast Asian plantation origins to Indian ports.",
     status: "Active & Compliant",
-    imagePlaceholder: "[TODO: replace with actual Export / RCMC certificate scan / PDF]",
+    imagePlaceholder: "[TODO: Client to supply actual DGFT IEC registration certificate scan / PDF]",
+  },
+  {
+    id: "gst-registration",
+    title: "GST Registration Certificate",
+    shortName: "Goods and Services Tax Registration",
+    category: "Department of Revenue, Ministry of Finance",
+    certNumber: "GSTIN-23XXXXXXXXXXXZX",
+    issuingBody: "Government of Madhya Pradesh & Central CBIC",
+    validUntil: "Active & Verified Tax Entity",
+    verificationPortalUrl: "https://services.gst.gov.in/services/searchtp",
+    description:
+      "Statutory goods and services tax registration governing pan-India institutional trade, B2B invoicing, and interstate commodity transit documentation.",
+    status: "Active & Compliant",
+    imagePlaceholder: "[TODO: Client to supply actual GST registration certificate scan / PDF]",
   },
 ];
 
@@ -44,13 +61,13 @@ export default function CertificationsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white bg-[#0A1B15]">
         <div className="absolute inset-0">
           <MediaWithFallback
             src="/images/certifications/cert-banner.jpg"
-            alt="Certified spice export documentation"
+            alt="Certified areca nut trade documentation Vishnu Traders"
             fill
-            className="object-cover"
+            className="object-cover opacity-35"
             fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#0A1B15]"
           />
           <div className="absolute inset-0 bg-[#0A1B15]/75" />
@@ -61,7 +78,7 @@ export default function CertificationsPage() {
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
             <span className="text-[#D4B56A] text-sm font-semibold uppercase tracking-[0.15em] drop-shadow-sm">
-              Trust & Compliance
+              Trust, Compliance & Governance
             </span>
           </div>
           <h1
@@ -71,10 +88,13 @@ export default function CertificationsPage() {
             Certifications & <span className="gold-gradient-text">Verification</span>
           </h1>
           <p className="text-white/85 text-lg max-w-2xl leading-relaxed drop-shadow-sm">
-            Every shipment leaving our Pologround, Indore facility complies with established Indian and international export protocols. Scan any QR code below to verify credentials.
+            Vishnu Traders operates with full statutory registrations across food safety, import-export clearance, and tax compliance.
           </p>
         </div>
       </section>
+
+      {/* Trust Strip */}
+      <TrustBadgeStrip variant="gold" />
 
       {/* Certificates Grid */}
       <section className="py-24 lg:py-32 bg-white">
@@ -89,7 +109,7 @@ export default function CertificationsPage() {
                   id={cert.id}
                   className="rounded-3xl border border-gray-200 bg-white p-8 lg:p-12 shadow-lg hover:shadow-xl transition-all duration-300 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center"
                 >
-                  {/* Left Column: Certificate Document Mockup */}
+                  {/* Left Column: Certificate Document Preview Mockup */}
                   <div className="lg:col-span-4 flex flex-col items-center">
                     <div className="relative w-full aspect-[3/4] max-w-[280px] rounded-2xl bg-gradient-to-b from-gray-50 to-gray-100 border-2 border-dashed border-[#B8934A]/40 flex flex-col items-center justify-center p-6 text-center shadow-inner group">
                       <div className="w-14 h-14 rounded-full bg-[#B8934A]/10 text-[#B8934A] flex items-center justify-center mb-3">
@@ -100,7 +120,7 @@ export default function CertificationsPage() {
                       <span className="text-xs font-bold uppercase tracking-wider text-[#1F4A3D]">
                         Document Preview
                       </span>
-                      <p className="text-[11px] text-amber-700 mt-2 font-mono bg-amber-50 px-2.5 py-1.5 rounded-lg border border-amber-200 leading-tight">
+                      <p className="text-[11px] text-amber-800 mt-2 font-mono bg-amber-50 px-2.5 py-1.5 rounded-lg border border-amber-200 leading-tight">
                         {cert.imagePlaceholder}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-1.5 text-xs text-[#B8934A] font-semibold">
@@ -127,7 +147,7 @@ export default function CertificationsPage() {
 
                     <div className="pt-4 border-t border-gray-100 space-y-2 text-sm">
                       <div className="flex flex-col sm:flex-row sm:justify-between py-1">
-                        <span className="text-gray-400 font-medium">Certificate No.:</span>
+                        <span className="text-gray-400 font-medium">Registration Reference:</span>
                         <span className="font-mono text-gray-800 font-semibold">{cert.certNumber}</span>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:justify-between py-1">
@@ -140,24 +160,34 @@ export default function CertificationsPage() {
                       </div>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-2 flex flex-wrap gap-4">
                       <Link
                         href={`/verify/${cert.id}`}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#B8934A] hover:text-[#8A6A2E] transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1F4A3D] hover:text-[#B8934A] transition-colors"
                       >
-                        Open Digital Verification Page →
+                        <span>Internal Digital Verification Record</span>
+                        <span>→</span>
                       </Link>
+                      <a
+                        href={cert.verificationPortalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#8A6A2E] hover:underline"
+                      >
+                        <span>Govt Verification Portal</span>
+                        <span>↗</span>
+                      </a>
                     </div>
                   </div>
 
                   {/* Right Column: Live QR Code Card */}
-                  <div className="lg:col-span-3 flex flex-col items-center text-center p-6 rounded-2xl bg-[#F5F0E8] border border-[#B8934A]/20">
+                  <div className="lg:col-span-3 flex flex-col items-center text-center p-6 rounded-2xl bg-[#FAF3E7] border border-[#B8934A]/25">
                     <QRCodeDisplay value={verifyUrl} size={130} />
                     <span className="mt-4 text-xs font-bold uppercase tracking-wider text-[#1F4A3D]">
                       Scan to Verify
                     </span>
                     <p className="text-[11px] text-gray-500 mt-1">
-                      Direct link to Vishnu Traders official digital certificate record.
+                      Direct QR link to Vishnu Traders digital verification record.
                     </p>
                   </div>
                 </div>
@@ -165,17 +195,30 @@ export default function CertificationsPage() {
             })}
           </div>
 
-          {/* Compliance Notice */}
-          <div className="mt-16 p-8 rounded-3xl bg-[#EAF3F0] border border-[#3F7C67]/30 text-center max-w-3xl mx-auto">
-            <h3 className="text-lg font-bold text-[#1F4A3D] mb-2" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-              Need Batch-Specific Lab Certificates?
+          {/* Certificate of Analysis Notice */}
+          <div className="mt-16 p-8 rounded-3xl bg-[#FAF3E7] border border-[#B8934A]/30 text-center max-w-3xl mx-auto shadow-sm">
+            <h3
+              className="text-xl font-bold text-[#1F4A3D] mb-2"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              Certificate of Analysis (COA) on Every Consignment
             </h3>
             <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-              We provide Phytosanitary Certificates, Certificate of Analysis (COA), Fumigation Certificates, and Non-GMO declarations with individual export consignments upon request.
+              Every dispatched batch of whole or split areca nuts is accompanied by an official Certificate of Analysis (COA) specifying tested moisture, purity percentages, and caliber consistency.
             </p>
-            <Link href="/contact" className="btn-primary text-sm">
-              Request Certificate Documentation
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/contact" className="btn-primary text-sm">
+                Request Specifications & Sample Lot
+              </Link>
+              <a
+                href="https://wa.me/918839966253?text=Hi%2C%20I%27d%20like%20to%20request%20a%20Certificate%20of%20Analysis%20(COA)%20sample%20sheet."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-sm"
+              >
+                WhatsApp Desk for Lab Specs
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -3,33 +3,34 @@ import Link from "next/link";
 import InteractiveProcessingFlow from "../components/InteractiveProcessingFlow";
 import ScrollReveal from "../components/ScrollReveal";
 import MediaWithFallback from "../components/MediaWithFallback";
+import TrustBadgeStrip from "../components/TrustBadgeStrip";
 
 export const metadata: Metadata = {
-  title: "In-House Warehousing & Processing Flow",
+  title: "In-House Areca Nut Processing & Quality Flow",
   description:
-    "Interactive 7-stage processing journey at Vishnu Traders' Pologround Industrial Estate facility in Indore. Farm-direct sourcing, Sortex optical cleaning, precision drum roasting, batch QC, and container export logistics.",
+    "Explore the 5-stage areca nut processing pipeline at Vishnu Traders' Pologround Industrial Estate facility in Indore. Origin intake, grading & cutting, drum roasting, batch QC, and export packing.",
 };
 
-const compliancePillars = [
+const qualityPillars = [
   {
-    title: "Hygienic Environment",
-    desc: "Dust extraction systems, epoxy flooring, clean-room packaging zones, and mandatory personnel food-handling hygiene.",
-    icon: "🧼",
+    title: "In-House Grading & Sizing",
+    desc: "Rigorous grading for density, caliber size, and purity screening, with limited in-house cutting capability for select split varieties.",
+    icon: "⚙️",
   },
   {
-    title: "Moisture & Fumigation Control",
-    desc: "Strict moisture testing below 10-12% baseline to prevent aflatoxin development, paired with compliant phytosanitary treatments.",
-    icon: "💧",
+    title: "Thermal Drum Roasting",
+    desc: "Precision LPG drum roasters operating under monitored heat curves to produce uniform, deeply toasted roasted whole and split lines.",
+    icon: "🔥",
   },
   {
-    title: "Traceability & Lot Coding",
-    desc: "Every pallet and carton receives clear lot tracking metadata, linking finished goods back to origin farm batches.",
-    icon: "🏷️",
+    title: "Batch QC & COA Certification",
+    desc: "Every batch is laboratory tested for moisture, foreign matter (≤1%), and broken rate (≤3–5%), accompanied by an official COA.",
+    icon: "🔬",
   },
   {
-    title: "Export Document Readiness",
-    desc: "Fast turnaround for Certificate of Origin, Phytosanitary Certificate, Bill of Lading, and Custom Packing Lists.",
-    icon: "📜",
+    title: "Integrated Pan-India Logistics",
+    desc: "In-house dispatch for regional Indore movement; nationwide containerized freight coordinated through trusted transport partners.",
+    icon: "🚚",
   },
 ];
 
@@ -37,13 +38,13 @@ export default function ProcessingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden text-white bg-[#0A1B15]">
         <div className="absolute inset-0">
           <MediaWithFallback
             src="/images/process/warehouse.jpg"
-            alt="Processing and warehousing at Vishnu Traders"
+            alt="Areca nut processing and warehousing at Vishnu Traders Indore"
             fill
-            className="object-cover"
+            className="object-cover opacity-35"
             fallbackIcon="⚙️"
             fallbackGradient="from-[#1F4A3D] via-[#3F7C67] to-[#B8934A]"
           />
@@ -55,7 +56,7 @@ export default function ProcessingPage() {
           <div className="flex items-center gap-3 mb-6">
             <div className="gold-divider" />
             <span className="text-[#D4B56A] text-sm font-semibold uppercase tracking-[0.15em] drop-shadow-sm">
-              Infrastructure & Operations
+              Pologround Industrial Estate, Indore
             </span>
           </div>
           <h1
@@ -65,46 +66,59 @@ export default function ProcessingPage() {
             In-House Warehousing & <span className="gold-gradient-text">Processing</span>
           </h1>
           <p className="text-white/85 text-lg max-w-3xl leading-relaxed drop-shadow-sm">
-            Our core differentiator: complete end-to-end custody of agricultural commodities and spices.
-            From farm intake and Sortex cleaning to precision drum roasting, packaging, and container dispatch —
-            all operated inside our Pologround Industrial Estate facility in Indore.
+            Consolidating bulk origin procurement across Southeast Asia and South India with precision in-house grading, drum roasting, batch laboratory analysis, and customized 50–80kg bagging.
           </p>
         </div>
       </section>
+
+      {/* Trust Strip */}
+      <TrustBadgeStrip variant="gold" />
 
       {/* Overview Stat Strip */}
       <section className="bg-[#FAF3E7] border-b border-[#B8934A]/20 py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <p className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              <p
+                className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]"
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
                 100%
               </p>
-              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">In-House Controlled</p>
+              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">In-House Quality Custody</p>
             </div>
             <div>
-              <p className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-                99.5%+
+              <p
+                className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]"
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
+                80% – 95%+
               </p>
-              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">Sortex Purity Standard</p>
+              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">Grading Tier Standards</p>
             </div>
             <div>
-              <p className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
-                100g – 50kg
+              <p
+                className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]"
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
+                50 – 80 kg
               </p>
-              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">Packaging Range</p>
+              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">Industrial Bagging</p>
             </div>
             <div>
-              <p className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>
+              <p
+                className="text-2xl lg:text-3xl font-bold text-[#1F4A3D]"
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
                 Pologround, Indore
               </p>
-              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">Central Logistics Hub</p>
+              <p className="text-xs uppercase tracking-wider text-gray-600 mt-1">Central Processing Node</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Interactive 7-Step Step-by-Step Visual Flow */}
+      {/* Interactive 5-Stage Step-by-Step Visual Flow */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
@@ -112,14 +126,14 @@ export default function ProcessingPage() {
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
                 <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
-                  Interactive Workflow
+                  Interactive Processing Flow
                 </span>
               </div>
               <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-                Our 7-Stage Processing & Quality Pipeline
+                Our 5-Stage Areca Nut Quality Pipeline
               </h2>
               <p className="text-gray-500 text-lg">
-                Click on any processing stage to inspect technical parameters, equipment, and quality control protocols.
+                Click on any processing stage to inspect technical parameters, machinery, and quality control protocols.
               </p>
             </div>
           </ScrollReveal>
@@ -130,47 +144,52 @@ export default function ProcessingPage() {
         </div>
       </section>
 
-      {/* Quality & Compliance Section */}
-      <section className="py-24 lg:py-32 bg-[#F5F0E8]">
+      {/* Quality & Compliance Pillars */}
+      <section className="py-24 lg:py-32 bg-[#FAF6F0] border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="gold-divider" />
+                <span className="text-[#B8934A] text-sm font-semibold uppercase tracking-[0.15em]">
+                  Operational Standards
+                </span>
               </div>
               <h2 className="section-heading text-3xl lg:text-4xl mb-4">
-                Quality Assurance & Compliance
+                Quality Assurance & Processing Governance
               </h2>
               <p className="text-gray-600 text-lg">
-                Food safety and international trade compliance are built directly into our day-to-day operations.
+                Standardized parameters applied across all whole and split areca nut batches before release.
               </p>
             </div>
           </ScrollReveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {compliancePillars.map((item, idx) => (
+            {qualityPillars.map((item, idx) => (
               <ScrollReveal key={item.title} animation="fade-up" delay={idx * 100}>
-                <div className="glass-card rounded-2xl p-8 text-left bg-white h-full hover:-translate-y-1 transition-all duration-300">
-                  <span className="text-4xl mb-5 block">{item.icon}</span>
-                  <h3
-                    className="text-lg font-bold text-[#1F4A3D] mb-3"
-                    style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {item.desc}
-                  </p>
+                <div className="glass-card rounded-3xl p-8 text-left bg-white h-full hover:-translate-y-1 transition-all duration-300 border border-gray-200 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <span className="text-4xl mb-5 block">{item.icon}</span>
+                    <h3
+                      className="text-lg font-bold text-[#1F4A3D] mb-3"
+                      style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
           </div>
 
-          {/* Buyer-Specific Customization Notice */}
+          {/* Sample & COA Notice */}
           <ScrollReveal animation="scale-up" delay={300}>
-            <div className="mt-12 p-6 rounded-2xl bg-white/80 border border-[#B8934A]/30 text-center max-w-2xl mx-auto shadow-sm">
+            <div className="mt-12 p-6 rounded-2xl bg-white border border-[#B8934A]/30 text-center max-w-2xl mx-auto shadow-sm">
               <p className="text-xs text-gray-600 leading-relaxed">
-                <span className="font-semibold text-[#1F4A3D]">Buyer-specific requirements:</span> We accommodate custom testing certificates (SGS, Intertek, Geo-Chem), specialized fumigation standards, and country-specific labelling upon request.
+                <span className="font-semibold text-[#1F4A3D]">Buyer-specific requirements:</span> We accommodate custom moisture parameters, specialized packaging stenciling, and sample lot evaluations prior to full contract dispatch.
               </p>
             </div>
           </ScrollReveal>
@@ -178,30 +197,31 @@ export default function ProcessingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 lg:py-32 bg-[#1F4A3D] text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#3F7C67]/20 via-transparent to-transparent pointer-events-none" />
+      <section className="py-24 lg:py-32 bg-[#0F2922] text-white text-center relative overflow-hidden">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up">
             <h2
               className="text-3xl lg:text-5xl font-bold mb-6"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
             >
-              Schedule a Facility Visit or <span className="gold-gradient-text">Request Quote</span>
+              Discuss Processing Specs or <span className="gold-gradient-text">Request Samples</span>
             </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              Interested in private labelling or contract processing? Contact our export operations desk at Pologround Industrial Estate, Indore.
+            <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+              Contact our operations desk at Pologround Industrial Estate, Indore for batch technical sheets and sample dispatches.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn-primary text-base group">
                 <span>Submit Processing Inquiry</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
-              <Link
-                href="/certifications"
+              <a
+                href="https://wa.me/918839966253?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20processing%20standards%20and%20request%20a%20sample."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300 text-base"
               >
-                View Certifications & QR
-              </Link>
+                <span>WhatsApp Operations Desk</span>
+              </a>
             </div>
           </ScrollReveal>
         </div>

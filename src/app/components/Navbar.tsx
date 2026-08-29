@@ -7,7 +7,7 @@ import InquiryBasketBadge from "./InquiryBasketBadge";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Products", href: "/products" },
+  { label: "Areca Catalogue", href: "/products" },
   { label: "Processing", href: "/processing" },
   { label: "Certifications", href: "/certifications" },
   { label: "Contact", href: "/contact" },
@@ -28,12 +28,12 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#0A1B15]/95 backdrop-blur-xl border-b border-[#B8934A]/30 shadow-xl py-2.5"
-          : "bg-[#0A1B15]/75 backdrop-blur-md border-b border-white/10 py-3.5"
+          : "bg-[#0A1B15]/85 backdrop-blur-md border-b border-white/10 py-3.5"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
-          {/* Text-only brand wordmark */}
+          {/* Brand wordmark */}
           <Link href="/" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.02]">
             <span
               className="block truncate text-base sm:text-xl font-bold tracking-tight leading-tight text-white"
@@ -42,7 +42,7 @@ export default function Navbar() {
               VISHNU TRADERS
             </span>
             <span className="block truncate text-[8px] sm:text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D4B56A]">
-              Since 1996 · Global Trading
+              Since 1996 · Areca Nut Supply Partner
             </span>
           </Link>
 
@@ -52,7 +52,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-medium text-white/85 hover:text-white transition-colors duration-200 group"
+                className="relative px-3.5 py-2 text-sm font-medium text-white/85 hover:text-white transition-colors duration-200 group"
               >
                 <span className="relative z-10">{link.label}</span>
                 <span className="absolute bottom-1 left-1/2 h-0.5 w-0 bg-[#B8934A] transition-all duration-200 group-hover:left-[18%] group-hover:w-[64%] rounded-full" />
@@ -66,11 +66,11 @@ export default function Navbar() {
               href="/contact"
               className="ml-3 btn-primary text-xs !py-2.5 !px-5"
             >
-              Get Quote
+              Request Quote
             </Link>
           </nav>
 
-          {/* Mobile Right Controls: Inquiry Basket Badge & Hamburger */}
+          {/* Mobile Right Controls */}
           <div className="lg:hidden flex shrink-0 items-center gap-2">
             <InquiryBasketBadge className="shrink-0" />
 
@@ -111,8 +111,15 @@ export default function Navbar() {
       >
         <div className="flex flex-col items-center gap-5 text-center">
           <div className="mb-2 text-center">
-            <div className="text-3xl font-bold tracking-tight text-[#1F4A3D]" style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>VISHNU TRADERS</div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B8934A]">Since 1996 · Global Trading</div>
+            <div
+              className="text-3xl font-bold tracking-tight text-[#1F4A3D]"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              VISHNU TRADERS
+            </div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B8934A]">
+              Since 1996 · Areca Nut Supply Partner
+            </div>
           </div>
           {navLinks.map((link) => (
             <Link
@@ -130,7 +137,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
             className="btn-primary mt-2 w-full max-w-xs"
           >
-            Get Quote
+            Request Quote
           </Link>
         </div>
       </div>

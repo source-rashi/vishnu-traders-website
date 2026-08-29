@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import MediaWithFallback from "./MediaWithFallback";
 
 interface StepDetail {
@@ -19,115 +18,83 @@ interface StepDetail {
 const processingSteps: StepDetail[] = [
   {
     step: "01",
-    title: "Raw Material Sourcing",
-    subtitle: "Farm-Origin Mandi Procurement",
+    title: "Origin Procurement",
+    subtitle: "Direct Global & Domestic Intake",
     summary:
-      "Direct procurement relationships across agricultural hubs in Madhya Pradesh (Guna, Neemuch, Mandsaur, Indore) and Rajasthan. Every incoming batch is inspected at intake for moisture, insect damage, and essential purity.",
+      "Direct procurement relationships across prime overseas growing nations (Indonesia, Thailand, Myanmar, Sri Lanka) and domestic South Indian producing regions (Kerala & Karnataka). Raw nuts undergo immediate intake moisture inspection, foreign matter screening, and lot identification.",
     keyParameters: [
-      { label: "Intake Moisture Target", value: "< 9.5% - 11.0%" },
-      { label: "Origin Regions", value: "MP & Rajasthan Mandis" },
-      { label: "Traceability", value: "Farm-Gate Batch ID" },
+      { label: "Intake Moisture", value: "Raw 10–12% baseline" },
+      { label: "Origin Sourcing", value: "Global & Domestic Mandis" },
+      { label: "Traceability", value: "Origin Lot Tagging" },
     ],
-    equipmentUsed: "Digital Moisture Analyzers, Sample Probes, Gravity Intake Weighbridges",
-    qualityCheck: "Initial sensory aroma evaluation, foreign matter screening, and moisture verification.",
+    equipmentUsed: "Digital Calibrated Moisture Meters, Intake Weighbridges, Sampling Probes",
+    qualityCheck: "Visual density verification, foreign matter screening (≤1%), and intake moisture logging.",
     image: "/images/process/sourcing.jpg",
-    icon: "🌿",
+    icon: "🌱",
   },
   {
     step: "02",
-    title: "Pre-Cleaning & Sortex",
-    subtitle: "Multi-Stage Optical Separation",
+    title: "Grading & Cutting",
+    subtitle: "Moisture, Caliber Screening & Split Cutting",
     summary:
-      "Vibratory aspirators remove dust, chaff, and light impurities. Heavy destoners eliminate stones and earth particles, followed by high-resolution optical sortex cameras that eject discolored and immature seeds.",
+      "Every batch passes through in-house sizing, density separation, and purity grading to categorize nuts into standardized tiers (80–85%, 90–95%, and 95%+ Super). Limited in-house cutting capability handles precision sectioning for select split varieties with uniform cross-section.",
     keyParameters: [
-      { label: "Target Purity Grade", value: "99.5% - 99.95% Sortex" },
-      { label: "Foreign Matter Limit", value: "< 0.1% max" },
-      { label: "Machine Stages", value: "3-Stage Vibratory + Sortex" },
+      { label: "Purity & Caliber", value: "80–85%, 90–95%, 95%+ Super" },
+      { label: "Broken Rate", value: "≤ 3–5% threshold" },
+      { label: "Split Cutting", value: "Clean In-House Sectioning" },
     ],
-    equipmentUsed: "Buhler-Type Optical Color Sorters, Vibratory Sieves, Cyclone Dust Extractors",
-    qualityCheck: "Continuous optical scan logs, seed count per gram, and destoner discharge verification.",
-    image: "/images/process/sorting.jpg",
+    equipmentUsed: "Rotary Size Sifters, Gravity Separator Tables, Precision Areca Nut Cutters",
+    qualityCheck: "Caliber sizing checks, broken rate threshold audit (≤3–5%), and cut uniformity inspection.",
+    image: "/images/process/grading.jpg",
     icon: "⚙️",
   },
   {
     step: "03",
-    title: "Controlled Drum Roasting",
-    subtitle: "Precision Thermal Roastery",
+    title: "Controlled Roasting",
+    subtitle: "Thermal Drum Roastery (Roasted Line)",
     summary:
-      "Precision batch drum roasters with digital thermostatic control evenly roast cumin, coriander, and sesame seeds. Thermal profiles are calibrated to lock in natural essential oils without burning or bitterness.",
+      "For our roasted line, whole and split areca nuts are roasted in temperature-controlled drums under calibrated thermal profiles. Monitored heat curves ensure deep, even toasting without scorching or bitter core notes, reducing moisture down to ≤10% (≤5% dry spec).",
     keyParameters: [
-      { label: "Roasting Temp Range", value: "110°C - 145°C (Batch-specific)" },
-      { label: "Moisture Post-Roast", value: "< 6.0% for crispness" },
-      { label: "Aroma Activation", value: "100% Volatile Oil Retention" },
+      { label: "Heat Profiles", value: "Monitored Batch Roasting" },
+      { label: "Moisture Post-Roast", value: "≤ 10% (≤ 5% spec)" },
+      { label: "Texture & Aroma", value: "Crisp & Evenly Toasted" },
     ],
-    equipmentUsed: "LPG Indirect-Fired Stainless Drum Roasters with Automated Cooling Trays",
-    qualityCheck: "Agtron color degree calibration, aroma punch testing, and moisture analysis.",
+    equipmentUsed: "Thermostatically Controlled LPG Indirect-Fired Stainless Drum Roasters, Cooling Trays",
+    qualityCheck: "Coloration uniformity, roast degree calibration, and residual moisture verification.",
     image: "/images/process/roasting.jpg",
     icon: "🔥",
   },
   {
     step: "04",
-    title: "Grading & QC Lab Checks",
-    subtitle: "Standardized Laboratory Parameters",
+    title: "Quality Control & Lab Testing",
+    subtitle: "Batch-Level Certificate of Analysis (COA)",
     summary:
-      "In-house sampling checks for volatile oil percentages, microbial safety, granulation mesh size for powders, and absence of synthetic additives or colorants.",
+      "Before clearance, every batch undergoes thorough quality control and laboratory analysis. Moisture content, purity percentages, and absence of external contaminants are verified, generating an official Certificate of Analysis (COA) for client records.",
     keyParameters: [
-      { label: "Volatile Oil Check", value: "Meets ASTA / ESA Standards" },
-      { label: "Aflatoxin & MRL", value: "Compliant with Destination Regs" },
-      { label: "Laboratory Certificate", value: "COA Issued Per Batch" },
+      { label: "Lab Documentation", value: "COA Issued Per Batch" },
+      { label: "Purity Check", value: "Zero Adulteration" },
+      { label: "Compliance", value: "FSSAI & Trade Standards" },
     ],
-    equipmentUsed: "Clevenger Volatile Oil Distillation Apparatus, Sieve Shakers, Moisture Ovens",
-    qualityCheck: "Batch Certificate of Analysis (COA) generation before clearance for packing.",
-    image: "/images/process/grading.jpg",
+    equipmentUsed: "Laboratory Moisture Analyzers, Digital Calipers, Precision Analytical Balances",
+    qualityCheck: "Mandatory Certificate of Analysis (COA) generation before consignment release.",
+    image: "/images/process/sorting.jpg",
     icon: "🔬",
   },
   {
     step: "05",
-    title: "Custom B2B Packaging",
-    subtitle: "Nitrogen Flushing & Multi-Wall Sacks",
+    title: "Packing & Dispatch",
+    subtitle: "Export-Grade Bagging & Nationwide Freight",
     summary:
-      "Clean-room packaging lines handle formats from 100g consumer nitrogen-flushed barrier pouches up to 25kg multi-wall paper bags and 50kg HDPE woven sacks with customized buyer branding and QR lot codes.",
+      "Finished areca nuts are packed into 50–80kg industrial-grade multi-layer bags with clear batch labeling. In-house logistics handle local movement, while nationwide containerized delivery is coordinated through trusted logistics partners.",
     keyParameters: [
-      { label: "Packaging Formats", value: "100g Pouch to 50kg Export Sacks" },
-      { label: "Barrier Protection", value: "Moisture-Proof Poly Liner / Multi-Wall" },
-      { label: "Branding", value: "Custom Private Label Available" },
+      { label: "Packaging Format", value: "50–80 kg Export Bags" },
+      { label: "Dispatch Scope", value: "Pan-India & Local Logistics" },
+      { label: "Minimum Order", value: "10 Tons MOQ" },
     ],
-    equipmentUsed: "Automated Form-Fill-Seal (FFS) Baggers, Heat Sealers, Continuous Bag Stitchers",
-    qualityCheck: "Seal integrity inspection, weight checkweigher accuracy (±0.2%), and QR scan verification.",
+    equipmentUsed: "Industrial Heavy-Duty Bag Stitchers, Platform Checkweighers, Pallet Stacking Racks",
+    qualityCheck: "Bag seal strength check, gross/net weight verification, and transport lashing inspection.",
     image: "/images/process/packaging.jpg",
     icon: "📦",
-  },
-  {
-    step: "06",
-    title: "FIFO Warehousing",
-    subtitle: "Pologround Industrial Estate, Indore",
-    summary:
-      "Climate-appropriate palletized storage facilities with strict FIFO inventory control, epoxy sealed floors, fumigation chambers, and automated temperature-humidity telemetry.",
-    keyParameters: [
-      { label: "Storage Architecture", value: "Pallet Racked & Elevated" },
-      { label: "Pest Management", value: "Preventive Non-Chemical & Fumigated" },
-      { label: "Dispatch Velocity", value: "Same-Day / Next-Day Container Loading" },
-    ],
-    equipmentUsed: "Electric Reach Trucks, Dehumidifiers, Digital Climate Loggers",
-    qualityCheck: "Weekly moisture equilibrium audits and strict pallet lot traceability.",
-    image: "/images/process/warehouse.jpg",
-    icon: "🏬",
-  },
-  {
-    step: "07",
-    title: "Export Container Dispatch",
-    subtitle: "FCL & LCL Port Freight",
-    summary:
-      "Direct container stuffing with industrial desiccants and cargo lashing. Fast-track phytosanitary inspection and transport via dedicated container trucks to Nhava Sheva (JNPT) and Mundra ports.",
-    keyParameters: [
-      { label: "Container Types", value: "20ft FCL (~18 MT) / 40ft FCL (~26 MT)" },
-      { label: "Port Corridors", value: "Nhava Sheva (JNPT) & Mundra" },
-      { label: "Documentation", value: "Phytosanitary, COO, BL, Packing List" },
-    ],
-    equipmentUsed: "Container Ramps, Heavy Cargo Strapping, High-Capacity Desiccant Bags",
-    qualityCheck: "Pre-stuffing container cleanliness inspection, seal verification, and customs clearance.",
-    image: "/images/process/export.jpg",
-    icon: "🚢",
   },
 ];
 
@@ -138,9 +105,8 @@ export default function InteractiveProcessingFlow() {
 
   return (
     <div className="space-y-10">
-      {/* Step Navigation Bar with Connecting Progress Line */}
+      {/* Step Navigation Bar */}
       <div className="relative">
-        {/* Step Buttons */}
         <div className="flex items-center justify-between gap-2 overflow-x-auto pb-4 no-scrollbar">
           {processingSteps.map((s, idx) => {
             const isActive = idx === activeStepIdx;
@@ -150,7 +116,7 @@ export default function InteractiveProcessingFlow() {
               <button
                 key={s.step}
                 onClick={() => setActiveStepIdx(idx)}
-                className="flex flex-col items-center min-w-[90px] sm:min-w-[120px] group focus:outline-none"
+                className="flex flex-col items-center min-w-[100px] sm:min-w-[140px] group focus:outline-none"
                 aria-label={`Step ${s.step}: ${s.title}`}
               >
                 {/* Step Circle */}
@@ -175,7 +141,7 @@ export default function InteractiveProcessingFlow() {
                   Stage {s.step}
                 </span>
                 <span
-                  className={`text-[10px] text-center line-clamp-1 max-w-[100px] hidden sm:block ${
+                  className={`text-[11px] text-center line-clamp-1 max-w-[120px] hidden sm:block ${
                     isActive ? "text-[#8A6A2E] font-semibold" : "text-gray-400"
                   }`}
                 >
@@ -194,7 +160,7 @@ export default function InteractiveProcessingFlow() {
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#1F4A3D] text-[#D4B56A]">
-                Stage {activeStep.step} of 07
+                Stage {activeStep.step} of 05
               </span>
               <span className="text-xs font-semibold text-gray-500">
                 {activeStep.subtitle}
@@ -233,7 +199,7 @@ export default function InteractiveProcessingFlow() {
           {/* Equipment & Inspection */}
           <div className="space-y-2 pt-4 border-t border-gray-100 text-xs">
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
-              <span className="font-bold text-gray-900 shrink-0">Machinery:</span>
+              <span className="font-bold text-gray-900 shrink-0">Processing Machinery:</span>
               <span className="text-gray-600">{activeStep.equipmentUsed}</span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-1">
@@ -243,7 +209,7 @@ export default function InteractiveProcessingFlow() {
           </div>
         </div>
 
-        {/* Right Visual Photo Card with Dedicated Photo & Navigation */}
+        {/* Right Visual Photo Card */}
         <div className="lg:col-span-5 flex flex-col justify-between gap-4">
           <div className="relative rounded-3xl overflow-hidden border border-[#B8934A]/30 shadow-lg h-[280px] sm:h-[340px] lg:h-full min-h-[280px] bg-[#0A1B15] group">
             <MediaWithFallback
@@ -263,7 +229,7 @@ export default function InteractiveProcessingFlow() {
                 Stage {activeStep.step} · {activeStep.icon}
               </span>
               <span className="text-[10px] font-semibold text-white/95 bg-[#1F4A3D]/80 px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10 shadow-sm">
-                Indore Facility
+                Pologround, Indore
               </span>
             </div>
 

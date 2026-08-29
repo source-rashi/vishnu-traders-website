@@ -11,24 +11,25 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vishnutraders.in";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Vishnu Traders — Global Spice & Agri-Commodity Exporter | Indore",
+    default: "Vishnu Traders — Premier Importer & Processor of Areca Nut (Betel Nut / Supari) | Indore",
     template: "%s | Vishnu Traders",
   },
   description:
-    "Leading agricultural commodities and spice exporter based in Indore, Madhya Pradesh since 1996. In-house sourcing, sortex cleaning, drum roasting, packaging, and climate-controlled warehousing.",
+    "Leading importer, processor, and distributor of areca nuts (betel nut / supari) based in Indore, Madhya Pradesh since 1996. Strategic supply partner for food manufacturers with raw, roasted, whole, and split areca nuts backed by Certificate of Analysis (COA) documentation.",
   keywords: [
     "Vishnu Traders",
-    "Spice Exporter India",
-    "Indore Spice Processor",
+    "Areca Nut Importer",
+    "Areca Nut Supplier India",
+    "Betel Nut Wholesale",
+    "Supari Supplier Indore",
+    "Raw Areca Nut Whole",
+    "Raw Areca Nut Split",
+    "Roasted Areca Nut Whole",
+    "Roasted Areca Nut Split",
     "Pologround Industrial Estate",
-    "Madhya Pradesh Spices",
-    "Cumin Seeds Exporter",
-    "Coriander Seeds Exporter",
-    "Turmeric Powder Bulk",
-    "Soybean Exporter",
-    "Non-GMO Wheat",
-    "Roasted Cumin Seeds",
-    "Agricultural Commodities Trader",
+    "Indore Commodity Trader",
+    "Betel Nut Exporter India",
+    "Areca Nut Certificate of Analysis",
   ],
   authors: [{ name: "Vishnu Traders" }],
   creator: "Vishnu Traders",
@@ -41,9 +42,9 @@ export const metadata: Metadata = {
     apple: "/favicon-best.png",
   },
   openGraph: {
-    title: "Vishnu Traders — Global Spice & Agri-Commodity Exporter",
+    title: "Vishnu Traders — Premier Importer & Processor of Areca Nut",
     description:
-      "Since 1996. Farm-direct sourcing, optical sortex cleaning, precision drum roasting, and export warehousing in Indore, India.",
+      "Since 1996. High-volume areca nut supply chain for food manufacturers & institutional buyers. Sourced globally and domestically with Pologround processing & warehousing.",
     url: siteUrl,
     siteName: "Vishnu Traders",
     images: [
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vishnu Traders — Spice & Agri Exporter",
+    title: "Vishnu Traders — Areca Nut Importer & Processor",
     description:
-      "Global agricultural commodities and spices exporter based in Indore, MP. In-house processing & warehousing.",
+      "30-year commodity trading legacy in areca nuts (betel nut / supari). Sourcing from Indonesia, Thailand, Myanmar, Sri Lanka, Kerala & Karnataka.",
     images: ["/logo-best.png"],
   },
   alternates: {
@@ -83,12 +84,12 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "Vishnu Traders",
   description:
-    "Global agricultural commodities and spice exporter with in-house processing, roasting, sorting, and warehousing.",
+    "Premier importer, processor, and distributor of areca nuts (betel nut / supari) with centralized processing and bulk warehousing in Indore, MP.",
   url: siteUrl,
   telephone: "+918839966253",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "R-20 Pologround, Pologround Industrial Estate, Malti Vanaspati",
+    streetAddress: "R-20 Pologround Industrial Estate, Malti Vanaspati",
     addressLocality: "Indore",
     addressRegion: "Madhya Pradesh",
     postalCode: "452015",
@@ -108,8 +109,8 @@ const jsonLd = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "09:00",
-      closes: "19:00",
+      opens: "09:30",
+      closes: "19:30",
     },
   ],
   sameAs: [

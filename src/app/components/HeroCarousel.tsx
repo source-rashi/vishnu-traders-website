@@ -58,6 +58,11 @@ const heroSlides: HeroSlide[] = [
     badge: "Pologround Facility · Bulk Warehousing",
   },
 ];
+const backgroundImages = [
+  "/images/hero/hero-1.jpg",
+  "/images/hero/hero-2.jpg",
+  "/images/hero/hero-3.jpg",
+];
 
 export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -77,12 +82,12 @@ export default function HeroCarousel() {
     setCurrentIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   }, []);
 
-  // Auto-advance slides every 8 seconds
+  // Auto-advance slides every 5.5 seconds
   useEffect(() => {
     if (isPaused) return;
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
-    }, 8000);
+    }, 5500);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -106,6 +111,16 @@ export default function HeroCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+        {/* Background Image */}
+        <Image
+          src={backgroundImages[currentIndex]}
+          alt={`Hero background ${currentIndex + 1}`}
+          fill
+          priority={currentIndex === 0}
+          className="absolute inset-0 object-cover -z-10"
+        />
+        {/* Green overlay */}
+        <div className="absolute inset-0 bg-green-900/30 -z-5"></div>
       {/* Background ambient lighting and subtle texture */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#1F4A3D]/40 blur-3xl" />
@@ -118,7 +133,7 @@ export default function HeroCarousel() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[580px]">
           {/* Left Column: Rotating Copy (Screen Text) */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          <div className="lg:col-span-12 flex flex-col justify-center">
             {/* Overline Badge */}
             <div className="flex items-center gap-3 mb-5">
               <div className="gold-divider" />
@@ -238,69 +253,8 @@ export default function HeroCarousel() {
             </div>
           </div>
 
-          {/* Right Column: Split Portrait Image Card */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden border-2 border-[#B8934A]/40 shadow-2xl bg-[#0F2922] group">
-              {heroSlides.map((slide, idx) => {
-                const isActive = idx === currentIndex;
-                return (
-                  <div
-                    key={idx}
-                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                      isActive
-                        ? "opacity-100 scale-100 z-10"
-                        : "opacity-0 scale-105 z-0 pointer-events-none"
-                    }`}
-                  >
-                    {imgErrors[idx] ? (
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#1F4A3D] via-[#143228] to-[#0A1B15] flex items-center justify-center p-8 text-center">
-                        <span className="text-4xl block mb-2">🌿</span>
-                        <p className="text-xs text-white/70">{slide.badge}</p>
-                      </div>
-                    ) : (
-                      <Image
-                        src={slide.portraitImage}
-                        alt={`Vishnu Traders Areca Nut Processing - Screen ${idx + 1}`}
-                        fill
-                        priority={idx === 0}
-                        sizes="(max-width: 768px) 100vw, 420px"
-                        className="object-cover object-center transform transition-transform duration-[6000ms] group-hover:scale-105"
-                        onError={() => handleImgError(idx)}
-                      />
-                    )}
-                  </div>
-                );
-              })}
 
-              {/* Vignette gradients over portrait card */}
-              <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none" />
 
-              {/* Top floating pill */}
-              <div className="absolute top-4 left-4 right-4 z-30 flex items-center justify-between pointer-events-none">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-[#EBD095] border border-[#B8934A]/40 shadow-lg">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Areca Nut Supply
-                </span>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-white/90 border border-white/20">
-                  Est. 1996
-                </span>
-              </div>
-
-              {/* Bottom Caption on Portrait Card */}
-              <div className="absolute bottom-4 left-4 right-4 z-30 pointer-events-none">
-                <span className="text-[11px] font-bold text-[#D4B56A] uppercase tracking-wider block mb-0.5">
-                  Screen 0{currentIndex + 1}
-                </span>
-                <p
-                  className="text-sm font-bold text-white leading-snug drop-shadow"
-                  style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-                >
-                  {currentSlide.badge}
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
