@@ -120,7 +120,7 @@ const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
           fill
           priority={currentIndex === 0}
           className="absolute inset-0 object-cover -z-10 filter blur-sm"
-          onError={() => setBgImgErrors(prev => { const next = [...prev]; next[currentIndex] = true; return next; })
+          onError={() => setBgImgErrors(prev => { const next = [...prev]; next[currentIndex] = true; return next; })}
         />
         {/* Placeholder if background image fails */}
         {bgImgErrors[currentIndex] && (
