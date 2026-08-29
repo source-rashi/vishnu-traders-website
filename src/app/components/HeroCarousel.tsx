@@ -68,7 +68,9 @@ export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [imgErrors, setImgErrors] = useState<boolean[]>([false, false, false]);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [bgImgErrors, setBgImgErrors] = useState<boolean[]>([false, false, false]);
+
+const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goToSlide = useCallback((idx: number) => {
     setCurrentIndex(idx);
@@ -87,7 +89,7 @@ export default function HeroCarousel() {
     if (isPaused) return;
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
-    }, 5500);
+    }, 5000);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -117,10 +119,17 @@ export default function HeroCarousel() {
           alt={`Hero background ${currentIndex + 1}`}
           fill
           priority={currentIndex === 0}
-          className="absolute inset-0 object-cover -z-10"
+          className="absolute inset-0 object-cover -z-10 filter blur-sm"
+          onError={() => setBgImgErrors(prev => { const next = [...prev]; next[currentIndex] = true; return next; })
         />
+        {/* Placeholder if background image fails */}
+        {bgImgErrors[currentIndex] && (
+          <div className="absolute inset-0 bg-green-900/30 -z-10 flex items-center justify-center">
+            <span className="text-2xl text-white/70">Background image missing</span>
+          </div>
+        )}
         {/* Green overlay */}
-        <div className="absolute inset-0 bg-green-900/30 -z-5"></div>
+        <div className="absolute inset-0 bg-green-900/20 -z-5"></div>
       {/* Background ambient lighting and subtle texture */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#1F4A3D]/40 blur-3xl" />
