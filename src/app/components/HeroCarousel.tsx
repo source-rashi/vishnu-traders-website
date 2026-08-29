@@ -27,7 +27,7 @@ const heroSlides: HeroSlide[] = [
     primaryCtaHref: "/products",
     secondaryCtaText: "View Processing Standards",
     secondaryCtaHref: "/processing",
-    portraitImage: "/images/hero/portrait-1.jpg",
+    portraitImage: "/images/hero/Hero26.jpg",
     badge: "Origin Procurement · Global & Domestic",
   },
   {
@@ -42,7 +42,7 @@ const heroSlides: HeroSlide[] = [
     secondaryCtaText: "Request Sample Lot",
     secondaryCtaHref:
       "https://wa.me/918839966253?text=Hi%2C%20I%27d%20like%20to%20request%20a%20sample%20lot%20of%20areca%20nuts.",
-    portraitImage: "/images/hero/portrait-2.jpg",
+    portraitImage: "/images/hero/Hero26.jpg",
     badge: "In-House QC · Batch Lab Certified",
   },
   {
@@ -54,14 +54,14 @@ const heroSlides: HeroSlide[] = [
     primaryCtaHref: "/products",
     secondaryCtaText: "Explore Our Infrastructure",
     secondaryCtaHref: "/processing",
-    portraitImage: "/images/hero/portrait-3.jpg",
+    portraitImage: "/images/hero/Hero26.jpg",
     badge: "Pologround Facility · Bulk Warehousing",
   },
 ];
 const backgroundImages = [
-  "/images/hero/hero-1.jpg",
-  "/images/hero/hero-2.jpg",
-  "/images/hero/hero-3.jpg",
+  "/images/hero/Hero26.jpg",
+  "/images/hero/Hero26.jpg",
+  "/images/hero/Hero26.jpg",
 ];
 
 export default function HeroCarousel() {
