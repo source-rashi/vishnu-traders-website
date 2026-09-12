@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import InquiryBasketBadge from "./InquiryBasketBadge";
 
@@ -34,15 +35,25 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Brand wordmark */}
-          <Link href="/" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.02]">
-            <span
-              className="block truncate text-base sm:text-xl font-bold tracking-tight leading-tight text-white"
-              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
-            >
-              VISHNU TRADERS
-            </span>
-            <span className="block truncate text-[8px] sm:text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D4B56A]">
-              Since 1996 · Areca Nut Supply Partner
+          <Link href="/" className="flex min-w-0 shrink items-center gap-2.5 transition-transform duration-300 hover:scale-[1.02]">
+            <Image
+              src="/final-logo.png"
+              alt="Vishnu Traders logo"
+              width={48}
+              height={48}
+              sizes="48px"
+              className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12"
+            />
+            <span className="min-w-0">
+              <span
+                className="block truncate text-base sm:text-xl font-bold tracking-tight leading-tight text-white"
+                style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+              >
+                VISHNU TRADERS
+              </span>
+              <span className="block truncate text-[8px] sm:text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D4B56A]">
+                Since 1996 · Areca Nut Supply Partner
+              </span>
             </span>
           </Link>
 
@@ -111,6 +122,14 @@ export default function Navbar() {
       >
         <div className="flex flex-col items-center gap-5 text-center">
           <div className="mb-2 text-center">
+            <Image
+              src="/final-logo.png"
+              alt="Vishnu Traders logo"
+              width={96}
+              height={96}
+              sizes="96px"
+              className="mx-auto mb-3 h-20 w-20 object-contain"
+            />
             <div
               className="text-3xl font-bold tracking-tight text-[#1F4A3D]"
               style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
