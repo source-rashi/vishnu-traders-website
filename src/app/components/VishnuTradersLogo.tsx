@@ -19,7 +19,7 @@ export default function VishnuTradersLogo({
     return (
       <div className={`relative inline-flex items-center justify-center ${className}`}>
         <Image
-          src="/final%20logo.jpeg"
+          src="/final-logo.png"
           alt="Vishnu Traders Emblem"
           fill
           sizes="(max-width: 640px) 48px, 64px"
