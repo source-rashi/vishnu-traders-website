@@ -36,9 +36,10 @@ export const metadata: Metadata = {
   publisher: "Vishnu Traders",
   icons: {
     icon: [
-      { url: "/final%20logo.jpeg", type: "image/jpeg" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: "/final%20logo.jpeg",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Vishnu Traders — Premier Importer & Processor of Areca Nut",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Vishnu Traders",
     images: [
       {
-        url: "/final%20logo.jpeg",
+        url: "/final-logo.png",
         width: 1024,
         height: 1024,
         alt: "Vishnu Traders Emblem",
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
     title: "Vishnu Traders — Areca Nut Importer & Processor",
     description:
       "30-year commodity trading legacy in areca nuts (betel nut / supari). Sourcing from Indonesia, Thailand, Myanmar, Sri Lanka, Kerala & Karnataka.",
-    images: ["/final%20logo.jpeg"],
+    images: ["/final-logo.png"],
   },
   alternates: {
     canonical: siteUrl,
