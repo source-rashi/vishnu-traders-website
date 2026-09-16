@@ -87,7 +87,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/10"
+              className="relative z-[70] flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/10"
               aria-label="Toggle menu"
             >
               <div className="flex flex-col gap-1.5">
@@ -114,7 +114,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden fixed inset-0 bg-white z-40 transition-all duration-300 ease-out flex flex-col justify-center px-8 ${
+        className={`lg:hidden fixed inset-0 bg-white z-[60] transition-all duration-300 ease-out flex flex-col justify-center px-8 ${
           isOpen
             ? "opacity-100 translate-x-0 pointer-events-auto"
             : "opacity-0 translate-x-4 pointer-events-none"

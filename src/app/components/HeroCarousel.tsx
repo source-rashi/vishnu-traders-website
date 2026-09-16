@@ -13,8 +13,6 @@ interface HeroSlide {
   primaryIsWhatsApp?: boolean;
   secondaryCtaText: string;
   secondaryCtaHref: string;
-  portraitImage: string;
-  badge: string;
 }
 
 const heroSlides: HeroSlide[] = [
@@ -27,8 +25,6 @@ const heroSlides: HeroSlide[] = [
     primaryCtaHref: "/products",
     secondaryCtaText: "View Processing Standards",
     secondaryCtaHref: "/processing",
-    portraitImage: "/images/hero/Hero26.jpg",
-    badge: "Origin Procurement · Global & Domestic",
   },
   {
     overline: "PRECISION GRADING · MOISTURE & PURITY CONTROL",
@@ -42,8 +38,6 @@ const heroSlides: HeroSlide[] = [
     secondaryCtaText: "Request Sample Lot",
     secondaryCtaHref:
       "https://wa.me/918839966253?text=Hi%2C%20I%27d%20like%20to%20request%20a%20sample%20lot%20of%20areca%20nuts.",
-    portraitImage: "/images/hero/Hero26.jpg",
-    badge: "In-House QC · Batch Lab Certified",
   },
   {
     overline: "CENTRALIZED PROCESSING & WAREHOUSING · POLOGROUND, INDORE",
@@ -54,8 +48,6 @@ const heroSlides: HeroSlide[] = [
     primaryCtaHref: "/products",
     secondaryCtaText: "Explore Our Infrastructure",
     secondaryCtaHref: "/processing",
-    portraitImage: "/images/hero/Hero26.jpg",
-    badge: "Pologround Facility · Bulk Warehousing",
   },
 ];
 const backgroundImages = [
@@ -67,7 +59,6 @@ const backgroundImages = [
 export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [imgErrors, setImgErrors] = useState<boolean[]>([false, false, false]);
   const [bgImgErrors, setBgImgErrors] = useState<boolean[]>([false, false, false]);
 
 const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -84,7 +75,7 @@ const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
     setCurrentIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   }, []);
 
-  // Auto-advance slides every 5.5 seconds
+  // Auto-advance slides every 3 seconds
   useEffect(() => {
     if (isPaused) return;
     intervalRef.current = setInterval(() => {
@@ -96,19 +87,11 @@ const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
     };
   }, [isPaused]);
 
-  const handleImgError = (idx: number) => {
-    setImgErrors((prev) => {
-      const next = [...prev];
-      next[idx] = true;
-      return next;
-    });
-  };
-
   const currentSlide = heroSlides[currentIndex];
 
   return (
     <section
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#0A1B15] text-white pt-24 pb-16 lg:py-0"
+      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#0A1B15] text-white pt-28 pb-16 lg:py-0"
       aria-label="Vishnu Traders Areca Nut Supply Showcase"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}

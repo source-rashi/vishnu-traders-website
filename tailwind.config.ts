@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss';
 
 export default {
-  darkMode: 'class',
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     './app/**/*.{js,ts,jsx,tsx}',
@@ -37,10 +36,6 @@ export default {
           800: '#10261F',
           900: '#0A1B15',
         },
-      },
-      fontFamily: {
-        heading: ['"Playfair Display"', 'serif'],
-        body: ['Inter', 'sans-serif'],
       },
     },
   },
